@@ -9,10 +9,15 @@ class Name{
 private:
     string FirstName, LastName;
 protected:
-    void setName(string temp);
-
+    void setFN(string);
+    void setLN(string);
+    string getFN()const;
+    string getLN()const;
 public:
-    string getName();
+    Name(string = "", string = "");
+    Name(Name&);
+    ~Name();
+    string DisplayName();
 };
 
 #endif

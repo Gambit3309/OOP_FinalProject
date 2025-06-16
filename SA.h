@@ -13,4 +13,6 @@ void mainmenu();
 void subMenuDisplay();
 void subMenuSearch();
 
+string lowercase(string);
+
 #endif 

@@ -4,6 +4,35 @@
 
 using namespace std;
 
-void Name::setName(string temp){
-    
+void Name::setFN(string fn){
+    FirstName = fn;
 }
+
+void Name::setLN(string ln){
+    LastName = ln;
+}
+
+string Name::DisplayName(){
+    return FirstName + " " + LastName;
+}
+
+string Name::getFN()const{
+    return FirstName;
+}
+
+string Name::getLN()const{
+    return LastName;
+}
+
+Name::Name(Name &n){
+    setFN(n.getFN());
+    setLN(n.getLN());   
+}
+
+Name::Name(string fn, string ln){
+    setFN(fn);
+    setLN(ln);
+}
+
+Name::~Name(){}
+
