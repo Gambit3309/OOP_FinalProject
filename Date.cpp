@@ -5,7 +5,7 @@
 using namespace std;
 
 void Date::setday(int d){
-    if(d > 0 && d < 8)
+    if(d > 0 && d < 32)
         day = d;
     else
         d = 0;
@@ -36,12 +36,19 @@ int Date::getyear()const{
 }
 
 Date::Date(int d, int m, int y){
-    setday(d);
-    setmonth(m);
+    if(d > 0 && d < 32)
+        setday(d);
+    else
+        setday(0);
+    if(m >0 && m < 13){
+        setmonth(m);        
+    }
+    else
+        setmonth(0);
     setyear(y);
 }
 
-Date::Date(Date &d){
+Date::Date(const Date &d){
     setday(d.getday());
     setmonth(d.getmonth());
     setyear(d.getyear());
@@ -82,8 +89,38 @@ Date::Date(string d, string m, int year){
     
 }
 
-Date::Date(int d, int m, int y){
-    setday(d);
-    setmonth(m);
-    setyear(y);
+void Date::setDate(string d, string m, int y){
+    d = lowercase(d);
+    m = lowercase(m);
+    bool validDay = false;
+    bool validMonth = false;
+
+    string DAYS[7] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
+    string MONTHS[12] = {"january", "february", "march", "april", "may", "june", 
+                         "july", "august", "september", "october", "november", "december"};
+
+    for(int i = 0; i < 7; i++){
+        if(d == DAYS[i]){
+            setday(i + 1);
+            validDay = true;
+            break;
+        }
+    }
+
+    for(int i = 0; i < 12; i++){
+        if(m == MONTHS[i]){
+            setmonth(i + 1);
+            validMonth = true;
+            break;
+        }
+    }
+
+    if(!validDay)
+        setday(0);
+    if(!validMonth)
+        setmonth(0);
+}
+
+void Date::DisplayDate()const{
+    cout << getday() << "/" << getmonth() << "/" << getyear() << endl;
 }

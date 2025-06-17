@@ -20,9 +20,10 @@ using namespace std;
     void Movie::setTitle(string temp){
         title = temp;
     }
-    void Movie::setDirector(string temp){
-        director = temp;
+    void Movie::setDirector(string fn, string ln){
+        director = fn + " " + ln;
     }
+
     void Movie::setReleaseDate(int temp){
         releaseDate = temp;
     }
@@ -40,16 +41,14 @@ using namespace std;
 
     Movie::Movie(string t, string d, int rd, double r){
         setTitle(t);
-        setDirector(d);
         setReleaseDate(rd);
         setRating(r);
     }
 
-    Movie::Movie(Movie &temp){
-        setTitle(getTitle());
-        setDirector(getDirector());
-        setReleaseDate(getReleaseDate());
-        setRating(getRating());
+    Movie::Movie(const Movie &temp){
+        setTitle(temp.getTitle());
+        setReleaseDate(temp.getReleaseDate());
+        setRating(temp.getRating());
     }
 
     Movie::~Movie(){}

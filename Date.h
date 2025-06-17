@@ -25,7 +25,7 @@ public:
 
     Date(int = 0, int = 0, int = 0);
     Date(string = "", string = "", int = 0);
-    Date(Date &);
+    Date(const Date &);
     ~Date();
 
     

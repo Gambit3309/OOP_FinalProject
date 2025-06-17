@@ -12,7 +12,7 @@ void Name::setLN(string ln){
     LastName = ln;
 }
 
-string Name::DisplayName(){
+string Name::displayName()const{
     return FirstName + " " + LastName;
 }
 
@@ -24,7 +24,7 @@ string Name::getLN()const{
     return LastName;
 }
 
-Name::Name(Name &n){
+Name::Name(const Name &n){
     setFN(n.getFN());
     setLN(n.getLN());   
 }
@@ -35,4 +35,9 @@ Name::Name(string fn, string ln){
 }
 
 Name::~Name(){}
+
+void Name::setName(string fn, string ln){
+    setFN(fn);
+    setLN(ln);
+}
 

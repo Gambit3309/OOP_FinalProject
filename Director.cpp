@@ -1,0 +1,50 @@
+#include <iostream>
+#include "Director.h"
+
+using namespace std;
+
+
+
+void Director::setExpYears(int e){
+    experienceYears = e;
+}
+
+void Director::setNationality(string n){
+    nationality = n;
+}
+
+int Director::getExpYears()const{
+    return experienceYears;
+}
+
+string Director::getNationality()const{
+    return nationality;
+}
+
+Director::Director(string fn, string ln, int expY, string n): Name(fn,ln){
+    setExpYears(expY);
+    setNationality(n);
+}
+
+Director::Director(const Director &d):Name(d.getFN(), d.getLN()){
+    setExpYears(d.getExpYears());
+    setNationality(d.getNationality());
+}
+
+void Director::setDirector(string fn, string ln, int expY, string n){
+    setName(fn, ln);
+    setNationality(n);
+    setExpYears(expY);
+}
+
+Director* Director::getDirector(){
+    return this;
+}
+
+Director::~Director(){}
+
+void Director::displayDirector()const{
+    cout << "Name: " << displayName() << endl;
+    cout << "Exprience Years: " << getExpYears() << endl;
+    cout << "Nationality: " << getNationality() << endl;
+}

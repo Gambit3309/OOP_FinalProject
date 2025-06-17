@@ -15,9 +15,10 @@ protected:
     string getLN()const;
 public:
     Name(string = "", string = "");
-    Name(Name&);
+    Name(const Name&);
     ~Name();
-    string DisplayName();
+    void setName(string fn, string ln);
+    string displayName()const;
 };
 
 #endif

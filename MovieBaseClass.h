@@ -18,16 +18,16 @@ protected:
     double getRating()const;
 
     void setTitle(string);
-    void setDirector(string);
+    void setDirector(string, string);
     void setReleaseDate(int);
     void setRating(double);
     
 public:
 
     Movie(string = "", string = "", int = 0, double = 0.0);
-    Movie(Movie & cosnt);
+    Movie(const Movie&);
     ~Movie();
-    void displayDetails()const;
+    virtual void displayDetails()const;
 };
 
 #endif
