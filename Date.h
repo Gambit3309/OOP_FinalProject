@@ -24,9 +24,11 @@ public:
     void DisplayDate()const;
 
     Date(int = 0, int = 0, int = 0);
-    Date(string = "", string = "", int = 0);
     Date(const Date &);
     ~Date();
+
+    bool isLeapYear(int);
+    void validateDate(int, int, int);
 
     
 };

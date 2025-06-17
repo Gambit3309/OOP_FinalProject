@@ -40,7 +40,7 @@ Date::Date(int d, int m, int y){
         setday(d);
     else
         setday(0);
-    if(m >0 && m < 13){
+    if(m > 0 && m < 13){
         setmonth(m);        
     }
     else
@@ -56,71 +56,25 @@ Date::Date(const Date &d){
 
 Date::~Date(){}
 
-Date::Date(string d, string m, int year){
-    d = lowercase(d);
-    m = lowercase(m);
-    bool validDay = false;
-    bool validMonth = false;
-
-    string DAYS[7] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
-    string MONTHS[12] = {"january", "february", "march", "april", "may", "june", 
-                         "july", "august", "september", "october", "november", "december"};
-
-    for(int i = 0; i < 7; i++){
-        if(d == DAYS[i]){
-            setday(i + 1);
-            validDay = true;
-            break;
-        }
-    }
-
-    for(int i = 0; i < 12; i++){
-        if(m == MONTHS[i]){
-            setmonth(i + 1);
-            validMonth = true;
-            break;
-        }
-    }
-
-    if(!validDay)
-        setday(0);
-    if(!validMonth)
-        setmonth(0);
-    
-}
-
 void Date::setDate(string d, string m, int y){
     d = lowercase(d);
     m = lowercase(m);
-    bool validDay = false;
-    bool validMonth = false;
-
-    string DAYS[7] = {"sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"};
-    string MONTHS[12] = {"january", "february", "march", "april", "may", "june", 
-                         "july", "august", "september", "october", "november", "december"};
-
-    for(int i = 0; i < 7; i++){
-        if(d == DAYS[i]){
-            setday(i + 1);
-            validDay = true;
-            break;
-        }
-    }
-
-    for(int i = 0; i < 12; i++){
-        if(m == MONTHS[i]){
-            setmonth(i + 1);
-            validMonth = true;
-            break;
-        }
-    }
-
-    if(!validDay)
-        setday(0);
-    if(!validMonth)
-        setmonth(0);
+    
+    setday(convertDaytoint(d));
+    setmonth(convertMonthtoint(m));
 }
 
 void Date::DisplayDate()const{
     cout << getday() << "/" << getmonth() << "/" << getyear() << endl;
 }
+
+bool Date::isLeapYear(int y){
+    if((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))
+        return true;
+    return false;
+}
+
+void Date::validateDate(int d, int m, int y){
+    
+}
+

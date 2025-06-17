@@ -9,6 +9,8 @@ using namespace std;
 
 int main()
 {
+    Date da(2,4,5);
     Director d;
-    cout << d.getDirector();
+    cout << d.getDirector() << endl;
+    da.DisplayDate();
 }
