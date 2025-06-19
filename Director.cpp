@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "Director.h"
 
 using namespace std;
@@ -44,7 +45,8 @@ Director* Director::getDirector(){
 Director::~Director(){}
 
 void Director::displayDirector()const{
-    cout << "Name: " << displayName() << endl;
-    cout << "Exprience Years: " << getExpYears() << endl;
-    cout << "Nationality: " << getNationality() << endl;
+    cout << "-------Director Details-------" << endl;
+    cout << setw(15) << left << "Name" << ": " << displayName() << endl;
+    cout << setw(15) << left  << "Exprience " << ": " << getExpYears() << endl;
+    cout << setw(15) << left  << "Nationality" << ": " << getNationality() << endl;
 }

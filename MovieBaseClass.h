@@ -2,32 +2,34 @@
 #define MovieBaseClass_H_INCLUDED
 
 #include<iostream>
+#include "Date.h"
+#include "Director.h"
 
 using namespace std;
 
-class Movie{
+class Movie:public Date, Director{
 private:
-    string title, director;
-    int releaseDate;
-    double rating;
+    string title;
+    Director director;
+    Date releaseDate;
+    int rating;
 
 protected:
     string getTitle()const;
-    string getDirector()const;
-    int getReleaseDate()const;
-    double getRating()const;
+    int getRating()const;
 
     void setTitle(string);
-    void setDirector(string, string);
-    void setReleaseDate(int);
     void setRating(double);
     
 public:
 
-    Movie(string = "", string = "", int = 0, double = 0.0);
+    Movie(string = "", int  = 0);
     Movie(const Movie&);
     ~Movie();
     virtual void displayDetails()const;
+    virtual int calculateScore()const;
+    
+
 };
 
 #endif

@@ -20,15 +20,17 @@ protected:
 
 public:
     void setDate(int, int, int);
-    void setDate(string, string, int);
-    void DisplayDate()const;
+    string DisplayDate()const;
 
     Date(int = 0, int = 0, int = 0);
     Date(const Date &);
     ~Date();
 
+    int convertDateToDays()const;
     bool isLeapYear(int);
-    void validateDate(int, int, int);
+    bool validateDate(int, int, int);
+    friend std::ostream & operator<<(std::ostream &, const Date &);
+    friend std::istream & operator>>(std::istream &, Date&);
 
     
 };

@@ -9,12 +9,5 @@ void Search(string);
 void Search(double);
 void Search(string, double);
 
-void mainmenu();
-void subMenuDisplay();
-void subMenuSearch();
-
-string lowercase(string);
-int convertMonthtoint(string);
-int convertDaytoint(string);
 
 #endif 
