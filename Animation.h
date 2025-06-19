@@ -24,7 +24,7 @@ protected:
     bool getisMusical()const;
     string getgenre()const;
 public:
-    Animation(int = 0, bool = false, int = 0);
+    Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
 

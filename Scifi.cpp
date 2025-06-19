@@ -29,10 +29,10 @@ bool scifi::gethasAliens()const{
     return hasAliens;
 }
 
-scifi::scifi(int t, bool a, int f): Movie(){
-    settechLevel(t);
-    sethasAliens(a);
-    setfutureYear(f);
+scifi::scifi(string title, int rating, int day, int month, int year, int techlevel, bool aliens, int futureYear): Movie(title, rating, day, month, year){
+    settechLevel(techLevel);
+    sethasAliens(aliens);
+    setfutureYear(futureYear);
 }
 
 scifi::scifi(const scifi &s){

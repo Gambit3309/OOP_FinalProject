@@ -25,13 +25,14 @@ using namespace std;
         cout << setw(12) << left << "Rating" << ": " << getRating() << endl;
         cout << setw(12) << left << "Release Date" << ": " << releaseDate.DisplayDate() << endl;
         
-        director.displayDirector();
+        director->displayDirector();
 
     }
 
-    Movie::Movie(string t, int r){
+    Movie::Movie(string t, int r, int day, int month, int year){
         setTitle(t);
         setRating(r);
+        releaseDate.setDate(day,month,year);
     }
 
     Movie::Movie(const Movie &temp){

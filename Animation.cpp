@@ -30,10 +30,10 @@ bool Animation::getisMusical()const{
     return isMusical;
 }
 
-Animation::Animation(int t, bool a, int f): Movie(){
-    setanimationStyle(t);
-    setisMusical(a);
-    setageGroup(f);
+Animation::Animation(string title, int rating, int day, int month, int year,int animationstyle, bool musical, int agegroup): Movie(title, rating,day, month, year){
+    setanimationStyle(animationStyle);
+    setisMusical(musical);
+    setageGroup(agegroup);
 }
 
 Animation::Animation(const Animation &s){

@@ -30,10 +30,10 @@ bool Action::gethasStunts()const{
     return hasStunts;
 }
 
-Action::Action(char t, bool a, int f): Movie(){
-    setviolenceLevel(t);
-    sethasStunts(a);
-    setnoOfFightScenes(f);
+Action::Action(string title, int rating, int day, int month, int year,char violenceLevel, bool stunts, int fightscene): Movie(title, rating, day, month, year){
+    setviolenceLevel(violenceLevel);
+    sethasStunts(stunts);
+    setnoOfFightScenes(fightscene);
 }
 
 Action::Action(const Action &s){

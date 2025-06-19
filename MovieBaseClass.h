@@ -23,7 +23,7 @@ protected:
     
 public:
 
-    Movie(string = "", int  = 0);
+    Movie(string = "", int  = 0, int = 0, int = 0, int = 0);
     Movie(const Movie&);
     ~Movie();
     virtual void displayDetails()const;
