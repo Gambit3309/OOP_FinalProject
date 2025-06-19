@@ -5,7 +5,8 @@
 using namespace std;
 
 void scifi::settechLevel(int t){
-    techLevel = t;
+    if(t >= 1 && t < 4)
+        techLevel = t;
 }
 
 void scifi::setfutureYear(int f){
@@ -70,4 +71,8 @@ string scifi::simulateFutureScenario()const{
     if((calculateScore() > 7) && hasAliens)
         return "Future is Bright";
     return "Future is not Bright";
+}
+
+void scifi::toggleAlienInvasion(){
+    hasAliens = !hasAliens;
 }

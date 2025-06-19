@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Movie:public Date, Director{
+class Movie{
 private:
     string title;
     Director director;

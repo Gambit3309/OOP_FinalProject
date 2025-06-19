@@ -32,6 +32,7 @@ public:
     int calculateScore()const override;
     string showTechAnalysis()const;
     string simulateFutureScenario()const;
+    void toggleAlienInvasion();
 };
 
 #endif

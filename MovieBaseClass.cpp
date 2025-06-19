@@ -29,12 +29,12 @@ using namespace std;
 
     }
 
-    Movie::Movie(string t, int r): Date(), Director(){
+    Movie::Movie(string t, int r){
         setTitle(t);
         setRating(r);
     }
 
-    Movie::Movie(const Movie &temp): Date(), Director(){
+    Movie::Movie(const Movie &temp){
         setTitle(temp.getTitle());
         setRating(temp.getRating());
     }
