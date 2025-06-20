@@ -46,9 +46,8 @@ void readfromFile(){
     
     string line;
     file.seekg(0, ios::beg);
-    for(int j = 0; j < 13; j++){
-    
-        for(int i = 0; i < 16; i ++){
+    for(int j = 0; j < 10; j++){
+        for(int i = 0; i <= 8; i ++){
             getline(file,line);
             try
             {
@@ -65,16 +64,7 @@ void readfromFile(){
             case 3:    
                 releaseDate = line;
                 break;
-            case 6:    
-                directorName = line;
-                break;
-            case 7:    
-                experience = stoi(line);
-                break;
-            case 8:    
-                nationality = line;
-                break;
-            case 12:    
+            case 4:    
                 genre = line;
                 if(genre == "Scifi"){
                     genrePointer = 1;
@@ -85,7 +75,7 @@ void readfromFile(){
                 else
                     genrePointer = 3;
                 break;
-            case 13:
+            case 5:
                 if(genrePointer == 1)    
                     techLevel = stoi(line);
                 else if(genrePointer == 3)    
@@ -93,7 +83,7 @@ void readfromFile(){
                 else if(genrePointer == 2)    
                     ViolenceLevel = line[0];
                 break;
-            case 14:
+            case 6:
                 if (genrePointer == 1) // Scifi
                     aliens = (line == "Yes" || line == "yes");
                 else if (genrePointer == 2) // Action
@@ -101,7 +91,7 @@ void readfromFile(){
                 else if (genrePointer == 3) // Animation
                     Musical = (line == "Yes" || line == "yes");
                 break;
-            case 15:
+            case 7:
                 if (genrePointer == 1) // Scifi
                     futureYear = stoi(line);
                 else if (genrePointer == 2) // Action
@@ -114,9 +104,6 @@ void readfromFile(){
             cout << "Title: " << title << endl;
             cout << "Rating: " << rating << endl;
             cout << "Release Date: " << releaseDate << endl;
-            cout << "Director Name: " << directorName << endl;
-            cout << "Experience: " << experience << endl;
-            cout << "Nationality: " << nationality << endl;
             cout << "Genre: " << genre << endl;
             cout << "Tech Level: " << techLevel << endl;
             cout << "Aliens: " << (aliens ? "Yes" : "No") << endl;
@@ -151,7 +138,8 @@ void readfromFile(){
     
     }
     system("cls");
-    mpointer[1]->displayDetails();
-    
+    for(int j = 0; j < 13; j++)
+{    mpointer[j]->displayDetails();
+}    
         file.close();
 }

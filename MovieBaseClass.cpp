@@ -15,7 +15,7 @@ using namespace std;
     void Movie::setTitle(string temp){
         title = temp;
     }
-    void Movie::setRating(double temp){
+    void Movie::setRating(int temp){
         rating = temp;
     }
 

@@ -19,7 +19,7 @@ protected:
     int getRating()const;
 
     void setTitle(string);
-    void setRating(double);
+    void setRating(int);
     
 public:
 
