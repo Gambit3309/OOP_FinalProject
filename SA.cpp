@@ -48,12 +48,11 @@ void readfromFile(){
     file.seekg(0, ios::beg);
     for(int j = 0; j < 13; j++){
     
-        for(int i = 0; i < 15; i ++){
+        for(int i = 0; i < 16; i ++){
             getline(file,line);
-            cout << line << endl;
             try
             {
-                cout << line.substr(18) << endl;
+                
                 line = line.substr(18);
 
                 switch(i){
@@ -75,18 +74,18 @@ void readfromFile(){
             case 8:    
                 nationality = line;
                 break;
-            case 11:    
+            case 12:    
                 genre = line;
                 if(genre == "Scifi"){
                     genrePointer = 1;
                 }
                 else if(genre == "Action"){
-                    genrePointer =2;
+                    genrePointer = 2;
                 }
                 else
                     genrePointer = 3;
                 break;
-            case 12:
+            case 13:
                 if(genrePointer == 1)    
                     techLevel = stoi(line);
                 else if(genrePointer == 3)    
@@ -94,7 +93,7 @@ void readfromFile(){
                 else if(genrePointer == 2)    
                     ViolenceLevel = line[0];
                 break;
-            case 13:
+            case 14:
                 if (genrePointer == 1) // Scifi
                     aliens = (line == "Yes" || line == "yes");
                 else if (genrePointer == 2) // Action
@@ -102,7 +101,7 @@ void readfromFile(){
                 else if (genrePointer == 3) // Animation
                     Musical = (line == "Yes" || line == "yes");
                 break;
-            case 14:
+            case 15:
                 if (genrePointer == 1) // Scifi
                     futureYear = stoi(line);
                 else if (genrePointer == 2) // Action
@@ -111,6 +110,24 @@ void readfromFile(){
                     AgeGroup = stoi(line);
                 break;
             }
+
+            cout << "Title: " << title << endl;
+            cout << "Rating: " << rating << endl;
+            cout << "Release Date: " << releaseDate << endl;
+            cout << "Director Name: " << directorName << endl;
+            cout << "Experience: " << experience << endl;
+            cout << "Nationality: " << nationality << endl;
+            cout << "Genre: " << genre << endl;
+            cout << "Tech Level: " << techLevel << endl;
+            cout << "Aliens: " << (aliens ? "Yes" : "No") << endl;
+            cout << "Future Year: " << futureYear << endl;
+            cout << "Animation Style: " << AnimationStyle << endl;
+            cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
+            cout << "Age Group: " << AgeGroup << endl;
+            cout << "Violence Level: " << ViolenceLevel << endl;
+            cout << "Stunts: " << (Stunts ? "Yes" : "No") << endl;
+            cout << "Fight Scenes: " << Fightscenes << endl;
+            cout << "Genre Pointer: " << genrePointer << endl;
         }
             catch(const exception& e)
             {
@@ -120,20 +137,20 @@ void readfromFile(){
         }
         if(genrePointer == 1){
             //s[j].setmovie(title, rating, 1,1,1, 'A', Stunts,Fightscenes);
-            mpointer[j] = new scifi(title, rating, 1,1,2020, 'A', Stunts,Fightscenes);
+            mpointer[j] = new scifi(title, rating, 1,1,2020, techLevel, aliens,futureYear);
 
         }
         else if(genrePointer == 2){
-            mpointer[j] = new Action(title, rating, 1,1,2020, 'A', Stunts,Fightscenes);
+            mpointer[j] = new Action(title, rating, 1,1,2020, ViolenceLevel, Stunts,Fightscenes);
         }
         else
         {
             mpointer[j] = new Animation(title, rating, 1,1,2020,AnimationStyle,Musical,AgeGroup);
 
         }
-        
-        j++;
+    
     }
+    system("cls");
     mpointer[1]->displayDetails();
     
         file.close();
