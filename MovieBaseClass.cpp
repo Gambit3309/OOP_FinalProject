@@ -1,6 +1,7 @@
 #include<iostream>
 #include <iomanip>
 #include "MovieBaseClass.h"
+#include "global.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ using namespace std;
     void Movie::setTitle(string temp){
         title = temp;
     }
-    void Movie::setRating(double temp){
+    void Movie::setRating(int temp){
         rating = temp;
     }
 
@@ -24,10 +25,11 @@ using namespace std;
         cout << setw(12) << left << "Title" << ": " << getTitle() << endl;
         cout << setw(12) << left << "Rating" << ": " << getRating() << endl;
         cout << setw(12) << left << "Release Date" << ": " << releaseDate.DisplayDate() << endl;
+        cout << setw(12) << left << "Director" << ": " << d[director]->getName() << endl;
 
     }
 
-    Movie::Movie(string t, int r, int day, int month, int year){
+    Movie::Movie(string t, int r, int day, int month, int year, int director){
         setTitle(t);
         setRating(r);
         releaseDate.setDate(day,month,year);

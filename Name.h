@@ -18,7 +18,7 @@ public:
     Name(const Name&);
     ~Name();
     void setName(string fn, string ln);
-    string displayName()const;
+    string getName()const;
 };
 
 #endif

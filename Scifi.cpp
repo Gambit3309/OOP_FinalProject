@@ -7,8 +7,10 @@ using namespace std;
 void scifi::settechLevel(int t){
     if(t >= 1 && t < 4)
         techLevel = t;
-    else 
-        techLevel = 0;
+    else if(t > 3)
+        techLevel = 3;
+    else
+        techLevel = 1;
 }
 
 void scifi::setfutureYear(int f){
@@ -31,7 +33,7 @@ bool scifi::gethasAliens()const{
     return hasAliens;
 }
 
-scifi::scifi(string title, int rating, int day, int month, int year, int tech, bool aliens, int futureY): Movie(title, rating, day, month, year){
+scifi::scifi(string title, int rating, int day, int month, int year,int director, int tech, bool aliens, int futureY): Movie(title, rating, day, month, year, director){
     settechLevel(tech);
     sethasAliens(aliens);
     setfutureYear(futureY);
