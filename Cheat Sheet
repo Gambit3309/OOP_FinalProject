@@ -1,4 +1,4 @@
 g++ main.cpp Name.cpp MovieBaseClass.cpp SA.cpp Date.cpp Director.cpp scifi.cpp -o main
 
 
-g++ Test.cpp Name.cpp MovieBaseClass.cpp SA.cpp Date.cpp Director.cpp scifi.cpp -o Test
+g++ Test.cpp Name.cpp MovieBaseClass.cpp SA.cpp Date.cpp Director.cpp scifi.cpp Animation.cpp Action.cpp -o Test

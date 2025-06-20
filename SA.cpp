@@ -13,9 +13,6 @@ using namespace std;
 
 void readfromFile(){
 
-    scifi s[15];
-    Action a[15];
-    Animation ani[15];
     Movie* mpointer[50];
 
     string title = "";
@@ -56,8 +53,8 @@ void readfromFile(){
             cout << line << endl;
             try
             {
-                cout << line.substr(14) << endl;
-                line = line.substr(14);
+                cout << line.substr(18) << endl;
+                line = line.substr(18);
 
                 switch(i){
             case 1:    
@@ -122,18 +119,22 @@ void readfromFile(){
             
         }
         if(genrePointer == 1){
-            s[j].setmovie(title, rating, 1,1,1, 'A', Stunts,Fightscenes);
+            //s[j].setmovie(title, rating, 1,1,1, 'A', Stunts,Fightscenes);
+            mpointer[j] = new scifi(title, rating, 1,1,2020, 'A', Stunts,Fightscenes);
+
         }
         else if(genrePointer == 2){
-            a[j].setmovie(title, rating, 1,1,1, 'A', Stunts,Fightscenes);
+            mpointer[j] = new Action(title, rating, 1,1,2020, 'A', Stunts,Fightscenes);
         }
-        else if (genrePointer == 3)
+        else
         {
-            ani[j].setmovie(title, rating, 1,1,1,AnimationStyle,Musical,AgeGroup);
+            mpointer[j] = new Animation(title, rating, 1,1,2020,AnimationStyle,Musical,AgeGroup);
 
         }
         
         j++;
     }
+    mpointer[1]->displayDetails();
+    
         file.close();
 }

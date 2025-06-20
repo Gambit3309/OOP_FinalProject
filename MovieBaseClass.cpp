@@ -24,8 +24,6 @@ using namespace std;
         cout << setw(12) << left << "Title" << ": " << getTitle() << endl;
         cout << setw(12) << left << "Rating" << ": " << getRating() << endl;
         cout << setw(12) << left << "Release Date" << ": " << releaseDate.DisplayDate() << endl;
-        
-        director->displayDirector();
 
     }
 

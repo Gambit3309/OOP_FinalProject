@@ -7,11 +7,15 @@ using namespace std;
 void Animation::setanimationStyle(int t){
     if(t >= 1 && t < 4)
         animationStyle = t;
+    else
+        animationStyle = 0;
 }
 
 void Animation::setageGroup(int f){
     if(f == 5 || f == 7 || f == 18)
     ageGroup = f;
+    else
+    ageGroup = 0;
 }
 
 void Animation::setisMusical(bool a){
@@ -30,13 +34,13 @@ bool Animation::getisMusical()const{
     return isMusical;
 }
 
-Animation::Animation(string title, int rating, int day, int month, int year,int animationstyle, bool musical, int agegroup): Movie(title, rating,day, month, year){
-    setanimationStyle(animationStyle);
+Animation::Animation(string title, int rating, int day, int month, int year,int animation, bool musical, int agegroup): Movie(title, rating,day, month, year){
+    setanimationStyle(animation);
     setisMusical(musical);
     setageGroup(agegroup);
 }
 
-Animation::Animation(const Animation &s){
+Animation::Animation(const Animation &s):Movie(s){
     setanimationStyle(s.getanimationStyle());
     setisMusical(s.getisMusical());
     setageGroup(s.getageGroup());
@@ -78,9 +82,9 @@ void Animation::changeAnimationStyle(int newStyle) {
     setanimationStyle(newStyle);
 }
 
-void Animation::setmovie(string title, int rating, int day, int month, int year, int animationstyle, bool musical, int agegroup){
+void Animation::setmovie(string title, int rating, int day, int month, int year, int animation, bool musical, int agegroup){
         Movie::setmovie(title,rating,day,month,year);
-        setanimationStyle(animationstyle);
+        setanimationStyle(animation);
         setisMusical(musical);
         setageGroup(agegroup);
     }

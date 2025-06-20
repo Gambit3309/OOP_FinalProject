@@ -7,6 +7,8 @@ using namespace std;
 void scifi::settechLevel(int t){
     if(t >= 1 && t < 4)
         techLevel = t;
+    else 
+        techLevel = 0;
 }
 
 void scifi::setfutureYear(int f){
@@ -29,13 +31,13 @@ bool scifi::gethasAliens()const{
     return hasAliens;
 }
 
-scifi::scifi(string title, int rating, int day, int month, int year, int techlevel, bool aliens, int futureYear): Movie(title, rating, day, month, year){
-    settechLevel(techLevel);
+scifi::scifi(string title, int rating, int day, int month, int year, int tech, bool aliens, int futureY): Movie(title, rating, day, month, year){
+    settechLevel(tech);
     sethasAliens(aliens);
-    setfutureYear(futureYear);
+    setfutureYear(futureY);
 }
 
-scifi::scifi(const scifi &s){
+scifi::scifi(const scifi &s):Movie(s){
     settechLevel(s.gettechLevel());
     sethasAliens(s.gethasAliens());
     setfutureYear(s.getfutureYear());
@@ -77,9 +79,9 @@ void scifi::toggleAlienInvasion(){
     hasAliens = !hasAliens;
 }
 
-void scifi::setmovie(string title, int rating, int day, int month, int year, int techlevel, bool hasAliens, int futureyear){
+void scifi::setmovie(string title, int rating, int day, int month, int year, int techl, bool Aliens, int futureY){
         Movie::setmovie(title,rating,day,month,year);
-        settechLevel(techLevel);
-        sethasAliens(hasAliens);
-        setfutureYear(futureYear);
+        settechLevel(techl);
+        sethasAliens(Aliens);
+        setfutureYear(futureY);
     }

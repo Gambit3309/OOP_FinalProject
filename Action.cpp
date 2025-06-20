@@ -7,11 +7,15 @@ using namespace std;
 void Action::setviolenceLevel(char v){
     if(v == 'D' || v == 'M' || v == 'U')
         violenceLevel = v;
+    else
+        violenceLevel = ' ';
 }
 
 void Action::setnoOfFightScenes(int f){
     if(f == 5 || f == 7 || f == 18)
     noOfFightScenes = f;
+    else
+        noOfFightScenes = 0;
 }
 
 void Action::sethasStunts(bool a){
@@ -30,13 +34,13 @@ bool Action::gethasStunts()const{
     return hasStunts;
 }
 
-Action::Action(string title, int rating, int day, int month, int year,char violenceLevel, bool stunts, int fightscene): Movie(title, rating, day, month, year){
-    setviolenceLevel(violenceLevel);
-    sethasStunts(stunts);
+Action::Action(string title, int rating, int day, int month, int year,char violence, bool stunt, int fightscene): Movie(title, rating, day, month, year){
+    setviolenceLevel(violence);
+    sethasStunts(stunt);
     setnoOfFightScenes(fightscene);
 }
 
-Action::Action(const Action &s){
+Action::Action(const Action &s):Movie(s){
     setviolenceLevel(s.getviolenceLevel());
     sethasStunts(s.gethasStunts());
     setnoOfFightScenes(s.getnoOfFightScenes());

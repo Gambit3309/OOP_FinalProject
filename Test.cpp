@@ -5,12 +5,12 @@
 #include "Scifi.h"
 #include "Action.h"
 #include "Animation.h"
+#include "SA.h"
 
 using namespace std;
 
 int main()
 {
 
-    Movie a1;
-    a1.displayDetails();
+    readfromFile();
 }
