@@ -10,7 +10,7 @@ using namespace std;
 class Movie{
 private:
     string title;
-    Director* director = nullptr;
+    int director = 0;
     Date releaseDate;
     int rating;
 
@@ -23,7 +23,7 @@ protected:
     
 public:
 
-    Movie(string = "", int  = 0, int = 0, int = 0, int = 0);
+    Movie(string = "", int  = 0, int = 0, int = 0, int = 0, int = 0);
     Movie(const Movie&);
     ~Movie();
     virtual void displayDetails()const;

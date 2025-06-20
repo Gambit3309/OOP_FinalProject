@@ -43,7 +43,6 @@ Violence Level  : M
 Stunts          : Yes
 Fight Scenes    : 8
 
-
 -------Movie Details-------
 Title           : Starfall Chronicles
 Rating          : 7
@@ -70,7 +69,6 @@ Genre           : Action
 Violence Level  : U
 Stunts          : Yes
 Fight Scenes    : 9
-
 
 -------Movie Details-------
 Title           : Quantum Leap
@@ -99,7 +97,6 @@ Violence Level  : D
 Stunts          : No
 Fight Scenes    : 5
 
-
 -------Movie Details-------
 Title           : Echoes of Europa
 Rating          : 9
@@ -126,7 +123,6 @@ Genre           : Action
 Violence Level  : M
 Stunts          : Yes
 Fight Scenes    : 7
-
 
 -------Movie Details-------
 Title           : Cyberpunk Dreams
@@ -155,7 +151,6 @@ Violence Level  : U
 Stunts          : Yes
 Fight Scenes    : 10
 
-
 -------Movie Details-------
 Title           : Martian Chronicles
 Rating          : 6
@@ -182,7 +177,6 @@ Genre           : Action
 Violence Level  : D
 Stunts          : No
 Fight Scenes    : 6
-
 
 -------Movie Details-------
 Title           : Cosmic Drifters
@@ -211,7 +205,6 @@ Violence Level  : M
 Stunts          : Yes
 Fight Scenes    : 7
 
-
 -------Movie Details-------
 Title           : Beyond the Stars
 Rating          : 8
@@ -238,7 +231,6 @@ Genre           : Action
 Violence Level  : U
 Stunts          : Yes
 Fight Scenes    : 9
-
 
 -------Movie Details-------
 Title           : Time Warp
@@ -267,7 +259,6 @@ Violence Level  : D
 Stunts          : Yes
 Fight Scenes    : 8
 
-
 -------Movie Details-------
 Title           : The Anomaly
 Rating          : 9
@@ -294,7 +285,6 @@ Genre           : Action
 Violence Level  : M
 Stunts          : Yes
 Fight Scenes    : 6
-
 
 -------Movie Details-------
 Title           : Zero Gravity
@@ -323,7 +313,6 @@ Violence Level  : U
 Stunts          : Yes
 Fight Scenes    : 10
 
-
 -------Movie Details-------
 Title           : The Dark Nebula
 Rating          : 7
@@ -350,7 +339,6 @@ Genre           : Action
 Violence Level  : D
 Stunts          : No
 Fight Scenes    : 5
-
 
 -------Movie Details-------
 Title           : Warp Speed
@@ -379,7 +367,6 @@ Violence Level  : M
 Stunts          : Yes
 Fight Scenes    : 7
 
-
 -------Movie Details-------
 Title           : Starseed
 Rating          : 8
@@ -407,7 +394,6 @@ Violence Level  : U
 Stunts          : Yes
 Fight Scenes    : 10
 
-
 -------Movie Details-------
 Title           : Lunar Colony
 Rating          : 6
@@ -434,7 +420,6 @@ Genre           : Action
 Violence Level  : D
 Stunts          : Yes
 Fight Scenes    : 8
-
 
 -------Movie Details-------
 Title           : Chronos Gate

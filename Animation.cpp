@@ -7,15 +7,17 @@ using namespace std;
 void Animation::setanimationStyle(int t){
     if(t >= 1 && t < 4)
         animationStyle = t;
+    else if(t > 3)
+        animationStyle = 3;
     else
-        animationStyle = 0;
+        animationStyle = 1;
 }
 
 void Animation::setageGroup(int f){
     if(f == 5 || f == 7 || f == 18)
     ageGroup = f;
     else
-    ageGroup = 0;
+    ageGroup = 18;
 }
 
 void Animation::setisMusical(bool a){
@@ -34,7 +36,7 @@ bool Animation::getisMusical()const{
     return isMusical;
 }
 
-Animation::Animation(string title, int rating, int day, int month, int year,int animation, bool musical, int agegroup): Movie(title, rating,day, month, year){
+Animation::Animation(string title, int rating, int day, int month, int year,int director,int animation, bool musical, int agegroup): Movie(title, rating,day, month, year, director){
     setanimationStyle(animation);
     setisMusical(musical);
     setageGroup(agegroup);

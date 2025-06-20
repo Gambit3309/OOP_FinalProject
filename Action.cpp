@@ -12,8 +12,8 @@ void Action::setviolenceLevel(char v){
 }
 
 void Action::setnoOfFightScenes(int f){
-    if(f == 5 || f == 7 || f == 18)
-    noOfFightScenes = f;
+    if(noOfFightScenes > 0)
+        noOfFightScenes = f;
     else
         noOfFightScenes = 0;
 }
@@ -34,7 +34,7 @@ bool Action::gethasStunts()const{
     return hasStunts;
 }
 
-Action::Action(string title, int rating, int day, int month, int year,char violence, bool stunt, int fightscene): Movie(title, rating, day, month, year){
+Action::Action(string title, int rating, int day, int month, int year,int director, char violence, bool stunt, int fightscene): Movie(title, rating, day, month, year, director){
     setviolenceLevel(violence);
     sethasStunts(stunt);
     setnoOfFightScenes(fightscene);

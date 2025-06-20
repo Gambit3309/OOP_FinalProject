@@ -25,7 +25,7 @@ protected:
     
 public:
     string getgenre()const;
-    Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
+    Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
 

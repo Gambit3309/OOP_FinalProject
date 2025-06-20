@@ -25,7 +25,7 @@ protected:
     
 public:
     string getgenre()const;
-    scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
+    scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~scifi();
     scifi(const scifi &);
 

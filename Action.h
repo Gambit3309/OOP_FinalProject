@@ -25,7 +25,7 @@ protected:
 
 public:
     string getgenre()const;
-    Action(string = "", int = 0, int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
+    Action(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
     ~Action();
     Action(const Action &);
 

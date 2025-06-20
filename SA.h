@@ -9,6 +9,9 @@ void Search(string);
 void Search(double);
 void Search(string, double);
 
-void readfromFile();
+void InputMoviesFromFile();
+void InputDirectorsFromFile();
+void DeleteAllPointers();
 
+bool AddNewMovie();
 #endif 

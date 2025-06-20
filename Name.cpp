@@ -12,7 +12,7 @@ void Name::setLN(string ln){
     LastName = ln;
 }
 
-string Name::displayName()const{
+string Name::getName()const{
     return FirstName + " " + LastName;
 }
 
