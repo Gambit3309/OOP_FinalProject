@@ -51,10 +51,10 @@ string scifi::getgenre()const{
 void scifi::displayDetails()const{
     Movie::displayDetails();
     cout << "-----------Genre Details-----------" << endl;
-    cout << setw(12) << left << "Genre" << ": " << getgenre() << endl;
-    cout << setw(12) << left << "Tech Level" << ": " << gettechLevel() << endl;
-    cout << setw(12) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
-    cout << setw(12) << left << "Future Year" << ": " << getfutureYear() << endl;
+    cout << setw(11) << left << "Genre" << ": " << getgenre() << endl;
+    cout << setw(11) << left << "Tech Level" << ": " << gettechLevel() << endl;
+    cout << setw(11) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
+    cout << setw(11) << left << "Future Year" << ": " << getfutureYear() << endl;
 }
 
 int scifi::calculateScore()const{
@@ -76,3 +76,10 @@ string scifi::simulateFutureScenario()const{
 void scifi::toggleAlienInvasion(){
     hasAliens = !hasAliens;
 }
+
+void scifi::setmovie(string title, int rating, int day, int month, int year, int techlevel, bool hasAliens, int futureyear){
+        Movie::setmovie(title,rating,day,month,year);
+        settechLevel(techLevel);
+        sethasAliens(hasAliens);
+        setfutureYear(futureYear);
+    }

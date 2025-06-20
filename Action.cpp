@@ -81,3 +81,10 @@ int Action::countExplosions()const{
         return 8;
     return 2;
 }
+
+void Action::setmovie(string title, int rating, int day, int month, int year, char violenceLevel, bool stunts, int fightscene){
+        Movie::setmovie(title,rating,day,month,year);
+        setviolenceLevel(violenceLevel);
+        sethasStunts(stunts);
+        setnoOfFightScenes(fightscene);
+    }

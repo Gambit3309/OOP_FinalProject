@@ -22,11 +22,15 @@ protected:
     char getviolenceLevel()const;
     int getnoOfFightScenes()const;
     bool gethasStunts()const;
-    string getgenre()const;
+
 public:
+    string getgenre()const;
     Action(string = "", int = 0, int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
     ~Action();
     Action(const Action &);
+
+    void setmovie(string, int, int, int ,int, char, bool, int);
+
 
     void displayDetails()const;
     int calculateScore()const override;

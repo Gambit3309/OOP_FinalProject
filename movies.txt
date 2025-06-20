@@ -1,0 +1,193 @@
+-------Movie Details-------
+Title       : Elden Ring
+Rating      : 8
+Release Date: 20/7/2024
+
+-------Director Details-------
+Name        : Sam altman
+Exprience   : 5
+Nationality : Canada
+
+-----------Genre Details-----------
+Genre       : Scifi
+Tech Level  : 3
+Aliens      : Yes
+Future Year : 2600
+
+-------Movie Details-------
+Title       : ALIATHE GOAT
+Rating      : 6
+Release Date: 21/2/2024
+
+-------Director Details-------
+Name        : Ibrahim
+Exprience   : 12
+Nationality : Pakistan
+
+-----------Genre Details-----------
+Genre       : Action
+Violence Level  : D
+Stunts      : Yes
+Fight Scenes : 6
+
+-------Movie Details-------
+Title       : Sova the archer
+Rating      : 4
+Release Date: 1/1/2023
+
+-------Director Details-------
+Name        : Salman
+Exprience   : 10
+Nationality : Paris
+
+-----------Genre Details-----------
+Genre       : Animation
+Animation Style : 1
+Musical      : Yes
+Age Group : 6
+
+-------Movie Details-------
+Title       : Galactic Odyssey
+Rating      : 9
+Release Date: 15/5/2025
+
+-------Director Details-------
+Name        : Lisa Ray
+Exprience   : 8
+Nationality : USA
+
+-----------Genre Details-----------
+Genre       : Scifi
+Tech Level  : 2
+Aliens      : Yes
+Future Year : 3050
+
+-------Movie Details-------
+Title       : Midnight Racer
+Rating      : 7
+Release Date: 30/8/2024
+
+-------Director Details-------
+Name        : James Volt
+Exprience   : 15
+Nationality : UK
+
+-----------Genre Details-----------
+Genre       : Action
+Violence Level  : M
+Stunts      : Yes
+Fight Scenes : 12
+
+-------Movie Details-------
+Title       : Ocean Whispers
+Rating      : 5
+Release Date: 10/3/2023
+
+-------Director Details-------
+Name        : Marie Curl
+Exprience   : 6
+Nationality : France
+
+-----------Genre Details-----------
+Genre       : Animation
+Animation Style : 2
+Musical      : No
+Age Group : 7
+
+-------Movie Details-------
+Title       : Quantum Paradox
+Rating      : 8
+Release Date: 22/11/2025
+
+-------Director Details-------
+Name        : Alan Quark
+Exprience   : 7
+Nationality : Germany
+
+-----------Genre Details-----------
+Genre       : Scifi
+Tech Level  : 1
+Aliens      : No
+Future Year : 2150
+
+-------Movie Details-------
+Title       : Street Warrior
+Rating      : 6
+Release Date: 5/5/2024
+
+-------Director Details-------
+Name        : Tony Hawk
+Exprience   : 9
+Nationality : Australia
+
+-----------Genre Details-----------
+Genre       : Action
+Violence Level  : U
+Stunts      : Yes
+Fight Scenes : 8
+
+-------Movie Details-------
+Title       : Forest Friends
+Rating      : 4
+Release Date: 12/12/2023
+
+-------Director Details-------
+Name        : Wendy Bird
+Exprience   : 4
+Nationality : Canada
+
+-----------Genre Details-----------
+Genre       : Animation
+Animation Style : 3
+Musical      : Yes
+Age Group : 5
+
+[Continuing with 41 more movies...]
+
+-------Movie Details-------
+Title       : Neon Samurai
+Rating      : 7
+Release Date: 18/9/2024
+
+-------Director Details-------
+Name        : Hiroshi Tanaka
+Exprience   : 11
+Nationality : Japan
+
+-----------Genre Details-----------
+Genre       : Action
+Violence Level  : M
+Stunts      : Yes
+Fight Scenes : 15
+
+-------Movie Details-------
+Title       : Cosmic Drifters
+Rating      : 9
+Release Date: 7/7/2025
+
+-------Director Details-------
+Name        : Elon Sky
+Exprience   : 6
+Nationality : Mars
+
+-----------Genre Details-----------
+Genre       : Scifi
+Tech Level  : 3
+Aliens      : Yes
+Future Year : 4000
+
+-------Movie Details-------
+Title       : Toyland Adventures
+Rating      : 5
+Release Date: 3/3/2023
+
+-------Director Details-------
+Name        : Polly Pocket
+Exprience   : 3
+Nationality : USA
+
+-----------Genre Details-----------
+Genre       : Animation
+Animation Style : 1
+Musical      : No
+Age Group : 5

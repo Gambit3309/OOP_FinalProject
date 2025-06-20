@@ -22,8 +22,9 @@ protected:
     int gettechLevel()const;
     int getfutureYear()const;
     bool gethasAliens()const;
-    string getgenre()const;
+    
 public:
+    string getgenre()const;
     scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~scifi();
     scifi(const scifi &);
@@ -33,6 +34,7 @@ public:
     string showTechAnalysis()const;
     string simulateFutureScenario()const;
     void toggleAlienInvasion();
+    void setmovie(string, int, int, int ,int, int, bool, int);
 };
 
 #endif

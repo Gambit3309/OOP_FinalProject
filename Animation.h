@@ -22,8 +22,9 @@ protected:
     int getanimationStyle()const;
     int getageGroup()const;
     bool getisMusical()const;
-    string getgenre()const;
+    
 public:
+    string getgenre()const;
     Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
@@ -33,6 +34,8 @@ public:
     string suggestMerchandise()const;
     bool isFamilyFriendly()const;
     void changeAnimationStyle(int);
+    void setmovie(string, int, int, int ,int, int, bool, int);
+
 };
 
 #endif

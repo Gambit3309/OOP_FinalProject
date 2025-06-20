@@ -1,0 +1,15 @@
+-------Movie Details-------
+Title       : ALIATHE GOAT
+Rating      : 6
+Release Date: 21/2/2024
+
+-------Director Details-------
+Name        : Ibrahim
+Exprience   : 12
+Nationality : Pakistan
+
+-----------Genre Details-----------
+Genre       : Action
+Tech Level  : 3
+Aliens      : Yes
+Future Year : 2600

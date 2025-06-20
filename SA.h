@@ -9,5 +9,6 @@ void Search(string);
 void Search(double);
 void Search(string, double);
 
+void readfromFile();
 
 #endif 

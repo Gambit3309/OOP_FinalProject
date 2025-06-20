@@ -46,3 +46,9 @@ using namespace std;
             return (getRating() * releaseDate.convertDateToDays()); 
         
     }
+
+    void Movie::setmovie(string t, int r, int day, int month, int year){
+        setTitle(t);
+        setRating(r);
+        releaseDate.setDate(day,month,year);
+    }

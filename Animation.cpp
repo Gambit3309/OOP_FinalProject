@@ -77,3 +77,10 @@ bool Animation::isFamilyFriendly()const{
 void Animation::changeAnimationStyle(int newStyle) {
     setanimationStyle(newStyle);
 }
+
+void Animation::setmovie(string title, int rating, int day, int month, int year, int animationstyle, bool musical, int agegroup){
+        Movie::setmovie(title,rating,day,month,year);
+        setanimationStyle(animationstyle);
+        setisMusical(musical);
+        setageGroup(agegroup);
+    }

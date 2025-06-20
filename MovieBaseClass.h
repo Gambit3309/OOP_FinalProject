@@ -28,7 +28,7 @@ public:
     ~Movie();
     virtual void displayDetails()const;
     virtual int calculateScore()const;
-    
+    virtual void setmovie(string, int, int, int, int);
 
 };
 
