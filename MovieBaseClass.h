@@ -16,10 +16,6 @@ private:
     int rating;
 
 protected:
-    string getTitle()const;
-    int getRating()const;
-    int getDirectorNum()const;
-
     void setTitle(string);
     void setRating(int);
     void setDirectorNum(int);
@@ -35,6 +31,9 @@ public:
     virtual void setmovie(string, int, int, int, int);
     string displayReleaseDate()const;
     string getDirectorName()const;
+    string getTitle()const;
+    int getRating()const;
+    int getDirectorNum()const;
     virtual string getgenre()const = 0;
 
     friend ostream & operator<<(ostream &,const Movie&);

@@ -15,11 +15,6 @@ using namespace std;
 
 void InputMoviesFromFile(){
 
-    //Movie* mpointer[50];
-
-    
- 
-
     fstream file("movies.txt", ios::in);
 
     if(!file.is_open()){
@@ -29,33 +24,9 @@ void InputMoviesFromFile(){
         string line;
         file.seekg(0, ios::beg);
         for(int j = 0; j < MaxNumberOfMovies; j++){
-            string title = "";
-            string releaseDate = "";
-            string directorName = "";
-            string nationality = "";
-            string genre = "";
-            string errorchecking = "Error";
-            string d = "";
 
-            int experience = 0;
-            int rating = 0;
-            int techlvl = 0;
-            int FutureY = 0;
-            int AnimeSyle = 0;
-            int ageG = 0;
-            int NoOfFights = 0;
-            int genrePointer = 0;
-            int day, month, year;
-            int directorChoice = 0;
+            Variables v;
             
-            bool aliens = false;
-            bool Musical = false;
-            bool Stunts = false;
-
-            char VLvl = ' ';
-
-
-
             for(int i = 0; i <= 8; i ++){
                 getline(file,line);
             try{
@@ -63,70 +34,66 @@ void InputMoviesFromFile(){
 
                 switch(i){
                     case 1:    
-                        title = line;
+                        v.title = line;
                         break;
                     case 2:    
-                        rating = stoi(line);
+                        v.rating = stoi(line);
                         break;
                     case 3:    
-                        releaseDate = line.substr(0,2);
-                        day = stoi(releaseDate);
-                        releaseDate = line.substr(3,2);
-                        month = stoi(releaseDate);
-                        releaseDate = line.substr(6,4);
-                        year = stoi(releaseDate);
+                        v.releaseDate = line.substr(0,2);
+                        v.day = stoi(v.releaseDate);
+                        v.releaseDate = line.substr(3,2);
+                        v.month = stoi(v.releaseDate);
+                        v.releaseDate = line.substr(6,4);
+                        v.year = stoi(v.releaseDate);
                         break;
                     case 4:    
-                        genre = line;
-                        if(genre == "Scifi"){
-                            genrePointer = 1;
+                        v.genre = line;
+                        if(v.genre == "Scifi"){
+                            v.genrePointer = 1;
                         }
-                        else if(genre == "Action"){
-                            genrePointer = 2;
+                        else if(v.genre == "Action"){
+                            v.genrePointer = 2;
                         }
                         else
-                            genrePointer = 3;
+                            v.genrePointer = 3;
                         break;
                     case 5:
-                        if(genrePointer == 1){
-                            errorchecking = line;    
-                            techlvl = stoi(line);
-                        }
-                        else if(genrePointer == 3)    
-                            AnimeSyle = stoi(line);
-                        else if(genrePointer == 2)    
-                            VLvl = line[0];
+                        if(v.genrePointer == 1)    
+                            v.techlvl = stoi(line);
+                        else if(v.genrePointer == 3)    
+                            v.AnimeSyle = stoi(line);
+                        else if(v.genrePointer == 2)    
+                            v.VLvl = line[0];
                         break;
                     case 6:
-                        if (genrePointer == 1) // Scifi
-                            aliens = (line == "Yes" || line == "yes");
-                        else if (genrePointer == 2) // Action
-                            Stunts = (line == "Yes" || line == "yes");
-                        else if (genrePointer == 3) // Animation
-                            Musical = (line == "Yes" || line == "yes");
+                        if (v.genrePointer == 1) // Scifi
+                            v.aliens = (line == "Yes" || line == "yes");
+                        else if (v.genrePointer == 2) // Action
+                            v.Stunts = (line == "Yes" || line == "yes");
+                        else if (v.genrePointer == 3) // Animation
+                            v.Musical = (line == "Yes" || line == "yes");
                         break;
                     case 7:
-                        if (genrePointer == 1) // Scifi
-                            FutureY = stoi(line);
-                        else if (genrePointer == 2) // Action
-                            NoOfFights = stoi(line);
-                        else if (genrePointer == 3) // Animation
-                            ageG = stoi(line);
+                        if (v.genrePointer == 1) // Scifi
+                            v.FutureY = stoi(line);
+                        else if (v.genrePointer == 2) // Action
+                            v.NoOfFights = stoi(line);
+                        else if (v.genrePointer == 3) // Animation
+                            v.ageG = stoi(line);
                         break;
                     case 8:
-                        d = line;
                         if(line == "Steven Spielberg")
-                            directorChoice = 1;
+                            v.directorChoice = 1;
                         else if(line == "Martin Scorsese")
-                            directorChoice = 2;
+                            v.directorChoice = 2;
                         else if(line == "Clint Eastwood")
-                            directorChoice = 3;
+                            v.directorChoice = 3;
                         else
-                            directorChoice = 1;
+                            v.directorChoice = 1;
                         break;
                     default:
                         break;
-                    line = "";
                     }
             }
                 catch(const exception& e)
@@ -135,52 +102,22 @@ void InputMoviesFromFile(){
                 }
                 
             }
-                // cout << "Movie" << j << endl;
-                // cout << "Title: " << title << endl;
-                // cout << "Rating: " << rating << endl;
-                // cout << "Release Date: " << day << "/" << month << "/" << year << endl;
-                // cout << "Genre: " << genre << endl;
-                //cout << "Tech Level: " << techlvl << endl;
-                // cout << "Aliens: " << (aliens ? "Yes" : "No") << endl;
-                // cout << "Future Year: " << FutureY << endl;
-                //cout << "Animation Style: " << AnimeSyle << endl;
-                // cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
-                //cout << "Age Group: " << ageG << endl;
-                // cout << "Animation Style: " << AnimeSyle << endl;
-                // cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
-                // cout << "Age Group: " << ageG << endl;
-                // cout << "Violence Level: " << VLvl << endl;
-                // cout << "Stunts: " << (Stunts ? "Yes" : "No") << endl;
-                // cout << "Fight Scenes: " << NoOfFights << endl;
-                // cout << "Genre Pointer: " << genrePointer << endl;
-                //cout << "Error Checking Variiable: " << errorchecking<< endl << endl;
-                //cout << directorChoice << endl;
-                //cout << d << endl;
-                //system("pause");
-                //system("pause");
 
-            if(genrePointer == 1){
-                mpointer[j] = new scifi(title, rating, day,month,year, directorChoice, techlvl, aliens,FutureY);
-                CurrentNumberOfMovies++;
+            if(v.genrePointer == 1){
+                mpointer[j] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
             }
-            else if(genrePointer == 2){
-                mpointer[j] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
-                CurrentNumberOfMovies++;
+            else if(v.genrePointer == 2){
+                mpointer[j] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
             }
             else{
-                mpointer[j] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
-                CurrentNumberOfMovies++;
+                mpointer[j] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
             }
-            //cout<< "Movie" << j << endl;    
-            //cout << *mpointer[j];
-            //system("pause");
-            //system("cls");
+            CurrentNumberOfMovies++;
         }
-        file.close();
-        
-        
     }
+    file.close();
 }
+
 void InputDirectorsFromFile(){
     fstream file("directors.txt", ios::in);
 
@@ -236,28 +173,8 @@ bool AddNewMovie(){
     if(CurrentNumberOfMovies == MaxNumberOfMovies){
         return false;
     }
-    string title = "";
-    string releaseDate = "";
-    string directorName = "";
-    string nationality = "";
-    string genre = "";
     
-    int rating = 0;
-    int experience = 0;
-    int techlvl = 0;
-    int FutureY = 0;
-    int ageG = 0;
-    int AnimeSyle = 0;
-    int NoOfFights = 0;
-    int genrePointer = 0;
-    int directorChoice = 0;
-    int day, month, year;
-    
-    bool aliens = false;
-    bool Musical = false;
-    bool Stunts = false;
-    
-    char VLvl = ' ';
+    Variables v;
 
     system("cls");
 
@@ -267,26 +184,26 @@ bool AddNewMovie(){
     cout << "Movie Title: ";
 
     cin.ignore();
-    getline(cin, title);
+    getline(cin, v.title);
 
     cout << "Rating: ";
 
-    cin >> rating;
+    cin >> v.rating;
 
     cout << "Release Date in Numeric for dd/mm/yyyy " << endl;
     cout << "Day: " << endl;
-    cin >> day;
+    cin >> v.day;
 
     cout << "Month: " << endl;
-    cin >> month;
+    cin >> v.month;
 
     cout << "Year: " << endl;
-    cin >> year;    
+    cin >> v.year;    
     
     cout << "Select Director" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
-    cin >> directorChoice;
-    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
-        directorChoice = 0; 
+    cin >> v.directorChoice;
+    if(v.directorChoice < 1 || v.directorChoice > 3 || d[v.directorChoice-1] == nullptr){
+        v.directorChoice = 0; 
     }
 
     cout << "Select Genre of the Movie you would like to add" << endl;
@@ -299,18 +216,18 @@ bool AddNewMovie(){
 
     if(choice == 1){
         cout << "Select Tech Level" << endl << "1. Tech Level 1" << endl << "2. Tech Level 2" << endl << "3. Tech Level 3" << endl;
-        cin >> techlvl;
+        cin >> v.techlvl;
 
         cout << "Does it Have Aliens (Y/N)";
         char ch = getche();
         cin.ignore();
         if(ch == 'Y' || ch == 'y')
-            aliens = true;
+            v.aliens = true;
         
         cout << "Future Year: ";
-        cin >> FutureY;
+        cin >> v.FutureY;
 
-        mpointer[CurrentNumberOfMovies] = new scifi(title, rating, day,month,year, directorChoice, techlvl, aliens,FutureY);
+        mpointer[CurrentNumberOfMovies] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
         CurrentNumberOfMovies++;
     }
     else if(choice == 2){
@@ -320,10 +237,18 @@ bool AddNewMovie(){
         cin >> violenceChoice;
 
         switch(violenceChoice) {
-            case 1: VLvl = 'D'; break;
-            case 2: VLvl = 'M'; break;
-            case 3: VLvl = 'U'; break;
-            default: VLvl = ' '; break;
+            case 1: 
+                v.VLvl = 'D'; 
+                break;
+            case 2: 
+                v.VLvl = 'M'; 
+                break;
+            case 3: 
+                v.VLvl = 'U'; 
+                break;
+            default: 
+                v.VLvl = ' '; 
+                break;
         }
 
         cout << "Does it Have Stunts (Y/N)";
@@ -331,64 +256,64 @@ bool AddNewMovie(){
         cin.ignore();
 
         if(ch == 'Y' || ch == 'y')
-            Stunts = true;
+            v.Stunts = true;
         
         cout << "Number of Fight Scenes: ";
-        cin >> NoOfFights;
+        cin >> v.NoOfFights;
 
-        mpointer[CurrentNumberOfMovies] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
+        mpointer[CurrentNumberOfMovies] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
         CurrentNumberOfMovies++;
     }
     else{
 
         cout << "Animation Style" << endl << "1. Animation Style 1" << endl << "2. Animation Style 2" << endl << "3. Animation Style 3" << endl;
-        cin >> AnimeSyle;
+        cin >> v.AnimeSyle;
 
         cout << "Is it a Musical (Y/N)";
         char ch = getche();
         cin.ignore();
 
         if(ch == 'Y' || ch == 'y')
-            Musical = true;
+            v.Musical = true;
         
         cout << "Select Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 18 Years" << endl;
         int ch1;
         cin >> ch1;
         if(ch1 == 1)
-            ageG = 5;
+            v.ageG = 5;
         else if(ch1 == 2)
-            ageG = 7; 
+            v.ageG = 7; 
         else if(ch1 == 3)
-            ageG = 18;
+            v.ageG = 18;
         else
-            ageG = 404;
-        mpointer[CurrentNumberOfMovies] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
+            v.ageG = 404;
+        mpointer[CurrentNumberOfMovies] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
         CurrentNumberOfMovies++;
     }
 
     fstream file("movies.txt" , ios::app);
         file << endl << "-------Movie Details-------" << endl;
-        file << "Title           : " << title << endl;
-        file << "Rating          : " << rating << endl;
-        file << "Release Date    : " << day << "/" << month << "/" << year << endl;
+        file << "Title           : " << v.title << endl;
+        file << "Rating          : " << v.rating << endl;
+        file << "Release Date    : " << v.day << "/" << v.month << "/" << v.year << endl;
 
     if(choice == 1){
         file << "Genre           : " << "Scifi" << endl;
-        file << "Tech Level      : " << techlvl << endl;
-        file << "Aliens          : " << (aliens? "Yes":"No") << endl;
-        file << "Future Year     : " << FutureY << endl;
+        file << "Tech Level      : " << v.techlvl << endl;
+        file << "Aliens          : " << (v.aliens? "Yes":"No") << endl;
+        file << "Future Year     : " << v.FutureY << endl;
     }
     else if(choice == 2){
         file << "Genre           : " << "Action" << endl;
-        file << "Violence Level  : " << VLvl << endl;
-        file << "Stunts          : " << (Stunts? "Yes":"No") << endl;
-        file << "Fight Scenes    : " << NoOfFights << endl;
+        file << "Violence Level  : " << v.VLvl << endl;
+        file << "Stunts          : " << (v.Stunts? "Yes":"No") << endl;
+        file << "Fight Scenes    : " << v.NoOfFights << endl;
     }
     else if(choice == 3){
         file << "Genre           : " << "Animation" << endl;
-        file << "Animation Style : " << AnimeSyle << endl;
-        file << "Musical         : " << (Musical? "Yes": "No") << endl;
-        file << "Age Group       : " << ageG << endl;
+        file << "Animation Style : " << v.AnimeSyle << endl;
+        file << "Musical         : " << (v.Musical? "Yes": "No") << endl;
+        file << "Age Group       : " << v.ageG << endl;
     }
     file.close();
 
@@ -550,12 +475,35 @@ void DisplayAllMoviesByDirector(string director){
     }
 }
 
-void Search_DisplayBy_Year(){
-    int displayOrder[55] = {0};
+void DisplayByYear(int year){
     int size = CurrentNumberOfMovies;
-    for(int i = 0; i < size - 1; i++){
-        for(int j = 0; j < size - 1 - i; j++ ){
-            
-        }
+    for(int i = 0; i < size; i++){
+        int MovieYear;
+        string releaseDate = mpointer[i]->displayReleaseDate();
+        int last_slash = releaseDate.find_last_of('/');
+        releaseDate = releaseDate.substr(last_slash + 1);
+        MovieYear = stoi(releaseDate);
+        if(MovieYear == year)
+            cout << *mpointer[i];
+    }
+}
+
+void DisplayByTitle(string title){
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i]->getTitle() == title)
+            cout << *mpointer[i];
+    }
+}
+
+void SortByYear(){
+    int size = CurrentNumberOfMovies;
+    int MovieYear[size];
+    int MovieIndex[size];
+    for(int i = 0; i < size; i++){
+        string releaseDate = mpointer[i]->displayReleaseDate();
+        int last_slash = releaseDate.find_last_of('/');
+        releaseDate = releaseDate.substr(last_slash + 1);
+        MovieYear[i] = stoi(releaseDate);
+        MovieIndex[i] = i;
     }
 }

@@ -15,6 +15,7 @@ int main()
 {
     InputDirectorsFromFile();
     InputMoviesFromFile();
-    DisplayAllMovies();
+    cout << CurrentNumberOfMovies;
+    //SortMoviesByYear();
     DeleteAllPointers();
 }

@@ -8,9 +8,9 @@ void mainmenu(){
     int choice;
 
     system("cls");
-    cout << "1. Add new movie with user-selected genre" << endl
+    cout << "1. Add new movie with user-selected genre" << endl //completed
          << "2. Assign existing Director to a movie " << endl
-         << "3. Display Movies" << endl
+         << "3. Display Movies" << endl// completed
          << "4. Search Movies" << endl  
          << "5. Sort Movies by year" << endl
          << "0. Exit" << endl;
@@ -59,6 +59,7 @@ void mainmenu(){
     }
 }
 
+//completed subMenuDisplay
 void subMenuDisplay(){
     system("cls");
     cout << "----------Display Menu----------" << endl;
@@ -141,6 +142,10 @@ void subMenuDisplay(){
     case 0:
         mainmenu();
     default:
+        cout <<"ERROR: Invalid Option" << endl;
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     }
 
@@ -164,25 +169,62 @@ void subMenuSearch(){
     switch(choice){
     case 1:
         
+
+
+
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 2:
         
+
+
+
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 3:
-
+        int year;
+        cout << "Enter Year: " << endl;
+        cin >> year;
+        DisplayByYear(year);
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 4:
 
+
+
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 5:
 
+
+
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 6:
 
+
+
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 0:
         mainmenu();
     default:
+        cout <<"ERROR: Invalid Option" << endl;
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     }
 }

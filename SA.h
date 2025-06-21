@@ -19,8 +19,10 @@ void DisplayAllMoviesByGenre(string);
 void DisplayAllMoviesByRating(int);
 void DisplayAllMoviesByDirector(string);
 
-void Search_Display_By_Year();
+void DisplayByYear(int);
+void DisplayByTitle(string);
 
+void SortByYear();
 // cout << "----------Search Menu----------" << endl;
 //     cout<< "1. Search and Display Movies by Specific Director\n"
 //         << "2. Search and Display Movies by Certain Score\n"
