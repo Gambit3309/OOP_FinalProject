@@ -33,6 +33,7 @@ int main()
 
 
     InputMoviesFromFile();
+    writeMoviesToNewFile();
     //cout << day << endl << month << endl << year<< endl;
     DeleteAllPointers();
 }

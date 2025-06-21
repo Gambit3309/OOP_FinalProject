@@ -139,20 +139,21 @@ void InputMoviesFromFile(){
                 cout << "Error Checking Variiable: " << errorchecking<< endl << endl;
                 //system("pause");
             if(genrePointer == 1){
-                mpointer[j] = new scifi(title, rating, day,month,year, techlvl, aliens,FutureY);
-
+                mpointer[j] = new scifi(title, rating, day,month,year, 0, techlvl, aliens,FutureY);
+                CurrentNumberOfMovies++;
             }
             else if(genrePointer == 2){
-                mpointer[j] = new Action(title, rating, day,month,year, VLvl, Stunts,NoOfFights);
+                mpointer[j] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
+                CurrentNumberOfMovies++;
             }
             else{
-                mpointer[j] = new Animation(title, rating, day,month,year,AnimeSyle,Musical,ageG);
+                mpointer[j] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
+                CurrentNumberOfMovies++;
             }
             cout<< "Movie" << j << endl;    
             cout << *mpointer[j];
             system("pause");
             system("cls");
-            CurrentNumberOfMovies++;
         }
         file.close();
         
@@ -163,43 +164,69 @@ void InputDirectorsFromFile(){
     fstream file("directors.txt", ios::in);
 
     if(!file.is_open()){
-        cout << "Error could not access director.txt" << endl;
+        cout << "Error could not access directors.txt" << endl;
+        return;
     }
-    else{
-        string fn,ln, nationality;
-        int expY;
-        string line;
-        file.seekg(0,ios::beg);
-        for(int i = 0; i < 3; i++){
-            for(int i = 0; i < 6; i++){
-                getline(file, line);
+    
+    string line;
+    file.seekg(0, ios::beg);
+    
+    for(int directorIndex = 0; directorIndex < 3; directorIndex++){
+        string fn = "", ln = "", nationality = "";
+        int expY = 0;
+        
+        // Read 5 lines for each director
+        for(int lineNum = 0; lineNum < 5; lineNum++){
+            if(getline(file, line)){
                 try{
-                    line = line.substr(18);
-                    switch(i){
-                        case 1:
-                            fn = line;
-                            break;
-                        case 2:    
-                            ln = line;
-                            break;
-                        case 3:    
-                            nationality = line;
-                            break;
-                        case 4:    
-                            expY = stoi(line);
-                            break;
-                        case 5:
-                            break;
+                    // Skip the header line (line 0)
+                    if(lineNum == 0) continue;
+                    
+                    // Extract the value after ": "
+                    size_t colonPos = line.find(": ");
+                    if(colonPos != string::npos){
+                        string value = line.substr(colonPos + 2); // Skip ": "
+                        
+                        switch(lineNum){
+                            case 1: // First Name
+                                fn = value;
+                                break;
+                            case 2: // Last Name
+                                ln = value;
+                                break;
+                            case 3: // Nationality
+                                nationality = value;
+                                break;
+                            case 4: // Experience Years
+                                // Extract number from "66 years" format
+                                size_t spacePos = value.find(" ");
+                                if(spacePos != string::npos){
+                                    expY = stoi(value.substr(0, spacePos));
+                                } else {
+                                    expY = stoi(value);
+                                }
+                                break;
+                        }
                     }
                 }
-                catch(const exception&){
+                catch(const exception& e){
+                    cout << "Error parsing director " << (directorIndex + 1) << " line " << (lineNum + 1) << ": " << e.what() << endl;
                     continue;
                 }
             }
-            d[i] = new Director(fn, ln, expY, nationality);
+        }
+        
+        // Create director object if we have valid data
+        if(!fn.empty() && !ln.empty()){
+            d[directorIndex] = new Director(fn, ln, expY, nationality);
+            cout << "Loaded Director " << (directorIndex + 1) << ": " << fn << " " << ln << endl;
+        } else {
+            cout << "Failed to load Director " << (directorIndex + 1) << " - missing data" << endl;
         }
     }
+    
     file.close();
+    cout << "Director loading completed." << endl;
 }
 
 void DeleteAllPointers(){
@@ -263,6 +290,28 @@ bool AddNewMovie(){
     cout << "Year: " << endl;
     cin >> year;
 
+    // Show available directors and let user select one
+    int directorChoice = 0;
+    cout << "\nAvailable Directors:" << endl;
+    bool hasDirectors = false;
+    for(int i = 0; i < 3; i++){
+        if(d[i] != nullptr){
+            cout << (i + 1) << ". " << d[i]->getName() << endl;
+            hasDirectors = true;
+        }
+    }
+    
+    if(hasDirectors){
+        cout << "Select Director (1-3, or 0 for no director): ";
+        cin >> directorChoice;
+        if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
+            directorChoice = 0; // No director assigned
+        }
+    } else {
+        cout << "No directors available. Movie will be created without director." << endl;
+        directorChoice = 0;
+    }
+
     cout << "Select Genre of the Movie you would like to add" << endl;
     cout << "1. Science Fiction" << endl
          << "2. Action" << endl
@@ -277,21 +326,32 @@ bool AddNewMovie(){
 
         cout << "Does it Have Aliens (Y/N)";
         char ch = getche();
+        cin.ignore();
         if(ch == 'Y' || ch == 'y')
             aliens = true;
         
         cout << "Future Year: ";
         cin >> FutureY;
 
-        mpointer[CurrentNumberOfMovies-1] = new scifi(title, rating, day,month,year, techlvl, aliens,FutureY);
+        mpointer[CurrentNumberOfMovies] = new scifi(title, rating, day,month,year, directorChoice, techlvl, aliens,FutureY);
+        CurrentNumberOfMovies++;
     }
     else if(choice == 2){
         cout << "Select Violence Level" << endl;
         cout << "1. Domestic Violence" << endl << "2. Mafia Level" << endl << "3. Ultra Cool" << endl;
-        cin >> VLvl;
+        int violenceChoice;
+        cin >> violenceChoice;
+
+        switch(violenceChoice) {
+            case 1: VLvl = 'D'; break;
+            case 2: VLvl = 'M'; break;
+            case 3: VLvl = 'U'; break;
+            default: VLvl = ' '; break;
+        }
 
         cout << "Does it Have Stunts (Y/N)";
         char ch = getche();
+        cin.ignore();
 
         if(ch == 'Y' || ch == 'y')
             Stunts = true;
@@ -299,7 +359,8 @@ bool AddNewMovie(){
         cout << "Number of Fight Scenes: ";
         cin >> NoOfFights;
 
-        mpointer[CurrentNumberOfMovies-1] = new Action(title, rating, day,month,year, VLvl, Stunts,NoOfFights);
+        mpointer[CurrentNumberOfMovies] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
+        CurrentNumberOfMovies++;
     }
     else{
 
@@ -308,20 +369,24 @@ bool AddNewMovie(){
 
         cout << "Is it a Musical (Y/N)";
         char ch = getche();
+        cin.ignore();
 
         if(ch == 'Y' || ch == 'y')
             Musical = true;
         
         cout << "Select Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 18 Years" << endl;
         int ch1;
+        cin >> ch1;
         if(ch1 == 1)
             ageG = 5;
-        else if(ch1 = 8)
-            ageG = 8;
-        else   
+        else if(ch1 == 2)
+            ageG = 7; 
+        else if(ch1 == 3)
             ageG = 18;
-        mpointer[CurrentNumberOfMovies-1] = new Animation(title, rating, day,month,year,AnimeSyle,Musical,ageG);
-
+        else
+            ageG = 404;
+        mpointer[CurrentNumberOfMovies] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
+        CurrentNumberOfMovies++;
     }
     bool MovieAdded = true;
 
@@ -330,7 +395,7 @@ bool AddNewMovie(){
             file << endl << "-------Movie Details-------" << endl;
             file << "Title           : " << title << endl;
             file << "Rating          : " << rating << endl;
-            file << "Release Date    : " << releaseDate << endl;
+            file << "Release Date    : " << day << "/" << month << "/" << year << endl;
 
         if(choice == 1){
             file << "Genre           : " << "Scifi" << endl;
@@ -355,4 +420,93 @@ bool AddNewMovie(){
 
 
     return MovieAdded;
+}
+
+void writeMoviesToNewFile(){
+        fstream file("movies1.txt", ios::out | ios::trunc);
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        file << *mpointer[i];
+    }
+        file.close();
+}
+
+bool AddNewDirector(){
+    // Check if we have space for more directors
+    int currentDirectorCount = 0;
+    for(int i = 0; i < 3; i++){
+        if(d[i] != nullptr) currentDirectorCount++;
+    }
+    
+    if(currentDirectorCount >= 3){
+        cout << "Maximum number of directors (3) already reached." << endl;
+        return false;
+    }
+    
+    string firstName, lastName, nationality;
+    int experienceYears;
+    
+    system("cls");
+    cout << "--------------ADDING NEW DIRECTOR--------------" << endl;
+    
+    cout << "Enter Director Details:" << endl;
+    
+    cout << "First Name: ";
+    cin.ignore();
+    getline(cin, firstName);
+    
+    cout << "Last Name: ";
+    getline(cin, lastName);
+    
+    cout << "Nationality: ";
+    getline(cin, nationality);
+    
+    cout << "Experience Years: ";
+    cin >> experienceYears;
+    
+    // Find the next available slot
+    int slot = 0;
+    for(int i = 0; i < 3; i++){
+        if(d[i] == nullptr){
+            slot = i;
+            break;
+        }
+    }
+    
+    // Create new director
+    d[slot] = new Director(firstName, lastName, experienceYears, nationality);
+    
+    // Write to directors.txt file
+    fstream file("directors.txt", ios::app);
+    if(file.is_open()){
+        file << endl << "-----------Director " << (slot + 1) << " Details-----------" << endl;
+        file << "First Name      : " << firstName << endl;
+        file << "Last Name       : " << lastName << endl;
+        file << "Nationality     : " << nationality << endl;
+        file << "Experience Years: " << experienceYears << " years" << endl;
+        file.close();
+    }
+    
+    cout << "Director " << firstName << " " << lastName << " added successfully!" << endl;
+    return true;
+}
+
+void DisplayAllDirectors(){
+    system("cls");
+    cout << "--------------ALL DIRECTORS--------------" << endl;
+    
+    bool found = false;
+    for(int i = 0; i < 3; i++){
+        if(d[i] != nullptr){
+            cout << "\nDirector " << (i + 1) << ":" << endl;
+            cout << *d[i] << endl;
+            found = true;
+        }
+    }
+    
+    if(!found){
+        cout << "No directors found in the system." << endl;
+    }
+    
+    cout << "\nPress any key to continue...";
+    system("pause");
 }

@@ -14,4 +14,14 @@ void InputDirectorsFromFile();
 void DeleteAllPointers();
 
 bool AddNewMovie();
+bool AddNewDirector();
+
+void DisplayAllMovies();
+void DisplayAllDirectors();
+
+void DisplayAllMoviesByGenre(string);
+void DisplayAllMoviesByRating(double);
+void DisplayAllMoviesByDirector(string);
+
+void writeMoviesToNewFile();
 #endif 
