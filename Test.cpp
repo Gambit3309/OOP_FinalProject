@@ -13,8 +13,8 @@ using namespace std;
 
 int main()
 {
+    InputDirectorsFromFile();
     InputMoviesFromFile();
-    writeMoviesToNewFile();
     DisplayAllMovies();
     DeleteAllPointers();
 }

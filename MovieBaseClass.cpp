@@ -42,6 +42,7 @@ using namespace std;
         setTitle(t);
         setRating(r);
         releaseDate.setDate(day,month,year);
+        setDirectorNum(director);
     }
 
     Movie::Movie(const Movie &temp){
@@ -75,6 +76,10 @@ using namespace std;
         out << setw(15) << left << "Title" << ": " << getTitle() << endl;
         out << setw(15) << left << "Rating" << ": " << getRating() << endl;
         out << setw(15) << left << "Release Date" << ": " << releaseDate;
+        if(director == 1 || director == 2 || director == 3)
+        out << setw(15) << left << "Director" << ": " << d[director-1]->getName() << endl;
+        else
+        out << setw(15) << left << "Director" << ": " << "Unassigned" << endl;
     }
 
     ostream & operator<<(ostream &out,const Movie& m){

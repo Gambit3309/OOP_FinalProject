@@ -35,6 +35,7 @@ void InputMoviesFromFile(){
             string nationality = "";
             string genre = "";
             string errorchecking = "Error";
+            string d = "";
 
             int experience = 0;
             int rating = 0;
@@ -45,6 +46,7 @@ void InputMoviesFromFile(){
             int NoOfFights = 0;
             int genrePointer = 0;
             int day, month, year;
+            int directorChoice = 0;
             
             bool aliens = false;
             bool Musical = false;
@@ -57,7 +59,7 @@ void InputMoviesFromFile(){
             for(int i = 0; i <= 8; i ++){
                 getline(file,line);
             try{
-                line = line.substr(18);
+                line = line.substr(18); 
 
                 switch(i){
                     case 1:    
@@ -111,8 +113,20 @@ void InputMoviesFromFile(){
                         else if (genrePointer == 3) // Animation
                             ageG = stoi(line);
                         break;
+                    case 8:
+                        d = line;
+                        if(line == "Steven Spielberg")
+                            directorChoice = 1;
+                        else if(line == "Martin Scorsese")
+                            directorChoice = 2;
+                        else if(line == "Clint Eastwood")
+                            directorChoice = 3;
+                        else
+                            directorChoice = 1;
+                        break;
                     default:
                         break;
+                    line = "";
                     }
             }
                 catch(const exception& e)
@@ -126,28 +140,30 @@ void InputMoviesFromFile(){
                 // cout << "Rating: " << rating << endl;
                 // cout << "Release Date: " << day << "/" << month << "/" << year << endl;
                 // cout << "Genre: " << genre << endl;
-                cout << "Tech Level: " << techlvl << endl;
+                //cout << "Tech Level: " << techlvl << endl;
                 // cout << "Aliens: " << (aliens ? "Yes" : "No") << endl;
                 // cout << "Future Year: " << FutureY << endl;
-                 cout << "Animation Style: " << AnimeSyle << endl;
+                //cout << "Animation Style: " << AnimeSyle << endl;
                 // cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
-                 cout << "Age Group: " << ageG << endl;
-                 cout << "Violence Level: " << VLvl << endl;
+                //cout << "Age Group: " << ageG << endl;
+                // cout << "Violence Level: " << VLvl << endl;
                 // cout << "Stunts: " << (Stunts ? "Yes" : "No") << endl;
-                 cout << "Fight Scenes: " << NoOfFights << endl;
+                // cout << "Fight Scenes: " << NoOfFights << endl;
                 // cout << "Genre Pointer: " << genrePointer << endl;
-                cout << "Error Checking Variiable: " << errorchecking<< endl << endl;
-                //system("pause");
+                //cout << "Error Checking Variiable: " << errorchecking<< endl << endl;
+                cout << directorChoice << endl;
+                cout << d << endl;
+                system("pause");
             if(genrePointer == 1){
-                mpointer[j] = new scifi(title, rating, day,month,year, 0, techlvl, aliens,FutureY);
+                mpointer[j] = new scifi(title, rating, day,month,year, directorChoice, techlvl, aliens,FutureY);
                 CurrentNumberOfMovies++;
             }
             else if(genrePointer == 2){
-                mpointer[j] = new Action(title, rating, day,month,year, 0, VLvl, Stunts,NoOfFights);
+                mpointer[j] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
                 CurrentNumberOfMovies++;
             }
             else{
-                mpointer[j] = new Animation(title, rating, day,month,year, 0, AnimeSyle,Musical,ageG);
+                mpointer[j] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
                 CurrentNumberOfMovies++;
             }
             cout<< "Movie" << j << endl;    
@@ -172,7 +188,7 @@ void InputDirectorsFromFile(){
         string line;
         file.seekg(0,ios::beg);
         for(int i = 0; i < 3; i++){
-            for(int i = 0; i < 6; i++){
+            for(int i = 0; i < 5; i++){
                 getline(file, line);
                 try{
                     line = line.substr(18);
@@ -188,8 +204,6 @@ void InputDirectorsFromFile(){
                             break;
                         case 4:    
                             expY = stoi(line);
-                            break;
-                        case 5:
                             break;
                     }
                 }
@@ -463,6 +477,27 @@ void DisplayAllMovies(){
     
     if(!found){
         cout << "No Movies found in the system." << endl;
+    }
+    
+    cout << "\nPress any key to continue...";
+    system("pause");
+}
+
+void DisplayAllDirectors(){
+    system("cls");
+    cout << "--------------ALL Directors--------------" << endl;
+    
+    bool found = false;
+    for(int i = 0; i < 3; i++){
+        if(d[i] != nullptr){
+            cout << "Director " << (i + 1) << ":" << endl;
+            cout << *d[i] << endl;
+            found = true;
+        }
+    }
+    
+    if(!found){
+        cout << "No Directors found in the system." << endl;
     }
     
     cout << "\nPress any key to continue...";
