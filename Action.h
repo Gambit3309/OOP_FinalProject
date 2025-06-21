@@ -27,7 +27,7 @@ protected:
     void displayDetails(ostream&)const override;
 
 public:
-    string getgenre()const;
+    string getgenre()const override;
     Action(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
     ~Action();
     Action(const Action &);

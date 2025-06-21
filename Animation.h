@@ -28,7 +28,7 @@ protected:
     void displayDetails(ostream &)const override;
     
 public:
-    string getgenre()const;
+    string getgenre()const override;
     Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
