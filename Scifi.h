@@ -10,7 +10,7 @@ using namespace std;
 
 class scifi:public Movie{
 private:
-    int techLevel = 0;
+    int techLevel;
     bool hasAliens;
     int futureYear;
     string genre = "SciFi";
@@ -23,6 +23,8 @@ protected:
     int gettechLevel()const;
     int getfutureYear()const;
     bool gethasAliens()const;
+
+    void displayDetails(ostream&)const override;
     
 public:
     string getgenre()const;
@@ -30,7 +32,7 @@ public:
     ~scifi();
     scifi(const scifi &);
 
-    void displayDetails()const;
+    //void displayDetails()const override;
     int calculateScore()const override;
     string showTechAnalysis()const;
     string simulateFutureScenario()const;

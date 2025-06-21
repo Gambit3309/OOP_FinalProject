@@ -5,6 +5,7 @@
 #include "Scifi.h"
 #include "Action.h"
 #include "Animation.h"
+#include <string>
 #include "global.h"
 #include "SA.h"
 
@@ -12,16 +13,26 @@ using namespace std;
 
 int main()
 {
-    Action a("Gambit", 9, 2,2,2000,2,'M',true,3);
-    cout << a;
+    // string releaseDate;
+    // int day, month, year;
+    // string line = "01/02/2000";
 
-    Date d(2,3,2000);
+    // releaseDate = line.substr(0,2);
+    // //day = stoi(releaseDate);
+    // day = stoi(releaseDate);
+    // cout << day << "/";
+    // releaseDate = line.substr(3,2);
+    // //month = stoi(releaseDate);
+    // month = stoi(releaseDate);
+    // cout << month << "/";
 
-    cout << d;
+    // releaseDate = line.substr(6,4);
+    // //year = stoi(releaseDate);
+    // year = stoi(releaseDate);
+    // cout << year;
 
-    Date d1;
-    cin >> d1;
-    cout << d1;
 
     InputMoviesFromFile();
+    //cout << day << endl << month << endl << year<< endl;
+    DeleteAllPointers();
 }

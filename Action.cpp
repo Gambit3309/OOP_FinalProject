@@ -6,17 +6,12 @@
 using namespace std;
 
 void Action::setviolenceLevel(char v){
-    if(v == 'D' || v == 'M' || v == 'U')
-        violenceLevel = v;
-    else
-        violenceLevel = ' ';
+    violenceLevel = v;
+
 }
 
 void Action::setnoOfFightScenes(int f){
-    if(noOfFightScenes > 0)
-        noOfFightScenes = f;
-    else
-        noOfFightScenes = 0;
+    noOfFightScenes = f;
 }
 
 void Action::sethasStunts(bool a){
@@ -54,12 +49,20 @@ string Action::getgenre()const{
     return genre;
 }
 
-void Action::displayDetails()const{
+/*void Action::displayDetails()const{
     Movie::displayDetails();
     cout << setw(14) << left << "Genre" << ": " << getgenre() << endl;
     cout << setw(14) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
     cout << setw(14) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
     cout << setw(14) << left << "Fight Scenes" << ": " << getnoOfFightScenes() << endl;
+}*/
+
+void Action::displayDetails(ostream &out)const{
+    Movie::displayDetails(out);
+    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(15) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
+    out << setw(15) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
+    out << setw(15) << left << "Fight Scenes" << ": " << getnoOfFightScenes() << endl;
 }
 
 int Action::calculateScore()const{
@@ -94,14 +97,6 @@ void Action::setmovie(string title, int rating, int day, int month, int year, ch
     }
 
 ostream & operator <<(ostream & out, const Action& a){
-    out << "-------Movie Details-------" << endl;
-    out << setw(14) << left << "Title" << ": " << a.getTitle() << endl;
-    out << setw(14) << left << "Rating" << ": " << a.getRating() << endl;
-    out << setw(14) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
-    //out << setw(14) << left << "Director" << ": " << a.getDirectorName() << endl;
-    out << setw(14) << left << "Genre" << ": " << a.getgenre() << endl;
-    out << setw(14) << left << "Violence Level" << ": " << a.getviolenceLevel() << endl;
-    out << setw(14) << left << "Stunts" << ": " << (a.gethasStunts()? "Yes": "No") << endl;
-    out << setw(14) << left << "Fight Scenes" << ": " << a.getnoOfFightScenes() << endl;
+    a.displayDetails(out);
     return out;
 }

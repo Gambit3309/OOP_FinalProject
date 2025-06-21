@@ -55,60 +55,15 @@ bool Date::isLeapYear(int y){
     return false;
 }
 
-bool Date::validateDate(int d, int m, int y){
-    try{
-        if((y < 1900 || y > 2100) && (y != 0)){
-            throw invalid_argument("Invalid Year\n");
-        }
-
-        if((m < 1 || m > 12) && (y != 0))
-            throw invalid_argument("Month must be between 1 and 12\n");
-
-        int max_days = 31;
-
-        switch(m){
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                max_days = 30;
-                break;
-            case 2:
-                if(isLeapYear(y)){
-                    max_days = 29;
-                    break;
-                }
-                else{
-                    max_days = 28;
-                    break;
-                }
-            default:
-                max_days = 31;
-                break;
-        }
-
-        if((d < 1 || d > max_days) && (y != 0))
-            throw invalid_argument("Inavlid date for this Month\n");
-    }
-    catch(const invalid_argument& e){
-        cout << "Invalid Date\n" << endl;
-        return false;
-    }
-    return true;
-    
-}
-
 ostream & operator<<(ostream &out, const Date &d){
     out << d.getday() << "/" << d.getmonth() << "/" << d.getyear() << endl;
     return out;
 }
 
 void Date::setDate(int d, int m, int y){
-    if(validateDate(d,m,y)){
         setday(d);
         setmonth(m);
         setyear(y);
-    }
 }
 
 istream & operator>>(istream &in, Date &d){
@@ -120,7 +75,6 @@ istream & operator>>(istream &in, Date &d){
     in >> month;
     cout << "Year: ";
     in >> year;
-    d.validateDate(day, month, year);
     d.setday(day);
     d.setmonth(month);
     d.setyear(year);
@@ -131,4 +85,3 @@ istream & operator>>(istream &in, Date &d){
         return getday() + (getmonth()*30) + (getyear()*365);
     }
 
-    

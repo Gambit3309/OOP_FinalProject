@@ -24,6 +24,8 @@ protected:
     int getnoOfFightScenes()const;
     bool gethasStunts()const;
 
+    void displayDetails(ostream&)const override;
+
 public:
     string getgenre()const;
     Action(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
@@ -33,7 +35,7 @@ public:
     void setmovie(string, int, int, int ,int, char, bool, int);
 
 
-    void displayDetails()const;
+    //void displayDetails()const override;
     int calculateScore()const override;
     string assessCensorship()const;
     string stuntCoordinatorReport()const;

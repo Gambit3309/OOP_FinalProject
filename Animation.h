@@ -13,6 +13,7 @@ private:
     int animationStyle = 0;
     bool isMusical;
     int ageGroup;
+    
     string genre = "Animation";
 
 protected:
@@ -24,13 +25,15 @@ protected:
     int getageGroup()const;
     bool getisMusical()const;
     
+    void displayDetails(ostream &)const override;
+    
 public:
     string getgenre()const;
     Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
 
-    void displayDetails()const;
+    //void displayDetails()const override;
     int calculateScore()const override;
     string suggestMerchandise()const;
     bool isFamilyFriendly()const;

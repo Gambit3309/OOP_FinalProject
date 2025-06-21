@@ -29,14 +29,14 @@ using namespace std;
         director = temp;
     }
 
-    void Movie::displayDetails()const{
+    /*void Movie::displayDetails()const{
         cout << "-------Movie Details-------" << endl;
-        cout << setw(12) << left << "Title" << ": " << getTitle() << endl;
-        cout << setw(12) << left << "Rating" << ": " << getRating() << endl;
-        cout << setw(12) << left << "Release Date" << ": " << releaseDate.getDate() << endl;
-        cout << setw(12) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
+        cout << setw(15) << left << "Title" << ": " << getTitle() << endl;
+        cout << setw(15) << left << "Rating" << ": " << getRating() << endl;
+        cout << setw(15) << left << "Release Date" << ": " << releaseDate.getDate() << endl;
+        cout << setw(15) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
 
-    }
+    }*/
 
     Movie::Movie(string t, int r, int day, int month, int year, int director){
         setTitle(t);
@@ -68,4 +68,17 @@ using namespace std;
 
     string Movie::getDirectorName()const{
         return d[director-1]->getName();
+    }
+
+    void Movie::displayDetails(ostream& out)const{
+        out << "-------Movie Details-------" << endl;
+        out << setw(15) << left << "Title" << ": " << getTitle() << endl;
+        out << setw(15) << left << "Rating" << ": " << getRating() << endl;
+        out << setw(15) << left << "Release Date" << ": " << releaseDate << endl;
+        //out << setw(15) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
+    }
+
+    ostream & operator<<(ostream &out,const Movie& m){
+        m.displayDetails(out);
+        return out;
     }

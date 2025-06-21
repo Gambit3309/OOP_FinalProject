@@ -24,16 +24,19 @@ protected:
     void setRating(int);
     void setDirectorNum(int);
     
+    virtual void displayDetails(ostream&)const;
 public:
 
     Movie(string = "", int  = 0, int = 0, int = 0, int = 0, int = 0);
     Movie(const Movie&);
     ~Movie();
-    virtual void displayDetails()const;
+    //virtual void displayDetails()const;
     virtual int calculateScore()const;
     virtual void setmovie(string, int, int, int, int);
     string displayReleaseDate()const;
     string getDirectorName()const;
+
+    friend ostream & operator<<(ostream &,const Movie&);
 };
 
 #endif

@@ -6,12 +6,7 @@
 using namespace std;
 
 void scifi::settechLevel(int t){
-    if(t >= 1 && t < 4)
         techLevel = t;
-    else if(t > 3)
-        techLevel = 3;
-    else
-        techLevel = 1;
 }
 
 void scifi::setfutureYear(int f){
@@ -53,12 +48,21 @@ string scifi::getgenre()const{
     return genre;
 }
 
-void scifi::displayDetails()const{
+/*void scifi::displayDetails()const{
     Movie::displayDetails();
-    cout << setw(11) << left << "Genre" << ": " << getgenre() << endl;
-    cout << setw(11) << left << "Tech Level" << ": " << gettechLevel() << endl;
-    cout << setw(11) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
-    cout << setw(11) << left << "Future Year" << ": " << getfutureYear() << endl;
+    cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
+    cout << setw(15) << left << "Tech Level" << ": " << gettechLevel() << endl;
+    cout << setw(15) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
+    cout << setw(15) << left << "Future Year" << ": " << getfutureYear() << endl;
+}*/
+
+
+void scifi::displayDetails(ostream &out)const{
+    Movie::displayDetails(out);
+    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(15) << left << "Tech Level" << ": " << gettechLevel() << endl;
+    out << setw(15) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
+    out << setw(15) << left << "Future Year" << ": " << getfutureYear() << endl;
 }
 
 int scifi::calculateScore()const{
@@ -89,15 +93,6 @@ void scifi::setmovie(string title, int rating, int day, int month, int year, int
     }
 
     ostream & operator <<(ostream & out, const scifi& a){
-    out << "-------Movie Details-------" << endl;
-    out << setw(15) << left << "Title" << ": " << a.getTitle() << endl;
-    out << setw(15) << left << "Rating" << ": " << a.getRating() << endl;
-    out << setw(15) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
-    //out << setw(15) << left << "Director" << ": " << a.getDirectorName() << endl;
-    out << setw(15) << left << "Genre" << ": " << a.getgenre() << endl;
-    out << setw(15) << left << "Tech Level" << ": " << a.gettechLevel() << endl;
-    out << setw(15) << left << "Aliens" << ": " << (a.gethasAliens()? "Yes": "No") << endl;
-    out << setw(15) << left << "Future Year" << ": " << a.getfutureYear() << endl;
-
-    return out;
+        a.displayDetails(out);
+        return out;
 }

@@ -6,19 +6,11 @@
 using namespace std;
 
 void Animation::setanimationStyle(int t){
-    if(t >= 1 && t < 4)
         animationStyle = t;
-    else if(t > 3)
-        animationStyle = 3;
-    else
-        animationStyle = 1;
 }
 
 void Animation::setageGroup(int f){
-    if(f == 5 || f == 7 || f == 18)
     ageGroup = f;
-    else
-    ageGroup = 18;
 }
 
 void Animation::setisMusical(bool a){
@@ -56,13 +48,13 @@ string Animation::getgenre()const{
     return genre;
 }
 
-void Animation::displayDetails()const{
-    Movie::displayDetails();
-    cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-    cout << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
-    cout << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
-    cout << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
-}
+// void Animation::displayDetails()const{
+//     Movie::displayDetails();
+//     cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
+//     cout << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
+//     cout << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
+//     cout << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
+// }
 
 int Animation::calculateScore()const{
     return (Movie::calculateScore() * (getageGroup() / getanimationStyle()))%10;
@@ -92,14 +84,14 @@ void Animation::setmovie(string title, int rating, int day, int month, int year,
     }
 
     ostream & operator <<(ostream & out, const Animation& a){
-    out << "-------Movie Details-------" << endl;
-    out << setw(15) << left << "Title" << ": " << a.getTitle() << endl;
-    out << setw(15) << left << "Rating" << ": " << a.getRating() << endl;
-    out << setw(15) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
-    //out << setw(15) << left << "Director" << ": " << a.getDirectorName() << endl;
-    out << setw(15) << left << "Genre" << ": " << a.getgenre() << endl;
-    out << setw(15) << left << "Animation Style" << ": " << a.getanimationStyle() << endl;
-    out << setw(15) << left << "Musical" << ": " << (a.getisMusical()? "Yes": "No") << endl;
-    out << setw(15) << left << "Age Group" << ": " << a.getageGroup() << endl;
-    return out;
+        a.displayDetails(out);
+        return out;
+}
+
+void Animation::displayDetails(ostream& out)const{
+    Movie::displayDetails(out);
+    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
+    out << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
+    out << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
 }
