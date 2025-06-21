@@ -143,11 +143,11 @@ void InputMoviesFromFile(){
                 CurrentNumberOfMovies++;
             }
             else if(genrePointer == 2){
-                mpointer[j] = new Action(title, rating, day,month,year, directorChoice, VLvl, Stunts,NoOfFights);
+                mpointer[j] = new Action(title, rating, day,month,year, 0, VLvl, Stunts,NoOfFights);
                 CurrentNumberOfMovies++;
             }
             else{
-                mpointer[j] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
+                mpointer[j] = new Animation(title, rating, day,month,year, 0, AnimeSyle,Musical,ageG);
                 CurrentNumberOfMovies++;
             }
             cout<< "Movie" << j << endl;    
@@ -164,69 +164,43 @@ void InputDirectorsFromFile(){
     fstream file("directors.txt", ios::in);
 
     if(!file.is_open()){
-        cout << "Error could not access directors.txt" << endl;
-        return;
+        cout << "Error could not access director.txt" << endl;
     }
-    
-    string line;
-    file.seekg(0, ios::beg);
-    
-    for(int directorIndex = 0; directorIndex < 3; directorIndex++){
-        string fn = "", ln = "", nationality = "";
-        int expY = 0;
-        
-        // Read 5 lines for each director
-        for(int lineNum = 0; lineNum < 5; lineNum++){
-            if(getline(file, line)){
+    else{
+        string fn,ln, nationality;
+        int expY;
+        string line;
+        file.seekg(0,ios::beg);
+        for(int i = 0; i < 3; i++){
+            for(int i = 0; i < 6; i++){
+                getline(file, line);
                 try{
-                    // Skip the header line (line 0)
-                    if(lineNum == 0) continue;
-                    
-                    // Extract the value after ": "
-                    size_t colonPos = line.find(": ");
-                    if(colonPos != string::npos){
-                        string value = line.substr(colonPos + 2); // Skip ": "
-                        
-                        switch(lineNum){
-                            case 1: // First Name
-                                fn = value;
-                                break;
-                            case 2: // Last Name
-                                ln = value;
-                                break;
-                            case 3: // Nationality
-                                nationality = value;
-                                break;
-                            case 4: // Experience Years
-                                // Extract number from "66 years" format
-                                size_t spacePos = value.find(" ");
-                                if(spacePos != string::npos){
-                                    expY = stoi(value.substr(0, spacePos));
-                                } else {
-                                    expY = stoi(value);
-                                }
-                                break;
-                        }
+                    line = line.substr(18);
+                    switch(i){
+                        case 1:
+                            fn = line;
+                            break;
+                        case 2:    
+                            ln = line;
+                            break;
+                        case 3:    
+                            nationality = line;
+                            break;
+                        case 4:    
+                            expY = stoi(line);
+                            break;
+                        case 5:
+                            break;
                     }
                 }
-                catch(const exception& e){
-                    cout << "Error parsing director " << (directorIndex + 1) << " line " << (lineNum + 1) << ": " << e.what() << endl;
+                catch(const exception&){
                     continue;
                 }
             }
-        }
-        
-        // Create director object if we have valid data
-        if(!fn.empty() && !ln.empty()){
-            d[directorIndex] = new Director(fn, ln, expY, nationality);
-            cout << "Loaded Director " << (directorIndex + 1) << ": " << fn << " " << ln << endl;
-        } else {
-            cout << "Failed to load Director " << (directorIndex + 1) << " - missing data" << endl;
+            d[i] = new Director(fn, ln, expY, nationality);
         }
     }
-    
     file.close();
-    cout << "Director loading completed." << endl;
 }
 
 void DeleteAllPointers(){
@@ -244,27 +218,27 @@ bool AddNewMovie(){
         return false;
     }
     string title = "";
-    int rating = 0;
     string releaseDate = "";
     string directorName = "";
-    int experience = 0;
     string nationality = "";
     string genre = "";
+    
+    int rating = 0;
+    int experience = 0;
     int techlvl = 0;
-    bool aliens = false;
     int FutureY = 0;
-
-    int AnimeSyle = 0;
-    bool Musical = false;
     int ageG = 0;
+    int AnimeSyle = 0;
+    int NoOfFights = 0;
+    int genrePointer = 0;
+    int directorChoice = 0;
+    int day, month, year;
+    
+    bool aliens = false;
+    bool Musical = false;
+    bool Stunts = false;
     
     char VLvl = ' ';
-    bool Stunts = false;
-    int NoOfFights = 0;
-    
-    int genrePointer = 0;
-    
-    int day, month, year;
 
     system("cls");
 
@@ -288,28 +262,12 @@ bool AddNewMovie(){
     cin >> month;
 
     cout << "Year: " << endl;
-    cin >> year;
-
-    // Show available directors and let user select one
-    int directorChoice = 0;
-    cout << "\nAvailable Directors:" << endl;
-    bool hasDirectors = false;
-    for(int i = 0; i < 3; i++){
-        if(d[i] != nullptr){
-            cout << (i + 1) << ". " << d[i]->getName() << endl;
-            hasDirectors = true;
-        }
-    }
+    cin >> year;    
     
-    if(hasDirectors){
-        cout << "Select Director (1-3, or 0 for no director): ";
-        cin >> directorChoice;
-        if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
-            directorChoice = 0; // No director assigned
-        }
-    } else {
-        cout << "No directors available. Movie will be created without director." << endl;
-        directorChoice = 0;
+    cout << "Select Director" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
+    cin >> directorChoice;
+    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
+        directorChoice = 0; 
     }
 
     cout << "Select Genre of the Movie you would like to add" << endl;
@@ -490,21 +448,21 @@ bool AddNewDirector(){
     return true;
 }
 
-void DisplayAllDirectors(){
+void DisplayAllMovies(){
     system("cls");
-    cout << "--------------ALL DIRECTORS--------------" << endl;
+    cout << "--------------ALL Movies--------------" << endl;
     
     bool found = false;
-    for(int i = 0; i < 3; i++){
-        if(d[i] != nullptr){
-            cout << "\nDirector " << (i + 1) << ":" << endl;
-            cout << *d[i] << endl;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i] != nullptr){
+            cout << "\nMovie " << (i + 1) << ":" << endl;
+            cout << *mpointer[i] << endl;
             found = true;
         }
     }
     
     if(!found){
-        cout << "No directors found in the system." << endl;
+        cout << "No Movies found in the system." << endl;
     }
     
     cout << "\nPress any key to continue...";

@@ -74,12 +74,7 @@ using namespace std;
         out << "-------Movie Details-------" << endl;
         out << setw(15) << left << "Title" << ": " << getTitle() << endl;
         out << setw(15) << left << "Rating" << ": " << getRating() << endl;
-        out << setw(15) << left << "Release Date" << ": " << releaseDate << endl;
-        if(getDirectorNum() > 0 && getDirectorNum() <= 3 && d[getDirectorNum()-1] != nullptr) {
-            out << setw(15) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
-        } else {
-            out << setw(15) << left << "Director" << ": " << "Not Assigned" << endl;
-        }
+        out << setw(15) << left << "Release Date" << ": " << releaseDate;
     }
 
     ostream & operator<<(ostream &out,const Movie& m){
