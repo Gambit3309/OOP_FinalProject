@@ -19,16 +19,19 @@ protected:
     int getyear()const;
 
 public:
-    void setDate(int, int, int);
-    string getDate()const;
-
     Date(int = 0, int = 0, int = 0);
     Date(const Date &);
     ~Date();
 
+    void setDate(int, int, int);
+    
     int convertDateToDays()const;
+    
+    string getDate()const;
+
     bool isLeapYear(int);
     bool validateDate(int, int, int);
+
     friend std::ostream & operator<<(std::ostream &, const Date &);
     friend std::istream & operator>>(std::istream &, Date&);
 

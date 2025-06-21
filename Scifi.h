@@ -27,17 +27,22 @@ protected:
     void displayDetails(ostream&)const override;
     
 public:
-    string getgenre()const override;
+    
     scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~scifi();
     scifi(const scifi &);
-
+    
     //void displayDetails()const override;
-    int calculateScore()const override;
-    string showTechAnalysis()const;
-    string simulateFutureScenario()const;
     void toggleAlienInvasion();
     void setmovie(string, int, int, int ,int, int, bool, int);
+
+    int calculateScore()const override;
+    
+    string getgenre()const override;
+    string simulateFutureScenario()const;
+    string showTechAnalysis()const;
+    
+    
     friend ostream& operator << (ostream &, const scifi&);
 };
 

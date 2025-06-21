@@ -5,6 +5,9 @@
 #include "global.h"
 
 void mainmenu(){
+
+    InputDirectorsFromFile();
+    InputMoviesFromFile();
     int choice;
 
     system("cls");
@@ -12,7 +15,7 @@ void mainmenu(){
          << "2. Assign existing Director to a movie " << endl
          << "3. Display Movies" << endl// completed
          << "4. Search Movies" << endl  
-         << "5. Sort Movies by year" << endl
+         << "5. Sort Movies by year" << endl //completed
          << "0. Exit" << endl;
     
     cin >> choice;
@@ -25,7 +28,7 @@ void mainmenu(){
         mainmenu();
         break;
     case 2:
-        //Incomplete
+        RequestToAssignNewDirector();
         system("pause");
         system("cls");
         mainmenu();
@@ -43,12 +46,13 @@ void mainmenu(){
         mainmenu();
         break;
     case 5:
-        //Incomplete
+        SortMoviesByYear();
         system("pause");
         system("cls");
         mainmenu();
         break;
     case 0:
+        DeleteAllPointers();
         exit(0);
     default:
         cout <<"ERROR: Invalid Option" << endl;

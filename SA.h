@@ -5,6 +5,8 @@
 
 using namespace std;
 
+void StringToLowercase(string&);
+
 void InputMoviesFromFile();
 void InputDirectorsFromFile();
 void DeleteAllPointers();
@@ -22,15 +24,12 @@ void DisplayAllMoviesByDirector(string);
 void DisplayByYear(int);
 void DisplayByTitle(string);
 
-void SortByYear();
-// cout << "----------Search Menu----------" << endl;
-//     cout<< "1. Search and Display Movies by Specific Director\n"
-//         << "2. Search and Display Movies by Certain Score\n"
-//         << "3. Search and Display Movies by Year\n"
-//         << "4. Search and Display Movies by Title\n"
-//         << "5. Search and Display Movies by Rating\n"
-//         << "6. Search and Display Movies by Title and Ranking\n"
-//         << "0. <- Go Back";
+void SortByTitle();
+void SortMoviesByYear();
+
+bool SearchTitle(string);
+
+void RequestToAssignNewDirector();
 
 void writeMoviesToNewFile();
 #endif 

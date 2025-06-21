@@ -28,17 +28,20 @@ protected:
     void displayDetails(ostream &)const override;
     
 public:
-    string getgenre()const override;
     Animation(string = "", int = 0,int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~Animation();
     Animation(const Animation &);
 
     //void displayDetails()const override;
-    int calculateScore()const override;
-    string suggestMerchandise()const;
-    bool isFamilyFriendly()const;
     void changeAnimationStyle(int);
     void setmovie(string, int, int, int ,int, int, bool, int);
+    
+    int calculateScore()const override;
+    
+    string getgenre()const override;
+    string suggestMerchandise()const;
+    
+    bool isFamilyFriendly()const;
 
     friend ostream & operator <<(ostream &, const Animation&);
 };

@@ -18,14 +18,15 @@ protected:
     int getExpYears()const;
     string getNationality()const;
 public:
-
     Director(string = "", string = "", int = 0, string = "");
     Director(const Director &);
     ~Director();
 
     void setDirector(string, string, int, string);
-    Director* getDirector();
     void displayDirector()const;
+
+    Director* getDirector();
+    
     friend ostream & operator <<(ostream &, const Director&);
 };
 #endif

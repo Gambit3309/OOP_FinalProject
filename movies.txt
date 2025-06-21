@@ -7,8 +7,6 @@ Animation Style : 1
 Musical         : Yes
 Age Group       : 5
 Director        : Steven Spielberg
-
-
 -------Movie Details-------
 Title           : ALIATHE GOAT
 Rating          : 6

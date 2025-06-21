@@ -17,7 +17,9 @@ public:
     Name(string = "", string = "");
     Name(const Name&);
     ~Name();
+
     void setName(string fn, string ln);
+    
     string getName()const;
 };
 

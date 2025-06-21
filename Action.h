@@ -27,19 +27,19 @@ protected:
     void displayDetails(ostream&)const override;
 
 public:
-    string getgenre()const override;
     Action(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,char = ' ', bool = false, int = 0);
     ~Action();
     Action(const Action &);
 
     void setmovie(string, int, int, int ,int, char, bool, int);
-
-
     //void displayDetails()const override;
+
     int calculateScore()const override;
+    int countExplosions()const;
+
+    string getgenre()const override;
     string assessCensorship()const;
     string stuntCoordinatorReport()const;
-    int countExplosions()const;
  
     friend ostream& operator <<(ostream &,const Action &);
 };

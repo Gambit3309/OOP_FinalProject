@@ -29,90 +29,92 @@ void InputMoviesFromFile(){
             
             for(int i = 0; i <= 8; i ++){
                 getline(file,line);
-            try{
-                line = line.substr(18); 
+                try{
+                    line = line.substr(18); 
 
-                switch(i){
-                    case 1:    
-                        v.title = line;
-                        break;
-                    case 2:    
-                        v.rating = stoi(line);
-                        break;
-                    case 3:    
-                        v.releaseDate = line.substr(0,2);
-                        v.day = stoi(v.releaseDate);
-                        v.releaseDate = line.substr(3,2);
-                        v.month = stoi(v.releaseDate);
-                        v.releaseDate = line.substr(6,4);
-                        v.year = stoi(v.releaseDate);
-                        break;
-                    case 4:    
-                        v.genre = line;
-                        if(v.genre == "Scifi"){
-                            v.genrePointer = 1;
+                    switch(i){
+                        case 1:    
+                            v.title = line;
+                            break;
+                        case 2:    
+                            v.rating = stoi(line);
+                            break;
+                        case 3:    
+                            v.releaseDate = line.substr(0,2);
+                            v.day = stoi(v.releaseDate);
+                            v.releaseDate = line.substr(3,2);
+                            v.month = stoi(v.releaseDate);
+                            v.releaseDate = line.substr(6,4);
+                            v.year = stoi(v.releaseDate);
+                            break;
+                        case 4:    
+                            v.genre = line;
+                            if(v.genre == "Scifi"){
+                                v.genrePointer = 1;
+                            }
+                            else if(v.genre == "Action"){
+                                v.genrePointer = 2;
+                            }
+                            else
+                                v.genrePointer = 3;
+                            break;
+                        case 5:
+                            if(v.genrePointer == 1)    
+                                v.techlvl = stoi(line);
+                            else if(v.genrePointer == 3)    
+                                v.AnimeSyle = stoi(line);
+                            else if(v.genrePointer == 2)    
+                                v.VLvl = line[0];
+                            break;
+                        case 6:
+                            if (v.genrePointer == 1) // Scifi
+                                v.aliens = (line == "Yes" || line == "yes");
+                            else if (v.genrePointer == 2) // Action
+                                v.Stunts = (line == "Yes" || line == "yes");
+                            else if (v.genrePointer == 3) // Animation
+                                v.Musical = (line == "Yes" || line == "yes");
+                            break;
+                        case 7:
+                            if (v.genrePointer == 1) // Scifi
+                                v.FutureY = stoi(line);
+                            else if (v.genrePointer == 2) // Action
+                                v.NoOfFights = stoi(line);
+                            else if (v.genrePointer == 3) // Animation
+                                v.ageG = stoi(line);
+                            break;
+                        case 8:
+                            if(line == "Steven Spielberg")
+                                v.directorChoice = 1;
+                            else if(line == "Martin Scorsese")
+                                v.directorChoice = 2;
+                            else if(line == "Clint Eastwood")
+                                v.directorChoice = 3;
+                            else
+                                v.directorChoice = 1;
+                            break;
+                        default:
+                            break;
                         }
-                        else if(v.genre == "Action"){
-                            v.genrePointer = 2;
-                        }
-                        else
-                            v.genrePointer = 3;
-                        break;
-                    case 5:
-                        if(v.genrePointer == 1)    
-                            v.techlvl = stoi(line);
-                        else if(v.genrePointer == 3)    
-                            v.AnimeSyle = stoi(line);
-                        else if(v.genrePointer == 2)    
-                            v.VLvl = line[0];
-                        break;
-                    case 6:
-                        if (v.genrePointer == 1) // Scifi
-                            v.aliens = (line == "Yes" || line == "yes");
-                        else if (v.genrePointer == 2) // Action
-                            v.Stunts = (line == "Yes" || line == "yes");
-                        else if (v.genrePointer == 3) // Animation
-                            v.Musical = (line == "Yes" || line == "yes");
-                        break;
-                    case 7:
-                        if (v.genrePointer == 1) // Scifi
-                            v.FutureY = stoi(line);
-                        else if (v.genrePointer == 2) // Action
-                            v.NoOfFights = stoi(line);
-                        else if (v.genrePointer == 3) // Animation
-                            v.ageG = stoi(line);
-                        break;
-                    case 8:
-                        if(line == "Steven Spielberg")
-                            v.directorChoice = 1;
-                        else if(line == "Martin Scorsese")
-                            v.directorChoice = 2;
-                        else if(line == "Clint Eastwood")
-                            v.directorChoice = 3;
-                        else
-                            v.directorChoice = 1;
-                        break;
-                    default:
-                        break;
-                    }
-            }
-                catch(const exception& e)
-                {
+                }
+                catch(const exception& e){
                     continue;
                 }
-                
             }
 
             if(v.genrePointer == 1){
                 mpointer[j] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
+                CurrentNumberOfMovies++;
             }
             else if(v.genrePointer == 2){
                 mpointer[j] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
+                CurrentNumberOfMovies++;
             }
-            else{
+            else if(v.genrePointer == 3){
                 mpointer[j] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
+                CurrentNumberOfMovies++;
             }
-            CurrentNumberOfMovies++;
+            else
+                continue;
         }
     }
     file.close();
@@ -200,7 +202,7 @@ bool AddNewMovie(){
     cout << "Year: " << endl;
     cin >> v.year;    
     
-    cout << "Select Director" << endl << "1. " << endl << "2. " << endl << "3. " << endl;
+    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
     cin >> v.directorChoice;
     if(v.directorChoice < 1 || v.directorChoice > 3 || d[v.directorChoice-1] == nullptr){
         v.directorChoice = 0; 
@@ -401,9 +403,6 @@ void DisplayAllMovies(){
     if(!found){
         cout << "No Movies found in the system." << endl;
     }
-    
-    cout << "\nPress any key to continue...";
-    system("pause");
 }
 
 void DisplayAllDirectors(){
@@ -422,9 +421,6 @@ void DisplayAllDirectors(){
     if(!found){
         cout << "No Directors found in the system." << endl;
     }
-    
-    cout << "\nPress any key to continue...";
-    system("pause");
 }
 
 void DisplayAllMoviesByGenre(string genre){
@@ -495,15 +491,91 @@ void DisplayByTitle(string title){
     }
 }
 
-void SortByYear(){
+bool SearchTitle(string title){
+        string MovieTitle;
+        
+        StringToLowercase(title);
+
+        for(int i = 0; i < CurrentNumberOfMovies; i++){
+            
+            MovieTitle = mpointer[i]->getTitle();
+
+            StringToLowercase(MovieTitle);
+            
+            if(MovieTitle == title)
+                return true;
+        }
+        return false;
+}
+
+
+void SortMoviesByYear(){
     int size = CurrentNumberOfMovies;
     int MovieYear[size];
     int MovieIndex[size];
+
     for(int i = 0; i < size; i++){
         string releaseDate = mpointer[i]->displayReleaseDate();
         int last_slash = releaseDate.find_last_of('/');
         releaseDate = releaseDate.substr(last_slash + 1);
         MovieYear[i] = stoi(releaseDate);
         MovieIndex[i] = i;
+    }
+
+    for(int i = 0; i < size - 1; i++){
+        for(int j = 0; j < size - 1 - i; j++){
+            if(MovieYear[j] > MovieYear[j + 1]){
+                swap(MovieYear[j], MovieYear[j + 1]);
+                swap(MovieIndex[j], MovieIndex[j + 1]);
+            }
+        }
+    }
+
+    for(int i = 0; i < size; i++){
+        cout << *mpointer[MovieIndex[i]];
+    }
+}
+
+void RequestToAssignNewDirector(){
+
+    string title;
+    int directorChoice;
+    
+    cout << "Enter the Title of the movie for which you would like to assign an existing Director to: ";
+    
+    cin.ignore();
+    getline(cin, title);
+
+    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
+    cin >> directorChoice;
+
+    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice - 1] == nullptr || directorChoice == 99){
+        directorChoice = 0; 
+    }
+
+    if(directorChoice == 99){
+        system("cls");
+        int dc;
+        cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
+        cin >> dc;
+
+
+    }
+    if(SearchTitle(title)){
+        fstream file("UserRequest.txt", ios::app);
+        if(file.is_open()){
+            file << "User would like to Assign " << d[directorChoice - 1]->getName() << " as Director of " << title << endl;
+            cout << "Your Request has been registered\nWaiting for admin" << endl;
+        }
+        else 
+            cout << "Error in registering request" << endl;
+    }
+    else
+        cout << "Movie does not Exist or incorrect title was entered" << endl;
+}
+
+void StringToLowercase(string &s){
+    for(int i = 0; s[i] != '\0'; i++){
+        s[i] = tolower(s[i]);
     }
 }

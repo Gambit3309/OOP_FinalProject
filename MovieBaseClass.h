@@ -26,15 +26,18 @@ public:
     Movie(string = "", int  = 0, int = 0, int = 0, int = 0, int = 0);
     Movie(const Movie&);
     ~Movie();
+
     //virtual void displayDetails()const;
     virtual int calculateScore()const;
     virtual void setmovie(string, int, int, int, int);
+    virtual string getgenre()const = 0;
+
     string displayReleaseDate()const;
     string getDirectorName()const;
     string getTitle()const;
+
     int getRating()const;
     int getDirectorNum()const;
-    virtual string getgenre()const = 0;
 
     friend ostream & operator<<(ostream &,const Movie&);
 };
