@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "Action.h"
 #include <iomanip>
 
@@ -55,7 +56,6 @@ string Action::getgenre()const{
 
 void Action::displayDetails()const{
     Movie::displayDetails();
-    cout << "-----------Genre Details-----------" << endl;
     cout << setw(14) << left << "Genre" << ": " << getgenre() << endl;
     cout << setw(14) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
     cout << setw(14) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
@@ -92,3 +92,16 @@ void Action::setmovie(string title, int rating, int day, int month, int year, ch
         sethasStunts(stunts);
         setnoOfFightScenes(fightscene);
     }
+
+ostream & operator <<(ostream & out, const Action& a){
+    out << "-------Movie Details-------" << endl;
+    out << setw(14) << left << "Title" << ": " << a.getTitle() << endl;
+    out << setw(14) << left << "Rating" << ": " << a.getRating() << endl;
+    out << setw(14) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
+    //out << setw(14) << left << "Director" << ": " << a.getDirectorName() << endl;
+    out << setw(14) << left << "Genre" << ": " << a.getgenre() << endl;
+    out << setw(14) << left << "Violence Level" << ": " << a.getviolenceLevel() << endl;
+    out << setw(14) << left << "Stunts" << ": " << (a.gethasStunts()? "Yes": "No") << endl;
+    out << setw(14) << left << "Fight Scenes" << ": " << a.getnoOfFightScenes() << endl;
+    return out;
+}

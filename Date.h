@@ -20,7 +20,7 @@ protected:
 
 public:
     void setDate(int, int, int);
-    string DisplayDate()const;
+    string getDate()const;
 
     Date(int = 0, int = 0, int = 0);
     Date(const Date &);

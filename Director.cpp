@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "Director.h"
+#include <fstream>
 
 using namespace std;
 
@@ -49,4 +50,12 @@ void Director::displayDirector()const{
     cout << setw(15) << left << "Name" << ": " << getName() << endl;
     cout << setw(15) << left  << "Exprience " << ": " << getExpYears() << endl;
     cout << setw(15) << left  << "Nationality" << ": " << getNationality() << endl;
+}
+
+ostream & operator << (ostream& out, const Director & d){
+    out << "-------Director Details-------" << endl;
+    out << setw(15) << left << "Name" << ": " << d.getName() << endl;
+    out << setw(15) << left  << "Exprience " << ": " << d.getExpYears() << endl;
+    out << setw(15) << left  << "Nationality" << ": " << d.getNationality() << endl;
+    return out;
 }

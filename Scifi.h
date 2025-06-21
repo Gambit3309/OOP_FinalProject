@@ -2,6 +2,7 @@
 #define Scifi_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 #include "MovieBaseClass.h"
 #include "Date.h"
 
@@ -35,6 +36,7 @@ public:
     string simulateFutureScenario()const;
     void toggleAlienInvasion();
     void setmovie(string, int, int, int ,int, int, bool, int);
+    friend ostream& operator << (ostream &, const scifi&);
 };
 
 #endif

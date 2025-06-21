@@ -44,7 +44,7 @@ Date::Date(const Date &d){
 Date::~Date(){}
 
 
-string Date::DisplayDate()const{
+string Date::getDate()const{
     string date = to_string(getday()) + "/" + to_string(getmonth()) + "/" + to_string(getyear());
     return date;
 }
@@ -130,3 +130,5 @@ istream & operator>>(istream &in, Date &d){
     int Date::convertDateToDays()const{
         return getday() + (getmonth()*30) + (getyear()*365);
     }
+
+    

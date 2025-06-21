@@ -2,6 +2,7 @@
 #define Action_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 #include "MovieBaseClass.h"
 #include "Date.h"
 
@@ -38,6 +39,7 @@ public:
     string stuntCoordinatorReport()const;
     int countExplosions()const;
  
+    friend ostream& operator <<(ostream &,const Action &);
 };
 
 #endif

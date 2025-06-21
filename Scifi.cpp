@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Scifi.h"
+#include <fstream>
 #include <iomanip>
 
 using namespace std;
@@ -54,7 +55,6 @@ string scifi::getgenre()const{
 
 void scifi::displayDetails()const{
     Movie::displayDetails();
-    cout << "-----------Genre Details-----------" << endl;
     cout << setw(11) << left << "Genre" << ": " << getgenre() << endl;
     cout << setw(11) << left << "Tech Level" << ": " << gettechLevel() << endl;
     cout << setw(11) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
@@ -87,3 +87,17 @@ void scifi::setmovie(string title, int rating, int day, int month, int year, int
         sethasAliens(Aliens);
         setfutureYear(futureY);
     }
+
+    ostream & operator <<(ostream & out, const scifi& a){
+    out << "-------Movie Details-------" << endl;
+    out << setw(15) << left << "Title" << ": " << a.getTitle() << endl;
+    out << setw(15) << left << "Rating" << ": " << a.getRating() << endl;
+    out << setw(15) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
+    //out << setw(15) << left << "Director" << ": " << a.getDirectorName() << endl;
+    out << setw(15) << left << "Genre" << ": " << a.getgenre() << endl;
+    out << setw(15) << left << "Tech Level" << ": " << a.gettechLevel() << endl;
+    out << setw(15) << left << "Aliens" << ": " << (a.gethasAliens()? "Yes": "No") << endl;
+    out << setw(15) << left << "Future Year" << ": " << a.getfutureYear() << endl;
+
+    return out;
+}

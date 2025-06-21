@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include <iomanip>
 #include "MovieBaseClass.h"
 #include "global.h"
@@ -13,6 +14,10 @@ using namespace std;
         return rating;
     }
 
+    int Movie::getDirectorNum()const{
+        return director;
+    }
+
     void Movie::setTitle(string temp){
         title = temp;
     }
@@ -20,12 +25,16 @@ using namespace std;
         rating = temp;
     }
 
+    void Movie::setDirectorNum(int temp){
+        director = temp;
+    }
+
     void Movie::displayDetails()const{
         cout << "-------Movie Details-------" << endl;
         cout << setw(12) << left << "Title" << ": " << getTitle() << endl;
         cout << setw(12) << left << "Rating" << ": " << getRating() << endl;
-        cout << setw(12) << left << "Release Date" << ": " << releaseDate.DisplayDate() << endl;
-        cout << setw(12) << left << "Director" << ": " << d[director]->getName() << endl;
+        cout << setw(12) << left << "Release Date" << ": " << releaseDate.getDate() << endl;
+        cout << setw(12) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
 
     }
 
@@ -51,4 +60,12 @@ using namespace std;
         setTitle(t);
         setRating(r);
         releaseDate.setDate(day,month,year);
+    }
+
+    string Movie::displayReleaseDate()const{
+        return releaseDate.getDate();
+    }
+
+    string Movie::getDirectorName()const{
+        return d[director-1]->getName();
     }

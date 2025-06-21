@@ -143,7 +143,7 @@ void InputMoviesFromFile(){
         file.close();
         system("cls");
         for(int j = 0; j < 50; j++){    
-            mpointer[j]->displayDetails();
+            cout << mpointer[j];
         }
           
     }
@@ -316,35 +316,24 @@ bool AddNewMovie(){
 
     if(MovieAdded){
         fstream file("movies.txt" , ios::app);
-
-        if(choice == 1){
-
             file << endl << "-------Movie Details-------" << endl;
             file << "Title           : " << title << endl;
             file << "Rating          : " << rating << endl;
             file << "Release Date    : " << releaseDate << endl;
+
+        if(choice == 1){
             file << "Genre           : " << "Scifi" << endl;
             file << "Tech Level      : " << techLevel << endl;
             file << "Aliens          : " << (aliens? "Yes":"No") << endl;
             file << "Future Year     : " << futureYear << endl;
         }
         else if(choice == 2){
-
-            file <<  endl << "-------Movie Details-------" << endl;
-            file << "Title           : " << title << endl;
-            file << "Rating          : " << rating << endl;
-            file << "Release Date    : " << releaseDate << endl;
             file << "Genre           : " << "Action" << endl;
             file << "Violence Level  : " << ViolenceLevel << endl;
             file << "Stunts          : " << (Stunts? "Yes":"No") << endl;
             file << "Fight Scenes    : " << Fightscenes << endl;
         }
         else if(choice == 3){
-            
-            file <<  endl << "-------Movie Details-------" << endl;
-            file << "Title           : " << title << endl;
-            file << "Rating          : " << rating << endl;
-            file << "Release Date    : " << releaseDate << endl;
             file << "Genre           : " << "Animation" << endl;
             file << "Animation Style : " << AnimationStyle << endl;
             file << "Musical         : " << (Musical? "Yes": "No") << endl;

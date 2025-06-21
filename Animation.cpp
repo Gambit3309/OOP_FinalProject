@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Animation.h"
+#include <fstream>
 #include <iomanip>
 
 using namespace std;
@@ -57,7 +58,6 @@ string Animation::getgenre()const{
 
 void Animation::displayDetails()const{
     Movie::displayDetails();
-    cout << "-----------Genre Details-----------" << endl;
     cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
     cout << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
     cout << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
@@ -90,3 +90,16 @@ void Animation::setmovie(string title, int rating, int day, int month, int year,
         setisMusical(musical);
         setageGroup(agegroup);
     }
+
+    ostream & operator <<(ostream & out, const Animation& a){
+    out << "-------Movie Details-------" << endl;
+    out << setw(15) << left << "Title" << ": " << a.getTitle() << endl;
+    out << setw(15) << left << "Rating" << ": " << a.getRating() << endl;
+    out << setw(15) << left << "Release Date" << ": " << a.displayReleaseDate() << endl;
+    //out << setw(15) << left << "Director" << ": " << a.getDirectorName() << endl;
+    out << setw(15) << left << "Genre" << ": " << a.getgenre() << endl;
+    out << setw(15) << left << "Animation Style" << ": " << a.getanimationStyle() << endl;
+    out << setw(15) << left << "Musical" << ": " << (a.getisMusical()? "Yes": "No") << endl;
+    out << setw(15) << left << "Age Group" << ": " << a.getageGroup() << endl;
+    return out;
+}

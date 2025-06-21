@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "MovieBaseClass.h"
+#include <fstream>
 #include "Date.h"
 
 using namespace std;
@@ -36,6 +37,7 @@ public:
     void changeAnimationStyle(int);
     void setmovie(string, int, int, int ,int, int, bool, int);
 
+    friend ostream & operator <<(ostream &, const Animation&);
 };
 
 #endif

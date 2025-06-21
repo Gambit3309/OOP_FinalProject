@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Name.h"
+#include <fstream>
 
 using namespace std;
 
@@ -25,5 +26,6 @@ public:
     void setDirector(string, string, int, string);
     Director* getDirector();
     void displayDirector()const;
+    friend ostream & operator <<(ostream &, const Director&);
 };
 #endif

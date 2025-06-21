@@ -2,6 +2,7 @@
 #define MovieBaseClass_H_INCLUDED
 
 #include<iostream>
+#include<fstream>
 #include "Date.h"
 #include "Director.h"
 
@@ -17,9 +18,11 @@ private:
 protected:
     string getTitle()const;
     int getRating()const;
+    int getDirectorNum()const;
 
     void setTitle(string);
     void setRating(int);
+    void setDirectorNum(int);
     
 public:
 
@@ -29,7 +32,8 @@ public:
     virtual void displayDetails()const;
     virtual int calculateScore()const;
     virtual void setmovie(string, int, int, int, int);
-
+    string displayReleaseDate()const;
+    string getDirectorName()const;
 };
 
 #endif
