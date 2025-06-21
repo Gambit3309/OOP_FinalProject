@@ -28,7 +28,7 @@ void InputMoviesFromFile(){
     else{
         string line;
         file.seekg(0, ios::beg);
-        for(int j = 0; j < MaxNumberOfMovies-5; j++){
+        for(int j = 0; j < MaxNumberOfMovies; j++){
             string title = "";
             string releaseDate = "";
             string directorName = "";
@@ -146,14 +146,19 @@ void InputMoviesFromFile(){
                 //cout << "Animation Style: " << AnimeSyle << endl;
                 // cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
                 //cout << "Age Group: " << ageG << endl;
+                // cout << "Animation Style: " << AnimeSyle << endl;
+                // cout << "Musical: " << (Musical ? "Yes" : "No") << endl;
+                // cout << "Age Group: " << ageG << endl;
                 // cout << "Violence Level: " << VLvl << endl;
                 // cout << "Stunts: " << (Stunts ? "Yes" : "No") << endl;
                 // cout << "Fight Scenes: " << NoOfFights << endl;
                 // cout << "Genre Pointer: " << genrePointer << endl;
                 //cout << "Error Checking Variiable: " << errorchecking<< endl << endl;
-                cout << directorChoice << endl;
-                cout << d << endl;
-                system("pause");
+                //cout << directorChoice << endl;
+                //cout << d << endl;
+                //system("pause");
+                //system("pause");
+
             if(genrePointer == 1){
                 mpointer[j] = new scifi(title, rating, day,month,year, directorChoice, techlvl, aliens,FutureY);
                 CurrentNumberOfMovies++;
@@ -166,10 +171,10 @@ void InputMoviesFromFile(){
                 mpointer[j] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
                 CurrentNumberOfMovies++;
             }
-            cout<< "Movie" << j << endl;    
-            cout << *mpointer[j];
-            system("pause");
-            system("cls");
+            //cout<< "Movie" << j << endl;    
+            //cout << *mpointer[j];
+            //system("pause");
+            //system("cls");
         }
         file.close();
         
@@ -218,7 +223,7 @@ void InputDirectorsFromFile(){
 }
 
 void DeleteAllPointers(){
-    for(int i = 0; i < 50; i++){
+    for(int i = 0; i < MaxNumberOfMovies; i++){
             delete mpointer[i];
         }
     for(int i = 0; i < 3; i++){
@@ -360,38 +365,34 @@ bool AddNewMovie(){
         mpointer[CurrentNumberOfMovies] = new Animation(title, rating, day,month,year, directorChoice, AnimeSyle,Musical,ageG);
         CurrentNumberOfMovies++;
     }
-    bool MovieAdded = true;
 
-    if(MovieAdded){
-        fstream file("movies.txt" , ios::app);
-            file << endl << "-------Movie Details-------" << endl;
-            file << "Title           : " << title << endl;
-            file << "Rating          : " << rating << endl;
-            file << "Release Date    : " << day << "/" << month << "/" << year << endl;
+    fstream file("movies.txt" , ios::app);
+        file << endl << "-------Movie Details-------" << endl;
+        file << "Title           : " << title << endl;
+        file << "Rating          : " << rating << endl;
+        file << "Release Date    : " << day << "/" << month << "/" << year << endl;
 
-        if(choice == 1){
-            file << "Genre           : " << "Scifi" << endl;
-            file << "Tech Level      : " << techlvl << endl;
-            file << "Aliens          : " << (aliens? "Yes":"No") << endl;
-            file << "Future Year     : " << FutureY << endl;
-        }
-        else if(choice == 2){
-            file << "Genre           : " << "Action" << endl;
-            file << "Violence Level  : " << VLvl << endl;
-            file << "Stunts          : " << (Stunts? "Yes":"No") << endl;
-            file << "Fight Scenes    : " << NoOfFights << endl;
-        }
-        else if(choice == 3){
-            file << "Genre           : " << "Animation" << endl;
-            file << "Animation Style : " << AnimeSyle << endl;
-            file << "Musical         : " << (Musical? "Yes": "No") << endl;
-            file << "Age Group       : " << ageG << endl;
-        }
-        file.close();
+    if(choice == 1){
+        file << "Genre           : " << "Scifi" << endl;
+        file << "Tech Level      : " << techlvl << endl;
+        file << "Aliens          : " << (aliens? "Yes":"No") << endl;
+        file << "Future Year     : " << FutureY << endl;
     }
+    else if(choice == 2){
+        file << "Genre           : " << "Action" << endl;
+        file << "Violence Level  : " << VLvl << endl;
+        file << "Stunts          : " << (Stunts? "Yes":"No") << endl;
+        file << "Fight Scenes    : " << NoOfFights << endl;
+    }
+    else if(choice == 3){
+        file << "Genre           : " << "Animation" << endl;
+        file << "Animation Style : " << AnimeSyle << endl;
+        file << "Musical         : " << (Musical? "Yes": "No") << endl;
+        file << "Age Group       : " << ageG << endl;
+    }
+    file.close();
 
-
-    return MovieAdded;
+    return true;
 }
 
 void writeMoviesToNewFile(){
@@ -435,7 +436,6 @@ bool AddNewDirector(){
     cout << "Experience Years: ";
     cin >> experienceYears;
     
-    // Find the next available slot
     int slot = 0;
     for(int i = 0; i < 3; i++){
         if(d[i] == nullptr){
@@ -443,11 +443,9 @@ bool AddNewDirector(){
             break;
         }
     }
-    
-    // Create new director
     d[slot] = new Director(firstName, lastName, experienceYears, nationality);
-    
-    // Write to directors.txt file
+
+
     fstream file("directors.txt", ios::app);
     if(file.is_open()){
         file << endl << "-----------Director " << (slot + 1) << " Details-----------" << endl;
@@ -502,4 +500,62 @@ void DisplayAllDirectors(){
     
     cout << "\nPress any key to continue...";
     system("pause");
+}
+
+void DisplayAllMoviesByGenre(string genre){
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i] != nullptr){
+            if(mpointer[i]->getgenre() == genre){
+                cout << "\nMovie " << (i + 1) << ":" << endl;
+                cout << *mpointer[i] << endl;
+                found = true;
+            }
+        }
+    }
+    if(!found){
+        cout << "No Movies found in the system." << endl;
+    }
+}
+
+void DisplayAllMoviesByRating(int rating){
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i] != nullptr){
+            if(mpointer[i]->calculateScore() == rating){
+                cout << "\nMovie " << (i + 1) << ":" << endl;
+                cout << *mpointer[i] << endl;
+                found = true;
+            }
+        }
+    }
+    if(!found){
+        cout << "No Movies found in the system." << endl;
+    }
+}
+
+void DisplayAllMoviesByDirector(string director){
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i] != nullptr){
+            if(mpointer[i]->getDirectorName() == director){
+                cout << "\nMovie " << (i + 1) << ":" << endl;
+                cout << *mpointer[i] << endl;
+                found = true;
+            }
+        }
+    }
+    if(!found){
+        cout << "No Movies found in the system." << endl;
+    }
+}
+
+void Search_DisplayBy_Year(){
+    int displayOrder[55] = {0};
+    int size = CurrentNumberOfMovies;
+    for(int i = 0; i < size - 1; i++){
+        for(int j = 0; j < size - 1 - i; j++ ){
+            
+        }
+    }
 }

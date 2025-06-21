@@ -35,6 +35,7 @@ public:
     virtual void setmovie(string, int, int, int, int);
     string displayReleaseDate()const;
     string getDirectorName()const;
+    virtual string getgenre()const = 0;
 
     friend ostream & operator<<(ostream &,const Movie&);
 };

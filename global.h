@@ -11,5 +11,5 @@ extern Movie* mpointer[];
 extern Director* d[];
 extern int CurrentNumberOfMovies;
 extern int MaxNumberOfMovies;
-
+extern int NumberOfMovies;
 #endif

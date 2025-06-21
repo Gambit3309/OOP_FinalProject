@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include "menu.h"
-
+#include "SA.h"
+#include "global.h"
 
 void mainmenu(){
     int choice;
@@ -18,23 +19,42 @@ void mainmenu(){
 
     switch(choice){
     case 1:
-        
+        AddNewMovie();//completed
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     case 2:
-
+        //Incomplete
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     case 3:
-        subMenuDisplay();
+        subMenuDisplay();//completed
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     case 4:
-        subMenuSearch();
+        subMenuSearch();//incomplete
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     case 5:
-
+        //Incomplete
+        system("pause");
+        system("cls");
+        mainmenu();
         break;
     case 0:
         exit(0);
     default:
+        cout <<"ERROR: Invalid Option" << endl;
+        system("pause");
+        system("cls");
+        mainmenu();
         break;   
     }
 }
@@ -55,22 +75,68 @@ void subMenuDisplay(){
     
     switch(choice){
     case 1:
-        
+        DisplayAllMovies();
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 2:
-
+        DisplayAllMoviesByGenre("Scifi");
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 3:
-
+        DisplayAllMoviesByGenre("Animation");
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 4:
-
+        DisplayAllMoviesByGenre("Action");
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 5:
-
+        DisplayAllDirectors();
+        system("pause");
+        system("cls");
+        subMenuDisplay();
         break;
     case 6:
-
+        system("cls");
+        cout << "1. " << d[0]->getName() << endl;
+        cout << "2. " << d[1]->getName() << endl;
+        cout << "3. " << d[2]->getName() << endl;
+        int choice;
+        cin >> choice;
+        switch(choice){
+            case 1:
+                DisplayAllMoviesByDirector(d[0]->getName());
+                system("pause");
+                system("cls");
+                subMenuDisplay();
+                break;
+            case 2:
+                DisplayAllMoviesByDirector(d[1]->getName());
+                system("pause");
+                system("cls");
+                subMenuDisplay();
+                break;
+            case 3:
+                DisplayAllMoviesByDirector(d[2]->getName());
+                system("pause");
+                system("cls");
+                subMenuDisplay();
+                break;
+            default:
+                cout <<"ERROR: Invalid Option" << endl;
+                system("pause");
+                system("cls");
+                subMenuDisplay();
+                break;
+        }
         break;
     case 0:
         mainmenu();
@@ -100,7 +166,7 @@ void subMenuSearch(){
         
         break;
     case 2:
-
+        
         break;
     case 3:
 

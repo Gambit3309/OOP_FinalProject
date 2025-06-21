@@ -13,7 +13,7 @@ private:
     int techLevel;
     bool hasAliens;
     int futureYear;
-    string genre = "SciFi";
+    string genre = "Scifi";
 
 protected:
     void settechLevel(int);
@@ -27,7 +27,7 @@ protected:
     void displayDetails(ostream&)const override;
     
 public:
-    string getgenre()const;
+    string getgenre()const override;
     scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
     ~scifi();
     scifi(const scifi &);
