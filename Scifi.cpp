@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Scifi.h"
+#include "global.h"
 #include <fstream>
 #include <iomanip>
+#include <conio.h>
 
 using namespace std;
 
@@ -85,14 +87,75 @@ void scifi::toggleAlienInvasion(){
     hasAliens = !hasAliens;
 }
 
-void scifi::setmovie(string title, int rating, int day, int month, int year, int techl, bool Aliens, int futureY){
-        Movie::setmovie(title,rating,day,month,year);
+void scifi::setmovie(string title, int rating, int day, int month, int year,int d ,int techl, bool Aliens, int futureY){
+        Movie::setmovie(title,rating,day,month,year,d);
         settechLevel(techl);
         sethasAliens(Aliens);
         setfutureYear(futureY);
     }
 
-    ostream & operator <<(ostream & out, const scifi& a){
+ostream & operator <<(ostream & out, const scifi& a){
         a.displayDetails(out);
         return out;
+}
+
+istream& operator >> (istream & in, scifi&s){
+    string title = "";
+    string releaseDate = "";
+
+    int rating = 0;
+    int genrePointer = 0;
+    int directorChoice = 0;
+    int day, month, year;int techlvl = 0;
+    int FutureY = 0;
+
+    bool aliens = false;
+
+    system("cls");
+
+    cout << "--------------ADDING NEW MOVIE--------------" << endl;
+
+    cout << "Enter" << endl;
+    cout << "Movie Title: ";
+
+    in.ignore();
+    getline(in, title)
+    
+    ;
+
+    cout << "Rating: ";
+
+    in >> rating;
+
+    cout << "Release Date in Numeric for dd/mm/yyyy " << endl;
+    cout << "Day: " << endl;
+    in >> day;
+
+    cout << "Month: " << endl;
+    in >> month;
+
+    cout << "Year: " << endl;
+    in >> year;    
+    
+    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
+    in >> directorChoice;
+    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
+        directorChoice = 0; 
+    }
+
+    cout << "Select Tech Level" << endl << "1. Tech Level 1" << endl << "2. Tech Level 2" << endl << "3. Tech Level 3" << endl;
+    in >> techlvl;
+
+    cout << "Does it Have Aliens (Y/N)" << endl;
+    char ch = getche();
+    in.ignore();
+    if(ch == 'Y' || ch == 'y')
+        aliens = true;
+    
+    cout << "\nFuture Year: ";
+    in >> FutureY;
+
+    s.setmovie(title, rating, day, month, year, directorChoice, techlvl, aliens, FutureY);
+
+    return in;
 }

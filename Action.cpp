@@ -1,7 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include "Action.h"
+#include "global.h"
+#include "menu.h"
 #include <iomanip>
+#include <conio.h>
 
 using namespace std;
 
@@ -89,8 +92,8 @@ int Action::countExplosions()const{
     return 2;
 }
 
-void Action::setmovie(string title, int rating, int day, int month, int year, char violenceLevel, bool stunts, int fightscene){
-        Movie::setmovie(title,rating,day,month,year);
+void Action::setmovie(string title, int rating, int day, int month, int year, int d, char violenceLevel, bool stunts, int fightscene){
+        Movie::setmovie(title,rating,day,month,year, d);
         setviolenceLevel(violenceLevel);
         sethasStunts(stunts);
         setnoOfFightScenes(fightscene);
@@ -99,4 +102,84 @@ void Action::setmovie(string title, int rating, int day, int month, int year, ch
 ostream & operator <<(ostream & out, const Action& a){
     a.displayDetails(out);
     return out;
+}
+
+istream& operator >> (istream & in, Action&a){
+    string title = "";
+    string releaseDate = "";
+
+    int rating = 0;
+    int genrePointer = 0;
+    int directorChoice = 0;
+    int day, month, year;
+    int NoOfFights = 0;
+
+    bool Stunts = false;
+
+    char VLvl = ' ';   
+
+    system("cls");
+    cout << "--------------ADDING NEW MOVIE--------------" << endl;
+
+    cout << "Enter" << endl;
+    cout << "Movie Title: ";
+
+    in.ignore();
+    getline(in, title)
+    
+    ;
+
+    cout << "Rating: ";
+
+    in >> rating;
+
+    cout << "Release Date in Numeric for dd/mm/yyyy " << endl;
+    cout << "Day: " << endl;
+    in >> day;
+
+    cout << "Month: " << endl;
+    in >> month;
+
+    cout << "Year: " << endl;
+    in >> year;    
+    
+    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
+    in >> directorChoice;
+    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
+        directorChoice = 0; 
+    }
+
+    cout << "Select Violence Level" << endl;
+        cout << "1. Domestic Violence" << endl << "2. Mafia Level" << endl << "3. Ultra Cool" << endl;
+        int violenceChoice;
+        in >> violenceChoice;
+
+        switch(violenceChoice) {
+            case 1: 
+                VLvl = 'D'; 
+                break;
+            case 2: 
+                VLvl = 'M'; 
+                break;
+            case 3: 
+                VLvl = 'U'; 
+                break;
+            default: 
+                VLvl = ' '; 
+                break;
+        }
+
+        cout << "Does it Have Stunts (Y/N)" << endl;
+        char ch = getche();
+        in.ignore();
+
+        if(ch == 'Y' || ch == 'y')
+            Stunts = true;
+        
+        cout << "\nNumber of Fight Scenes: ";
+        in >> NoOfFights;
+
+    a.setmovie(title, rating, day, month, year, directorChoice, VLvl, Stunts, NoOfFights);
+
+    return in;
 }

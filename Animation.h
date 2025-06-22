@@ -34,7 +34,7 @@ public:
 
     //void displayDetails()const override;
     void changeAnimationStyle(int);
-    void setmovie(string, int, int, int ,int, int, bool, int);
+    void setmovie(string, int, int, int ,int, int, int, bool, int);
     
     int calculateScore()const override;
     
@@ -44,6 +44,7 @@ public:
     bool isFamilyFriendly()const;
 
     friend ostream & operator <<(ostream &, const Animation&);
+    friend istream & operator >>(istream &, Animation&);
 };
 
 #endif

@@ -31,7 +31,7 @@ public:
     ~Action();
     Action(const Action &);
 
-    void setmovie(string, int, int, int ,int, char, bool, int);
+    void setmovie(string, int, int, int ,int, int, char, bool, int);
     //void displayDetails()const override;
 
     int calculateScore()const override;
@@ -42,6 +42,7 @@ public:
     string stuntCoordinatorReport()const;
  
     friend ostream& operator <<(ostream &,const Action &);
+    friend istream& operator >>(istream &, Action &);
 };
 
 #endif

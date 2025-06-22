@@ -57,9 +57,10 @@ using namespace std;
         
     }
 
-    void Movie::setmovie(string t, int r, int day, int month, int year){
+    void Movie::setmovie(string t, int r, int day, int month, int year, int d){
         setTitle(t);
         setRating(r);
+        setDirectorNum(d);
         releaseDate.setDate(day,month,year);
     }
 

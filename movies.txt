@@ -448,3 +448,11 @@ Violence Level  : M
 Stunts          : No
 Fight Scenes    : 6
 Director        : Clint Eastwood
+-------Movie Details-------
+Title           : Gambit The GOAT
+Rating          : 9
+Release Date    : 23/4/2023
+Genre           : Action
+Violence Level  : D
+Stunts          : Yes
+Fight Scenes    : 5

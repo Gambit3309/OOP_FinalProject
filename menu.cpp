@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <conio.h>
 #include "menu.h"
 #include "SA.h"
 #include "global.h"
@@ -11,18 +12,20 @@ void mainmenu(){
     int choice;
 
     system("cls");
-    cout << "1. Add new movie with user-selected genre" << endl //completed
+    cout << "1. Request to Add new movie with user-selected genre" << endl //completed
          << "2. Assign existing Director to a movie " << endl // completed
          << "3. Display Movies" << endl// completed
-         << "4. Search Movies" << endl  
+         << "4. Search Movies" << endl  //completed
          << "5. Sort Movies by year" << endl //completed
+         << "6. Request to Remove a Movie" << endl
+         << "7. Admin Console" << endl
          << "0. Exit" << endl;
     
     cin >> choice;
 
     switch(choice){
     case 1:
-        AddNewMovie();//completed
+        RequestToAddNewMovie();
         system("pause");
         system("cls");
         mainmenu();
@@ -47,6 +50,18 @@ void mainmenu(){
         break;
     case 5:
         SortMoviesByYear();
+        system("pause");
+        system("cls");
+        mainmenu();
+        break;
+    case 6:
+        RequestToRemoveMovie();
+        system("pause");
+        system("cls");
+        mainmenu();
+        break;
+    case 7:
+    
         system("pause");
         system("cls");
         mainmenu();
@@ -255,11 +270,25 @@ void subMenuSearch(){
         break;
     }
     case 4:{
+        cout << "Would you like" << endl;
+        cout << "1. Prefix Search " << endl << "2. Exact Match" << endl;
+        int c;
+        cin >> c;
         string title = "";
+        if(c == 1){
+            cout << "Enter Alphabet: ";
+            char ch;
+            ch = getche();
+            DisplayByALphabet(ch);
+        }
+        else if(c == 2){
         cout << "Enter Title of the Movie: ";
         cin.ignore();
         getline(cin,title);
         DisplayByTitle(title);
+        }
+        else 
+            cout << "ERROR: Invalid Option" << endl;
         system("pause");
         system("cls");
         subMenuDisplay();
@@ -279,9 +308,19 @@ void subMenuSearch(){
         break;
     }
     case 6:
-
-
-
+        cout << "Enter Rating of Movie: ";
+        int r;
+        cin >> r;
+        if(cin.fail()){
+            cout << "ERROR: Invalid Option" << endl;
+            system("pause");
+            system("cls");
+            subMenuSearch();
+        }
+        cout << "Enter Alphabet: ";
+        char ch;
+        ch = getche();
+        DisplayByTitleAndRating(ch,r);
         system("pause");
         system("cls");
         subMenuDisplay();
