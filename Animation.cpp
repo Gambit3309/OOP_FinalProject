@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Animation.h"
+#include "global.h"
 #include <fstream>
 #include <iomanip>
+#include <conio.h>
 
 using namespace std;
 
@@ -76,8 +78,8 @@ void Animation::changeAnimationStyle(int newStyle) {
     setanimationStyle(newStyle);
 }
 
-void Animation::setmovie(string title, int rating, int day, int month, int year, int animation, bool musical, int agegroup){
-        Movie::setmovie(title,rating,day,month,year);
+void Animation::setmovie(string title, int rating, int day, int month, int year, int d, int animation, bool musical, int agegroup){
+        Movie::setmovie(title,rating,day,month,year,d);
         setanimationStyle(animation);
         setisMusical(musical);
         setageGroup(agegroup);
@@ -94,4 +96,77 @@ void Animation::displayDetails(ostream& out)const{
     out << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
     out << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
     out << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
+}
+
+istream& operator >> (istream & in, Animation&a){
+    string title = "";
+    string releaseDate = "";
+
+    int rating = 0;
+    int genrePointer = 0;
+    int directorChoice = 0;
+    int day, month, year;
+    int AnimeSyle = 0;
+    int ageG = 0;
+
+    bool Musical = false;
+      
+
+    system("cls");
+
+    cout << "--------------ADDING NEW MOVIE--------------" << endl;
+
+    cout << "Enter" << endl;
+    cout << "Movie Title: ";
+
+    in.ignore();
+    getline(in, title)
+    
+    ;
+
+    cout << "Rating: ";
+
+    in >> rating;
+
+    cout << "Release Date in Numeric for dd/mm/yyyy " << endl;
+    cout << "Day: " << endl;
+    in >> day;
+
+    cout << "Month: " << endl;
+    in >> month;
+
+    cout << "Year: " << endl;
+    in >> year;    
+    
+    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
+    in >> directorChoice;
+    if(directorChoice < 1 || directorChoice > 3 || d[directorChoice-1] == nullptr){
+        directorChoice = 0; 
+    }
+
+    cout << "Animation Style" << endl << "1. Animation Style 1" << endl << "2. Animation Style 2" << endl << "3. Animation Style 3" << endl;
+        in >> AnimeSyle;
+
+        cout << "Is it a Musical (Y/N)" << endl;
+        char ch = getche();
+        in.ignore();
+
+        if(ch == 'Y' || ch == 'y')
+            Musical = true;
+        
+        cout << "\nSelect Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 18 Years" << endl;
+        int ch1;
+        in >> ch1;
+        if(ch1 == 1)
+            ageG = 5;
+        else if(ch1 == 2)
+            ageG = 7; 
+        else if(ch1 == 3)
+            ageG = 18;
+        else
+            ageG = 404;
+
+    a.setmovie(title, rating, day, month, year, directorChoice, AnimeSyle, Musical, ageG);
+
+    return in;
 }

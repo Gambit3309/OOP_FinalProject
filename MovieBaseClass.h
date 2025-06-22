@@ -29,7 +29,7 @@ public:
 
     //virtual void displayDetails()const;
     virtual int calculateScore()const;
-    virtual void setmovie(string, int, int, int, int);
+    virtual void setmovie(string, int, int, int, int, int);
     virtual string getgenre()const = 0;
 
     string displayReleaseDate()const;

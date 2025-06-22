@@ -4,9 +4,11 @@
 #include <fstream>
 #include <conio.h>
 #include <string>
+#include <cctype>
 #include "Scifi.h"
 #include "Action.h"
 #include "Animation.h"
+#include "menu.h"
 #include "global.h"
 
 using namespace std;
@@ -169,42 +171,14 @@ void DeleteAllPointers(){
     }
 }
 
-bool AddNewMovie(){
+void RequestToAddNewMovie(){
+    cout << "Enter Movie Title: ";
+    string t;
 
-    if(CurrentNumberOfMovies == MaxNumberOfMovies){
-        return false;
-    }
-    
-    Variables v;
-
-    system("cls");
-
-    cout << "--------------ADDING NEW MOVIE--------------" << endl;
-
-    cout << "Enter" << endl;
-    cout << "Movie Title: ";
-
-    cin.ignore();
-    getline(cin, v.title);
-
-    cout << "Rating: ";
-
-    cin >> v.rating;
-
-    cout << "Release Date in Numeric for dd/mm/yyyy " << endl;
-    cout << "Day: " << endl;
-    cin >> v.day;
-
-    cout << "Month: " << endl;
-    cin >> v.month;
-
-    cout << "Year: " << endl;
-    cin >> v.year;    
-    
-    cout << "Select Director" << endl << "1. Steven Spielberg" << endl << "2. Martin Scorsese" << endl << "3. Clint Eastwood" << endl;
-    cin >> v.directorChoice;
-    if(v.directorChoice < 1 || v.directorChoice > 3 || d[v.directorChoice-1] == nullptr){
-        v.directorChoice = 0; 
+    int Index = SearchTitle(t);
+    if(Index == 3309){
+        cout << "Movie Already Exits" << endl;
+        return;
     }
 
     cout << "Select Genre of the Movie you would like to add" << endl;
@@ -214,107 +188,92 @@ bool AddNewMovie(){
     
     int choice;
     cin >> choice;
-
-    if(choice == 1){
-        cout << "Select Tech Level" << endl << "1. Tech Level 1" << endl << "2. Tech Level 2" << endl << "3. Tech Level 3" << endl;
-        cin >> v.techlvl;
-
-        cout << "Does it Have Aliens (Y/N)";
-        char ch = getche();
-        cin.ignore();
-        if(ch == 'Y' || ch == 'y')
-            v.aliens = true;
-        
-        cout << "Future Year: ";
-        cin >> v.FutureY;
-
-        mpointer[CurrentNumberOfMovies++] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
+    if(cin.fail()){
+        cout << "ERROR: Invalid Input" << endl;
+        return;
     }
-    else if(choice == 2){
-        cout << "Select Violence Level" << endl;
-        cout << "1. Domestic Violence" << endl << "2. Mafia Level" << endl << "3. Ultra Cool" << endl;
-        int violenceChoice;
-        cin >> violenceChoice;
+    switch(choice){
+        case 1:{
+            scifi* s = new scifi();
 
-        switch(violenceChoice) {
-            case 1: 
-                v.VLvl = 'D'; 
-                break;
-            case 2: 
-                v.VLvl = 'M'; 
-                break;
-            case 3: 
-                v.VLvl = 'U'; 
-                break;
-            default: 
-                v.VLvl = ' '; 
-                break;
+            cin >> *s;
+
+            fstream file("AddNewMovie.txt", ios::app);
+
+            file << *s;
+
+            file.close();
+
+            fstream file("UserRequest.txt", ios::app);
+
+            if(file.is_open()){
+                file << "User would like to remove a Movie" << endl;
+                file << "Title: " << s->getTitle();
+                cout << "Your Request has been registered\nWaiting for admin" << endl;
+            }
+            else
+                cout << "Error in registering request" << endl;
+            
+            file.close();
+            
+            delete s;
         }
+            break;
+        case 2:{
+            Action* s = new Action();
 
-        cout << "Does it Have Stunts (Y/N)";
-        char ch = getche();
-        cin.ignore();
+            cin >> *s;
 
-        if(ch == 'Y' || ch == 'y')
-            v.Stunts = true;
-        
-        cout << "Number of Fight Scenes: ";
-        cin >> v.NoOfFights;
+            fstream file("AddNewMovie.txt", ios::app);
 
-        mpointer[CurrentNumberOfMovies++] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);    }
-    else{
+            file << *s;
 
-        cout << "Animation Style" << endl << "1. Animation Style 1" << endl << "2. Animation Style 2" << endl << "3. Animation Style 3" << endl;
-        cin >> v.AnimeSyle;
+            file.close();
 
-        cout << "Is it a Musical (Y/N)";
-        char ch = getche();
-        cin.ignore();
+            fstream file("UserRequest.txt", ios::app);
 
-        if(ch == 'Y' || ch == 'y')
-            v.Musical = true;
-        
-        cout << "Select Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 18 Years" << endl;
-        int ch1;
-        cin >> ch1;
-        if(ch1 == 1)
-            v.ageG = 5;
-        else if(ch1 == 2)
-            v.ageG = 7; 
-        else if(ch1 == 3)
-            v.ageG = 18;
-        else
-            v.ageG = 404;
-        mpointer[CurrentNumberOfMovies++] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
+            if(file.is_open()){
+                file << "User would like to remove a Movie" << endl;
+                file << "Title: " << s->getTitle();
+                cout << "Your Request has been registered\nWaiting for admin" << endl;
+            }
+            else
+                cout << "Error in registering request" << endl;
+            
+            file.close();
+            delete s;
+        }
+            break;
+        case 3:{
+            Animation* s = new Animation();
+
+            cin >> *s;
+
+            fstream file("AddNewMovie.txt", ios::app);
+
+            file << *s;
+
+            file.close();
+
+            fstream file("UserRequest.txt", ios::app);
+
+            if(file.is_open()){
+                file << "User would like to remove a Movie" << endl;
+                file << "Title: " << s->getTitle();
+                cout << "Your Request has been registered\nWaiting for admin" << endl;
+            }
+            else
+                cout << "Error in registering request" << endl;
+            
+            file.close();
+            delete s;
+        }
+            break;
+        default:{
+            cout << "ERROR: Invalid Input" << endl;
+            return;
+        }
     }
-
-    fstream file("movies.txt" , ios::app);
-        file << endl << "-------Movie Details-------" << endl;
-        file << "Title           : " << v.title << endl;
-        file << "Rating          : " << v.rating << endl;
-        file << "Release Date    : " << v.day << "/" << v.month << "/" << v.year << endl;
-
-    if(choice == 1){
-        file << "Genre           : " << "Scifi" << endl;
-        file << "Tech Level      : " << v.techlvl << endl;
-        file << "Aliens          : " << (v.aliens? "Yes":"No") << endl;
-        file << "Future Year     : " << v.FutureY << endl;
-    }
-    else if(choice == 2){
-        file << "Genre           : " << "Action" << endl;
-        file << "Violence Level  : " << v.VLvl << endl;
-        file << "Stunts          : " << (v.Stunts? "Yes":"No") << endl;
-        file << "Fight Scenes    : " << v.NoOfFights << endl;
-    }
-    else if(choice == 3){
-        file << "Genre           : " << "Animation" << endl;
-        file << "Animation Style : " << v.AnimeSyle << endl;
-        file << "Musical         : " << (v.Musical? "Yes": "No") << endl;
-        file << "Age Group       : " << v.ageG << endl;
-    }
-    file.close();
-
-    return true;
 }
 
 void writeMoviesToNewFile(){
@@ -323,63 +282,6 @@ void writeMoviesToNewFile(){
         file << *mpointer[i];
     }
         file.close();
-}
-
-bool AddNewDirector(){
-    // Check if we have space for more directors
-    int currentDirectorCount = 0;
-    for(int i = 0; i < 3; i++){
-        if(d[i] != nullptr) currentDirectorCount++;
-    }
-    
-    if(currentDirectorCount >= 3){
-        cout << "Maximum number of directors (3) already reached." << endl;
-        return false;
-    }
-    
-    string firstName, lastName, nationality;
-    int experienceYears;
-    
-    system("cls");
-    cout << "--------------ADDING NEW DIRECTOR--------------" << endl;
-    
-    cout << "Enter Director Details:" << endl;
-    
-    cout << "First Name: ";
-    cin.ignore();
-    getline(cin, firstName);
-    
-    cout << "Last Name: ";
-    getline(cin, lastName);
-    
-    cout << "Nationality: ";
-    getline(cin, nationality);
-    
-    cout << "Experience Years: ";
-    cin >> experienceYears;
-    
-    int slot = 0;
-    for(int i = 0; i < 3; i++){
-        if(d[i] == nullptr){
-            slot = i;
-            break;
-        }
-    }
-    d[slot] = new Director(firstName, lastName, experienceYears, nationality);
-
-
-    fstream file("directors.txt", ios::app);
-    if(file.is_open()){
-        file << endl << "-----------Director " << (slot + 1) << " Details-----------" << endl;
-        file << "First Name      : " << firstName << endl;
-        file << "Last Name       : " << lastName << endl;
-        file << "Nationality     : " << nationality << endl;
-        file << "Experience Years: " << experienceYears << " years" << endl;
-        file.close();
-    }
-    
-    cout << "Director " << firstName << " " << lastName << " added successfully!" << endl;
-    return true;
 }
 
 void DisplayAllMovies(){
@@ -484,9 +386,9 @@ void DisplayByYear(int year){
 void DisplayByTitle(string title){
     int Index = SearchTitle(title);
     if(Index != 3309)
-    cout << *mpointer[Index];
+        cout << *mpointer[Index];
     else
-    cout << "No Moive Found" << endl;
+        cout << "No Moive Found" << endl;
 }
 
 int SearchTitle(string title){
@@ -555,7 +457,8 @@ void RequestToAssignNewDirector(){
 
 
     }
-    if(SearchTitle(title)){
+    int index = SearchTitle(title);
+    if( index != 3309){
         fstream file("UserRequest.txt", ios::app);
         if(file.is_open()){
             file << "User would like to Assign " << d[directorChoice - 1]->getName() << " as Director of " << title << endl;
@@ -637,4 +540,203 @@ void DisplayByScore(int score){
 
     if(!found)
         cout << "No Movies Found" << endl;
+}
+
+void DisplayByALphabet(char ch){
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        int Index = SearchAlphabet(ch);
+        if(Index != 3309){
+            found = true;
+            cout << *mpointer[Index];
+        }
+    }
+    if(!found)
+        cout << "No Movies Found" << endl;
+}
+
+int SearchAlphabet(char ch){
+        string MovieTitle;
+        char MovieFchar = ' ';
+        ch = tolower(ch);
+        for(int i = 0; i < CurrentNumberOfMovies; i++){
+            MovieTitle = StringToLowercase(mpointer[i]->getTitle());
+            MovieFchar = MovieTitle[1];
+            if(MovieFchar == ch)
+                return i;
+        }
+        return 3309;
+}
+
+void DisplayByTitleAndRating(char ch, int rating){
+    int MovieIndex[CurrentNumberOfMovies];
+    int MovieRating[CurrentNumberOfMovies];
+    string MovieTitle;
+    char MovieFchar = ' ';
+    int tot_M_toSort = 0;
+
+    bool found = false;
+
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        MovieTitle = StringToLowercase(mpointer[i]->getTitle());
+        MovieFchar = MovieTitle[1];
+        if((MovieFchar == ch) && (mpointer[i]->getRating() >= rating)){
+            MovieIndex[tot_M_toSort] = i;
+            tot_M_toSort++;
+            found = true;
+        }
+    }
+    
+    for(int i = 0; i < tot_M_toSort - 1; i++){
+        for(int j = 0; j < tot_M_toSort - 1 - i; j++){
+            if(MovieRating[j] < MovieRating[j + 1]){
+                swap(MovieIndex[j] , MovieIndex[j + 1]);
+            }
+        }
+    }
+
+    system("cls");
+    for(int i = 0; i < tot_M_toSort; i++){
+        cout << *mpointer[MovieIndex[i]];
+    }
+
+    if(!found)
+        cout << "No Movies Found" << endl;
+}
+
+void RequestToRemoveMovie(){
+    string title = "";
+    
+    cout << "Enter Title of the Movie: ";
+    cin.ignore();
+    getline(cin,title);
+    
+    int Index = SearchTitle(title);
+    
+    fstream file("UserRequest.txt", ios::app);
+
+    if(file.is_open()){
+        file << "User would like to remove a Movie" << endl;
+        file << "Movie Number " << Index + 1 << endl;
+        file << "Title: " << title;
+        cout << "Your Request has been registered\nWaiting for admin" << endl;
+    }
+    else
+        cout << "Error in registering request" << endl;
+}
+
+void AddNewMovie(){
+    if(CurrentNumberOfMovies == MaxNumberOfMovies){
+        cout << "Max Number of Movies Reached cannot add more" << endl;
+        return;
+    }
+    cout << "Enter Movie Title: ";
+    string t;
+
+    int Index = SearchTitle(t);
+    if(Index == 3309){
+        cout << "Movie Already Exits" << endl;
+        return;
+    }
+
+    cout << "Select Genre of the Movie you would like to add" << endl;
+    cout << "1. Science Fiction" << endl
+         << "2. Action" << endl
+         << "3. Animation" << endl;
+    
+    int choice;
+    cin >> choice;
+    if(cin.fail()){
+        cout << "ERROR: Invalid Input" << endl;
+        return;
+    }
+    switch(choice){
+        case 1:{
+            scifi* s = new scifi();
+            cin >> *s;
+            mpointer[CurrentNumberOfMovies++] = s;
+        }
+            break;
+        case 2:{
+            Action* s = new Action();
+            cin >> *s;
+            mpointer[CurrentNumberOfMovies++] = s;
+        }
+            break;
+        case 3:{
+            Animation* s = new Animation();
+            cin >> *s;
+            mpointer[CurrentNumberOfMovies++] = s;
+        }
+            break;
+        default:{
+            cout << "ERROR: Invalid Input" << endl;
+            return;
+        }
+    }
+    fstream file("movies.txt", ios::app);
+    file << mpointer[CurrentNumberOfMovies];
+}
+
+void RemoveMovie(){
+    string title = "";
+    
+    cout << "Enter Title of the Movie: ";
+    cin.ignore();
+    getline(cin,title);
+    
+    int Index = SearchTitle(title);
+
+    if(Index != 3309){
+        fstream file("movies.txt", ios::out);
+        for(int i = 0; i < CurrentNumberOfMovies; i++){
+            if(i == Index)
+                continue;
+            file << *mpointer[i];
+        }
+            file.close();
+    }
+}
+
+void AdminConsole(){
+    
+    string username = "Gambit";
+    string password = "sovamain";
+    cout << "Enter \nUserName: ";
+    string inputUserName, inputPassword;
+
+    cin.ignore();
+    getline(cin, inputUserName);
+
+    cout << "Password: ";
+    cin.ignore();
+    getline(cin, inputPassword);
+
+    if(username == inputUserName && password == inputPassword){
+        
+        int choice;
+        
+        system("cls");
+        cout << "1. Add new movie with user-selected genre" << endl //completed
+        << "2. Remove a Movie " << endl // completed
+        << "0. Exit" << endl;
+        
+        cin >> choice;
+        switch (choice){
+            case 1:
+                AddNewMovie();
+                break;
+            case 2:
+                RemoveMovie();
+                break;
+            case 0:
+                break;
+            default:
+                cout << "ERROR: Invalid Option" << endl;
+                break;
+        }
+    }
+    else
+        return;
+    return;
 }

@@ -25,7 +25,7 @@ protected:
     bool gethasAliens()const;
 
     void displayDetails(ostream&)const override;
-    
+
 public:
     
     scifi(string = "", int = 0, int = 0,int = 0,int = 0,int = 0,int = 0, bool = false, int = 0);
@@ -34,7 +34,7 @@ public:
     
     //void displayDetails()const override;
     void toggleAlienInvasion();
-    void setmovie(string, int, int, int ,int, int, bool, int);
+    void setmovie(string, int, int, int , int, int, int, bool, int);
 
     int calculateScore()const override;
     
@@ -44,6 +44,7 @@ public:
     
     
     friend ostream& operator << (ostream &, const scifi&);
+    friend istream& operator >> (istream &, scifi&);
 };
 
 #endif
