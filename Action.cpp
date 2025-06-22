@@ -66,6 +66,11 @@ void Action::displayDetails(ostream &out)const{
     out << setw(15) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
     out << setw(15) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
     out << setw(15) << left << "Fight Scenes" << ": " << getnoOfFightScenes() << endl;
+    int director = getDirectorNum();
+    if(director == 1 || director == 2 || director == 3)
+        out << setw(15) << left << "Director" << ": " << d[director-1]->getName();
+    else
+        out << setw(15) << left << "Director" << ": " << "Unassigned";
 }
 
 int Action::calculateScore()const{
