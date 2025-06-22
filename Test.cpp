@@ -15,6 +15,6 @@ int main()
 {
     InputDirectorsFromFile();
     InputMoviesFromFile();
-    SortMoviesByYear();
+    DisplayByRating(8);
     DeleteAllPointers();
 }

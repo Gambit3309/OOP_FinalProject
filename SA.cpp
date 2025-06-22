@@ -102,16 +102,15 @@ void InputMoviesFromFile(){
             }
 
             if(v.genrePointer == 1){
-                mpointer[j] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
-                CurrentNumberOfMovies++;
+                mpointer[CurrentNumberOfMovies++] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
             }
             else if(v.genrePointer == 2){
-                mpointer[j] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
-                CurrentNumberOfMovies++;
+                mpointer[CurrentNumberOfMovies++] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
+                
             }
             else if(v.genrePointer == 3){
-                mpointer[j] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
-                CurrentNumberOfMovies++;
+                mpointer[CurrentNumberOfMovies++] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
+                
             }
             else
                 continue;
@@ -229,8 +228,7 @@ bool AddNewMovie(){
         cout << "Future Year: ";
         cin >> v.FutureY;
 
-        mpointer[CurrentNumberOfMovies] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
-        CurrentNumberOfMovies++;
+        mpointer[CurrentNumberOfMovies++] = new scifi(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.techlvl, v.aliens,v.FutureY);
     }
     else if(choice == 2){
         cout << "Select Violence Level" << endl;
@@ -263,9 +261,7 @@ bool AddNewMovie(){
         cout << "Number of Fight Scenes: ";
         cin >> v.NoOfFights;
 
-        mpointer[CurrentNumberOfMovies] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);
-        CurrentNumberOfMovies++;
-    }
+        mpointer[CurrentNumberOfMovies++] = new Action(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.VLvl, v.Stunts,v.NoOfFights);    }
     else{
 
         cout << "Animation Style" << endl << "1. Animation Style 1" << endl << "2. Animation Style 2" << endl << "3. Animation Style 3" << endl;
@@ -289,8 +285,7 @@ bool AddNewMovie(){
             v.ageG = 18;
         else
             v.ageG = 404;
-        mpointer[CurrentNumberOfMovies] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
-        CurrentNumberOfMovies++;
+        mpointer[CurrentNumberOfMovies++] = new Animation(v.title, v.rating, v.day,v.month,v.year, v.directorChoice, v.AnimeSyle,v.Musical,v.ageG);
     }
 
     fstream file("movies.txt" , ios::app);
@@ -455,11 +450,13 @@ void DisplayAllMoviesByRating(int rating){
     }
 }
 
-void DisplayAllMoviesByDirector(string director){
+void DisplayByDirector(string director){
+    director = StringToLowercase(director);
     bool found = false;
     for(int i = 0; i < CurrentNumberOfMovies; i++){
         if(mpointer[i] != nullptr){
-            if(mpointer[i]->getDirectorName() == director){
+            string MDirector = StringToLowercase(mpointer[i]->getDirectorName());
+            if(MDirector == director){
                 cout << "\nMovie " << (i + 1) << ":" << endl;
                 cout << *mpointer[i] << endl;
                 found = true;
@@ -485,27 +482,24 @@ void DisplayByYear(int year){
 }
 
 void DisplayByTitle(string title){
-    for(int i = 0; i < CurrentNumberOfMovies; i++){
-        if(mpointer[i]->getTitle() == title)
-            cout << *mpointer[i];
-    }
+    int Index = SearchTitle(title);
+    if(Index != 3309)
+    cout << *mpointer[Index];
+    else
+    cout << "No Moive Found" << endl;
 }
 
-bool SearchTitle(string title){
+int SearchTitle(string title){
         string MovieTitle;
         
-        StringToLowercase(title);
+        title = StringToLowercase(title);
 
         for(int i = 0; i < CurrentNumberOfMovies; i++){
-            
-            MovieTitle = mpointer[i]->getTitle();
-
-            StringToLowercase(MovieTitle);
-            
+            MovieTitle = StringToLowercase(mpointer[i]->getTitle());
             if(MovieTitle == title)
-                return true;
+                return i;
         }
-        return false;
+        return 3309;
 }
 
 
@@ -574,8 +568,50 @@ void RequestToAssignNewDirector(){
         cout << "Movie does not Exist or incorrect title was entered" << endl;
 }
 
-void StringToLowercase(string &s){
+string StringToLowercase(string s){
     for(int i = 0; s[i] != '\0'; i++){
         s[i] = tolower(s[i]);
     }
+    return s;
+}
+
+void DisplayByRating(int rating){
+    int MovieIndex[CurrentNumberOfMovies];
+    int MovieRating[CurrentNumberOfMovies];
+    int tot_M_toSort = 0;
+
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i]->getRating() >= rating){
+            MovieIndex[tot_M_toSort] = i;
+            MovieRating[tot_M_toSort] = mpointer[i]->getRating();
+            tot_M_toSort++;
+            found = true;
+        }
+    }
+
+    // int MIndex[tot_M_toSort];
+    // int MRating[tot_M_toSort];
+    // for(int i = 0; i < tot_M_toSort; i++){
+    //     MIndex[i] = MovieIndex[i];
+    //     MRating[i] = MovieRating[i];
+    // }
+    
+    for(int i = 0; i < tot_M_toSort - 1; i++){
+        for(int j = 0; j < tot_M_toSort - 1 - i; j++){
+            if(MovieRating[j] < MovieRating[j + 1]){
+                swap(MovieRating[j] , MovieRating[j + 1]);
+                swap(MovieIndex[j] , MovieIndex[j + 1]);
+            }
+        }
+    }
+    
+    cout << "TOT = " << tot_M_toSort << endl; 
+    //system("cls");
+    for(int i = 0; i < tot_M_toSort; i++){
+        cout << *mpointer[MovieIndex[i]];
+    }
+
+    if(!found)
+        cout << "No Movies Found" << endl;
 }

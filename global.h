@@ -2,6 +2,7 @@
 #define global_H_INCLUDED
 
 #include <iostream>
+#include <fstream>
 #include "Director.h"
 #include "MovieBaseClass.h"
 
@@ -39,6 +40,7 @@ public:
     char VLvl = ' ';
 
     ~Variables();
+    
 };
 
 #endif

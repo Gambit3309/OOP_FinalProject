@@ -5,7 +5,6 @@
 
 using namespace std;
 
-void StringToLowercase(string&);
 
 void InputMoviesFromFile();
 void InputDirectorsFromFile();
@@ -19,17 +18,20 @@ void DisplayAllDirectors();
 
 void DisplayAllMoviesByGenre(string);
 void DisplayAllMoviesByRating(int);
-void DisplayAllMoviesByDirector(string);
 
+void DisplayByDirector(string);
 void DisplayByYear(int);
 void DisplayByTitle(string);
+void DisplayByRating(int);
 
 void SortByTitle();
 void SortMoviesByYear();
 
-bool SearchTitle(string);
+int SearchTitle(string);
 
 void RequestToAssignNewDirector();
 
 void writeMoviesToNewFile();
+
+string StringToLowercase(string);
 #endif 
