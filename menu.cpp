@@ -9,8 +9,10 @@ void mainmenu(){
 
     InputDirectorsFromFile();
     InputMoviesFromFile();
-    int choice;
-
+    
+    while(true){
+        int choice;
+    
     system("cls");
     cout << "1. Request to Add new movie with user-selected genre" << endl //completed
          << "2. Assign existing Director to a movie " << endl // completed
@@ -27,44 +29,30 @@ void mainmenu(){
     case 1:
         RequestToAddNewMovie();
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 2:
         RequestToAssignNewDirector();
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 3:
         subMenuDisplay();//completed
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 4:
         subMenuSearch();//incomplete
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 5:
         SortMoviesByYear();
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 6:
         RequestToRemoveMovie();
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 7:
-    
+        AdminConsole();
         system("pause");
-        system("cls");
-        mainmenu();
         break;
     case 0:
         DeleteAllPointers();
@@ -72,14 +60,14 @@ void mainmenu(){
     default:
         cout <<"ERROR: Invalid Option" << endl;
         system("pause");
-        system("cls");
-        mainmenu();
         break;   
     }
 }
-
+}
 //completed subMenuDisplay
 void subMenuDisplay(){
+    int i = 0;
+    while(i == 0){
     system("cls");
     cout << "----------Display Menu----------" << endl;
     cout<< "1. Display all Movies\n"
@@ -88,46 +76,34 @@ void subMenuDisplay(){
         << "4. Display Action Movies\n"
         << "5. Display Directors\n"
         << "6. Display Movies by Specific Director\n"
-        << "0. <- Go Back";
+        << "7. <- Go Back" << endl;
 
     int choice;
     cin >> choice;
     if(cin.fail()){
         cout << "ERROR: Invalid Option" << endl;
         system("pause");
-        system("cls");
-        subMenuDisplay();
     }
     switch(choice){
     case 1:
         DisplayAllMovies();
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 2:
         DisplayAllMoviesByGenre("Scifi");
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 3:
         DisplayAllMoviesByGenre("Animation");
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 4:
         DisplayAllMoviesByGenre("Action");
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 5:
         DisplayAllDirectors();
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 6:
         system("cls");
@@ -139,49 +115,39 @@ void subMenuDisplay(){
         if(cin.fail()){
             cout << "ERROR: Invalid Option" << endl;
             system("pause");
-            system("cls");
-            subMenuDisplay();
         }
         switch(choice2){
             case 1:
                 DisplayByDirector(d[0]->getName());
                 system("pause");
-                system("cls");
-                subMenuDisplay();
                 break;
             case 2:
                 DisplayByDirector(d[1]->getName());
                 system("pause");
-                system("cls");
-                subMenuDisplay();
                 break;
             case 3:
                 DisplayByDirector(d[2]->getName());
                 system("pause");
-                system("cls");
-                subMenuDisplay();
                 break;
             default:
                 cout <<"ERROR: Invalid Option" << endl;
                 system("pause");
-                system("cls");
-                subMenuDisplay();
                 break;
         }
-    case 0:
-        system("cls");
-        mainmenu();
+    case 7:
+        i = 1;
+        break;
     default:
         cout <<"ERROR: Invalid Option" << endl;
-        system("pause");
-        system("cls");
-        mainmenu();
+        i = 1;
         break;
     }
-
+    }
 }
 
 void subMenuSearch(){
+    int i = 0;
+    while(i == 0){
     system("cls");
     cout << "----------Search Menu----------" << endl;
     cout<< "1. Search and Display Movies by Specific Director\n"//DONE
@@ -190,7 +156,7 @@ void subMenuSearch(){
         << "4. Search and Display Movies by Title\n"//DONE
         << "5. Search and Display Movies by Rating\n"//Done
         << "6. Search and Display Movies by Title and Ranking\n"
-        << "0. <- Go Back";
+        << "7. <- Go Back" << endl;
         
     
     int choice;
@@ -198,8 +164,7 @@ void subMenuSearch(){
     if(cin.fail()){
         cout << "ERROR: Invalid Option" << endl;
         system("pause");
-        system("cls");
-        subMenuSearch();
+        i = 1;
     }
     
     switch(choice){
@@ -217,32 +182,22 @@ void subMenuSearch(){
                 case 1:
                     DisplayByDirector(d[0]->getName());
                     system("pause");
-                    system("cls");
-                    subMenuDisplay();
                     break;
                 case 2:
                     DisplayByDirector(d[1]->getName());
                     system("pause");
-                    system("cls");
-                    subMenuDisplay();
                     break;
                 case 3:
                     DisplayByDirector(d[2]->getName());
                     system("pause");
-                    system("cls");
-                    subMenuDisplay();
                     break;
                 default:
                     cout <<"ERROR: Invalid Option" << endl;
                     system("pause");
-                    system("cls");
-                    subMenuDisplay();
                     break;
             }
         }
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 2:
         cout << "Enter Rating of Movie: ";
@@ -253,8 +208,6 @@ void subMenuSearch(){
         else
             DisplayByScore(r);
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     case 3:{
         int year = 0;
@@ -265,8 +218,6 @@ void subMenuSearch(){
         else
             DisplayByYear(year);
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     }
     case 4:{
@@ -290,48 +241,41 @@ void subMenuSearch(){
         else 
             cout << "ERROR: Invalid Option" << endl;
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     }
     case 5:{
         cout << "Enter Rating of Movie: ";
-        int r;
+        int rating;
         cin >> r;
         if(cin.fail())
             cout << "ERROR: Invalid Option" << endl;
         else
             DisplayByRating(r);
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
     }
-    case 6:
+    case 6:{
         cout << "Enter Rating of Movie: ";
         int r;
         cin >> r;
         if(cin.fail()){
             cout << "ERROR: Invalid Option" << endl;
             system("pause");
-            system("cls");
-            subMenuSearch();
         }
         cout << "Enter Alphabet: ";
         char ch;
         ch = getche();
         DisplayByTitleAndRating(ch,r);
+    }
         system("pause");
-        system("cls");
-        subMenuDisplay();
         break;
-    case 0:
-        mainmenu();
+    case 7:
+        i = 1;
+        break;
     default:
         cout <<"ERROR: Invalid Option" << endl;
-        system("pause");
-        system("cls");
-        subMenuDisplay();
+        i = 1;
         break;
     }
+}
 }

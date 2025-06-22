@@ -15,6 +15,7 @@ int main()
 {
     InputDirectorsFromFile();
     InputMoviesFromFile();
-    DisplayByRating(8);
+    cout << CurrentNumberOfMovies;
+    DisplayAllMovies();
     DeleteAllPointers();
 }

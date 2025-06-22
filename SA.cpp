@@ -17,14 +17,16 @@ using namespace std;
 
 void InputMoviesFromFile(){
 
-    fstream file("movies.txt", ios::in);
+    ifstream file("movies.txt");
 
     if(!file.is_open()){
         cout << "Error could not access Movies.txt" << endl;
     }
     else{
         string line;
-        file.seekg(0, ios::beg);
+        string skip;
+        //file.seekg(0, ios::beg);
+        getline(file,skip);
         for(int j = 0; j < MaxNumberOfMovies; j++){
 
             Variables v;
@@ -174,9 +176,10 @@ void DeleteAllPointers(){
 void RequestToAddNewMovie(){
     cout << "Enter Movie Title: ";
     string t;
-
+    cin.ignore();
+    getline(cin,t);
     int Index = SearchTitle(t);
-    if(Index == 3309){
+    if(Index != 3309){
         cout << "Movie Already Exits" << endl;
         return;
     }
@@ -204,17 +207,17 @@ void RequestToAddNewMovie(){
 
             file.close();
 
-            fstream file("UserRequest.txt", ios::app);
+            fstream file1("UserRequest.txt", ios::app);
 
-            if(file.is_open()){
-                file << "User would like to remove a Movie" << endl;
-                file << "Title: " << s->getTitle();
+            if(file1.is_open()){
+                file1 << "User would like to remove a Movie" << endl;
+                file1 << "Title: " << s->getTitle();
                 cout << "Your Request has been registered\nWaiting for admin" << endl;
             }
             else
                 cout << "Error in registering request" << endl;
             
-            file.close();
+            file1.close();
             
             delete s;
         }
@@ -230,17 +233,17 @@ void RequestToAddNewMovie(){
 
             file.close();
 
-            fstream file("UserRequest.txt", ios::app);
+            fstream file1("UserRequest.txt", ios::app);
 
-            if(file.is_open()){
-                file << "User would like to remove a Movie" << endl;
-                file << "Title: " << s->getTitle();
+            if(file1.is_open()){
+                file1 << "User would like to remove a Movie" << endl;
+                file1 << "Title: " << s->getTitle();
                 cout << "Your Request has been registered\nWaiting for admin" << endl;
             }
             else
                 cout << "Error in registering request" << endl;
             
-            file.close();
+            file1.close();
             delete s;
         }
             break;
@@ -255,17 +258,17 @@ void RequestToAddNewMovie(){
 
             file.close();
 
-            fstream file("UserRequest.txt", ios::app);
+            fstream file1("UserRequest.txt", ios::app);
 
-            if(file.is_open()){
-                file << "User would like to remove a Movie" << endl;
-                file << "Title: " << s->getTitle();
+            if(file1.is_open()){
+                file1 << "User would like to remove a Movie" << endl;
+                file1 << "Title: " << s->getTitle();
                 cout << "Your Request has been registered\nWaiting for admin" << endl;
             }
             else
                 cout << "Error in registering request" << endl;
             
-            file.close();
+            file1.close();
             delete s;
         }
             break;
@@ -632,9 +635,11 @@ void AddNewMovie(){
     }
     cout << "Enter Movie Title: ";
     string t;
+    cin.ignore();
+    getline(cin,t);
 
     int Index = SearchTitle(t);
-    if(Index == 3309){
+    if(Index != 3309){
         cout << "Movie Already Exits" << endl;
         return;
     }
@@ -655,48 +660,51 @@ void AddNewMovie(){
             scifi* s = new scifi();
             cin >> *s;
             mpointer[CurrentNumberOfMovies++] = s;
-        }
             break;
+        }
         case 2:{
             Action* s = new Action();
             cin >> *s;
             mpointer[CurrentNumberOfMovies++] = s;
-        }
             break;
+        }
         case 3:{
             Animation* s = new Animation();
             cin >> *s;
             mpointer[CurrentNumberOfMovies++] = s;
-        }
             break;
+        }
         default:{
             cout << "ERROR: Invalid Input" << endl;
             return;
         }
     }
     fstream file("movies.txt", ios::app);
-    file << mpointer[CurrentNumberOfMovies];
-}
-
-void RemoveMovie(){
-    string title = "";
-    
-    cout << "Enter Title of the Movie: ";
-    cin.ignore();
-    getline(cin,title);
-    
-    int Index = SearchTitle(title);
-
-    if(Index != 3309){
-        fstream file("movies.txt", ios::out);
-        for(int i = 0; i < CurrentNumberOfMovies; i++){
-            if(i == Index)
-                continue;
-            file << *mpointer[i];
-        }
-            file.close();
+    if(file.is_open()){
+        file << *mpointer[CurrentNumberOfMovies - 1];
     }
 }
+
+// Very dangerous fucks up the display fucntion and the pointer allocation
+// void RemoveMovie(){
+//     string title = "";
+    
+//     cout << "Enter Title of the Movie: ";
+//     cin.ignore();
+//     getline(cin,title);
+    
+//     int Index = SearchTitle(title);
+
+//     if(Index != 3309){
+//         fstream file("movies.txt",ios::out);
+//         for(int i = 0; i < CurrentNumberOfMovies; i++){
+//             if(i == Index)
+//                 continue;
+//             file << *mpointer[i];
+//         }
+//             file.close();
+//     }
+// }
 
 void AdminConsole(){
     
@@ -705,12 +713,11 @@ void AdminConsole(){
     cout << "Enter \nUserName: ";
     string inputUserName, inputPassword;
 
-    cin.ignore();
-    getline(cin, inputUserName);
+    cin >> inputUserName;
 
     cout << "Password: ";
     cin.ignore();
-    getline(cin, inputPassword);
+    cin >> inputPassword;
 
     if(username == inputUserName && password == inputPassword){
         
@@ -718,8 +725,7 @@ void AdminConsole(){
         
         system("cls");
         cout << "1. Add new movie with user-selected genre" << endl //completed
-        << "2. Remove a Movie " << endl // completed
-        << "0. Exit" << endl;
+        << "2. Exit" << endl;
         
         cin >> choice;
         switch (choice){
@@ -727,9 +733,6 @@ void AdminConsole(){
                 AddNewMovie();
                 break;
             case 2:
-                RemoveMovie();
-                break;
-            case 0:
                 break;
             default:
                 cout << "ERROR: Invalid Option" << endl;
@@ -737,6 +740,6 @@ void AdminConsole(){
         }
     }
     else
-        return;
+        cout << "Incorrect Credentials" << endl;
     return;
 }

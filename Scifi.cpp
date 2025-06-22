@@ -65,6 +65,11 @@ void scifi::displayDetails(ostream &out)const{
     out << setw(15) << left << "Tech Level" << ": " << gettechLevel() << endl;
     out << setw(15) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
     out << setw(15) << left << "Future Year" << ": " << getfutureYear() << endl;
+    int director = getDirectorNum();
+    if(director == 1 || director == 2 || director == 3)
+        out << setw(15) << left << "Director" << ": " << d[director-1]->getName();
+    else
+        out << setw(15) << left << "Director" << ": " << "Unassigned";
 }
 
 int scifi::calculateScore()const{
@@ -117,11 +122,9 @@ istream& operator >> (istream & in, scifi&s){
 
     cout << "Enter" << endl;
     cout << "Movie Title: ";
-
-    in.ignore();
-    getline(in, title)
     
-    ;
+    in.ignore();
+    getline(in,title);
 
     cout << "Rating: ";
 
