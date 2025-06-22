@@ -23,6 +23,7 @@ void DisplayByDirector(string);
 void DisplayByYear(int);
 void DisplayByTitle(string);
 void DisplayByRating(int);
+void DisplayByScore(int);
 
 void SortByTitle();
 void SortMoviesByYear();

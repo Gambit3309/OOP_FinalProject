@@ -589,13 +589,6 @@ void DisplayByRating(int rating){
             found = true;
         }
     }
-
-    // int MIndex[tot_M_toSort];
-    // int MRating[tot_M_toSort];
-    // for(int i = 0; i < tot_M_toSort; i++){
-    //     MIndex[i] = MovieIndex[i];
-    //     MRating[i] = MovieRating[i];
-    // }
     
     for(int i = 0; i < tot_M_toSort - 1; i++){
         for(int j = 0; j < tot_M_toSort - 1 - i; j++){
@@ -605,9 +598,39 @@ void DisplayByRating(int rating){
             }
         }
     }
+    system("cls");
+    for(int i = 0; i < tot_M_toSort; i++){
+        cout << *mpointer[MovieIndex[i]];
+    }
+
+    if(!found)
+        cout << "No Movies Found" << endl;
+}
+
+void DisplayByScore(int score){
+    int MovieIndex[CurrentNumberOfMovies];
+    int MovieRating[CurrentNumberOfMovies];
+    int tot_M_toSort = 0;
+
+    bool found = false;
+    for(int i = 0; i < CurrentNumberOfMovies; i++){
+        if(mpointer[i]->calculateScore() >= score){
+            MovieIndex[tot_M_toSort] = i;
+            MovieRating[tot_M_toSort] = mpointer[i]->getRating();
+            tot_M_toSort++;
+            found = true;
+        }
+    }
     
-    cout << "TOT = " << tot_M_toSort << endl; 
-    //system("cls");
+    for(int i = 0; i < tot_M_toSort - 1; i++){
+        for(int j = 0; j < tot_M_toSort - 1 - i; j++){
+            if(MovieRating[j] < MovieRating[j + 1]){
+                swap(MovieRating[j] , MovieRating[j + 1]);
+                swap(MovieIndex[j] , MovieIndex[j + 1]);
+            }
+        }
+    }
+    system("cls");
     for(int i = 0; i < tot_M_toSort; i++){
         cout << *mpointer[MovieIndex[i]];
     }

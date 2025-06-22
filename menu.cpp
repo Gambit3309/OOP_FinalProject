@@ -170,7 +170,7 @@ void subMenuSearch(){
     system("cls");
     cout << "----------Search Menu----------" << endl;
     cout<< "1. Search and Display Movies by Specific Director\n"//DONE
-        << "2. Search and Display Movies by Certain Score\n"
+        << "2. Search and Display Movies by Certain Score\n"//DONE
         << "3. Search and Display Movies by Year\n"//DONE
         << "4. Search and Display Movies by Title\n"//DONE
         << "5. Search and Display Movies by Rating\n"//Done
@@ -230,10 +230,13 @@ void subMenuSearch(){
         subMenuDisplay();
         break;
     case 2:
-        
-
-
-
+        cout << "Enter Rating of Movie: ";
+        int r;
+        cin >> r;
+        if(cin.fail())
+            cout << "ERROR: Invalid Option" << endl;
+        else
+            DisplayByScore(r);
         system("pause");
         system("cls");
         subMenuDisplay();
