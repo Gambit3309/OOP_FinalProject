@@ -15,7 +15,7 @@ int main()
 {
     InputDirectorsFromFile();
     InputMoviesFromFile();
-    cout << CurrentNumberOfMovies;
-    DisplayAllMovies();
+    cout << CurrentNumberOfMovies << endl;
+    cout << mpointer[1]->getgenre();
     DeleteAllPointers();
 }

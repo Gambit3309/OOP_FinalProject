@@ -1,0 +1,2 @@
+User would like to remove a Movie
+Title: Gambit

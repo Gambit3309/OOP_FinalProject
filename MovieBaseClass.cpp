@@ -36,10 +36,10 @@ using namespace std;
 
     /*void Movie::displayDetails()const{
         cout << "-------Movie Details-------" << endl;
-        cout << setw(15) << left << "Title" << ": " << getTitle() << endl;
-        cout << setw(15) << left << "Rating" << ": " << getRating() << endl;
-        cout << setw(15) << left << "Release Date" << ": " << releaseDate.getDate() << endl;
-        cout << setw(15) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
+        cout << setw(16) << left << "Title" << ": " << getTitle() << endl;
+        cout << setw(16) << left << "Rating" << ": " << getRating() << endl;
+        cout << setw(16) << left << "Release Date" << ": " << releaseDate.getDate() << endl;
+        cout << setw(16) << left << "Director" << ": " << d[getDirectorNum()-1]->getName() << endl;
 
     }*/
 
@@ -77,9 +77,9 @@ using namespace std;
 
     void Movie::displayDetails(ostream& out)const{
         out << "\n-------Movie Details-------" << endl;
-        out << setw(15) << left << "Title" << ": " << getTitle() << endl;
-        out << setw(15) << left << "Rating" << ": " << getRating() << endl;
-        out << setw(15) << left << "Release Date" << ": " << releaseDate;
+        out << setw(16) << left << "Title" << ": " << getTitle() << endl;
+        out << setw(16) << left << "Rating" << ": " << getRating() << endl;
+        out << setw(16) << left << "Release Date" << ": " << getReleaseDate() << endl;
     }
 
     ostream & operator<<(ostream &out,const Movie& m){

@@ -210,8 +210,8 @@ void RequestToAddNewMovie(){
             fstream file1("UserRequest.txt", ios::app);
 
             if(file1.is_open()){
-                file1 << "User would like to remove a Movie" << endl;
-                file1 << "Title: " << s->getTitle();
+                file1 << "User would like to add a Movie" << endl;
+                file1 << "Title: " << s->getTitle() << endl;
                 cout << "Your Request has been registered\nWaiting for admin" << endl;
             }
             else
@@ -621,7 +621,7 @@ void RequestToRemoveMovie(){
     if(file.is_open()){
         file << "User would like to remove a Movie" << endl;
         file << "Movie Number " << Index + 1 << endl;
-        file << "Title: " << title;
+        file << "Title: " << title << endl;
         cout << "Your Request has been registered\nWaiting for admin" << endl;
     }
     else
@@ -686,25 +686,26 @@ void AddNewMovie(){
 }
 
 // Very dangerous fucks up the display fucntion and the pointer allocation
-// void RemoveMovie(){
-//     string title = "";
+void RemoveMovie(){
+    string title = "";
     
-//     cout << "Enter Title of the Movie: ";
-//     cin.ignore();
-//     getline(cin,title);
+    cout << "Enter Title of the Movie: ";
+    cin.ignore();
+    getline(cin,title);
     
-//     int Index = SearchTitle(title);
+    int Index = SearchTitle(title);
 
-//     if(Index != 3309){
-//         fstream file("movies.txt",ios::out);
-//         for(int i = 0; i < CurrentNumberOfMovies; i++){
-//             if(i == Index)
-//                 continue;
-//             file << *mpointer[i];
-//         }
-//             file.close();
-//     }
-// }
+    if(Index != 3309){
+        fstream file("movies.txt",ios::out | ios::trunc);
+        file.seekp(0, ios::beg);
+        for(int i = 0; i < CurrentNumberOfMovies; i++){
+            if(i == Index)
+                continue;
+            file << *mpointer[i];
+        }
+            file.close();
+    }
+}
 
 void AdminConsole(){
     
@@ -724,8 +725,9 @@ void AdminConsole(){
         int choice;
         
         system("cls");
-        cout << "1. Add new movie with user-selected genre" << endl //completed
-        << "2. Exit" << endl;
+        cout << "1. Add new Movie" << endl //completed
+        << "2. Remove a Movie" << endl
+        << "3. Exit" << endl;
         
         cin >> choice;
         switch (choice){
@@ -733,6 +735,7 @@ void AdminConsole(){
                 AddNewMovie();
                 break;
             case 2:
+            RemoveMovie();
                 break;
             default:
                 cout << "ERROR: Invalid Option" << endl;

@@ -53,7 +53,7 @@ string Action::getgenreprivate()const{
 }
 
 string Action::getgenre()const{
-    return getgenre();
+    return getgenreprivate();
 }
 
 /*void Action::displayDetails()const{
@@ -66,15 +66,15 @@ string Action::getgenre()const{
 
 void Action::displayDetails(ostream &out)const{
     Movie::displayDetails(out);
-    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-    out << setw(15) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
-    out << setw(15) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
-    out << setw(15) << left << "Fight Scenes" << ": " << getnoOfFightScenes() << endl;
+    out << setw(16) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(16) << left << "Violence Level" << ": " << getviolenceLevel() << endl;
+    out << setw(16) << left << "Stunts" << ": " << (gethasStunts()? "Yes": "No") << endl;
+    out << setw(16) << left << "Fight Scenes" << ": " << getnoOfFightScenes() << endl;
     int director = getDirectorNum();
     if(director == 1 || director == 2 || director == 3)
-        out << setw(15) << left << "Director" << ": " << d[director-1]->getName();
+        out << setw(16) << left << "Director" << ": " << d[director-1]->getName();
     else
-        out << setw(15) << left << "Director" << ": " << "Unassigned";
+        out << setw(16) << left << "Director" << ": " << "Unassigned";
 }
 
 int Action::calculateScore()const{

@@ -51,15 +51,15 @@ string Animation::getgenreprivate()const{
 }
 
 string Animation::getgenre()const{
-    return getgenre();
+    return getgenreprivate();
 }
 
 // void Animation::displayDetails()const{
 //     Movie::displayDetails();
-//     cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-//     cout << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
-//     cout << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
-//     cout << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
+//     cout << setw(16) << left << "Genre" << ": " << getgenre() << endl;
+//     cout << setw(16) << left << "Animation Style" << ": " << getanimationStyle() << endl;
+//     cout << setw(16) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
+//     cout << setw(16) << left << "Age Group" << ": " << getageGroup() << endl;
 // }
 
 int Animation::calculateScore()const{
@@ -73,7 +73,7 @@ string Animation::suggestMerchandise()const{
 }
 
 bool Animation::isFamilyFriendly()const{
-    if((getageGroup() == 18 && getisMusical()) || ((getageGroup() == 5 || getageGroup() == 7) && !getisMusical()) || getanimationStyle() == 3 )
+    if((getageGroup() == 16 && getisMusical()) || ((getageGroup() == 5 || getageGroup() == 7) && !getisMusical()) || getanimationStyle() == 3 )
         return true;
     return false;
 }
@@ -96,15 +96,15 @@ void Animation::setmovie(string title, int rating, int day, int month, int year,
 
 void Animation::displayDetails(ostream& out)const{
     Movie::displayDetails(out);
-    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-    out << setw(15) << left << "Animation Style" << ": " << getanimationStyle() << endl;
-    out << setw(15) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
-    out << setw(15) << left << "Age Group" << ": " << getageGroup() << endl;
+    out << setw(16) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(16) << left << "Animation Style" << ": " << getanimationStyle() << endl;
+    out << setw(16) << left << "Musical" << ": " << (getisMusical()? "Yes": "No") << endl;
+    out << setw(16) << left << "Age Group" << ": " << getageGroup() << endl;
     int director = getDirectorNum();
     if(director == 1 || director == 2 || director == 3)
-        out << setw(15) << left << "Director" << ": " << d[director-1]->getName();
+        out << setw(16) << left << "Director" << ": " << d[director-1]->getName();
     else
-        out << setw(15) << left << "Director" << ": " << "Unassigned";
+        out << setw(16) << left << "Director" << ": " << "Unassigned";
 }
 
 istream& operator >> (istream & in, Animation&a){
@@ -163,7 +163,7 @@ istream& operator >> (istream & in, Animation&a){
         if(ch == 'Y' || ch == 'y')
             Musical = true;
         
-        cout << "\nSelect Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 18 Years" << endl;
+        cout << "\nSelect Age Group "<< endl << "1. 5 Years" << endl << "2. 7 Years" << endl << "3. 16 Years" << endl;
         int ch1;
         in >> ch1;
         if(ch1 == 1)
@@ -171,7 +171,7 @@ istream& operator >> (istream & in, Animation&a){
         else if(ch1 == 2)
             ageG = 7; 
         else if(ch1 == 3)
-            ageG = 18;
+            ageG = 16;
         else
             ageG = 404;
 

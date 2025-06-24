@@ -56,24 +56,24 @@ string scifi::getgenre()const{
 
 /*void scifi::displayDetails()const{
     Movie::displayDetails();
-    cout << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-    cout << setw(15) << left << "Tech Level" << ": " << gettechLevel() << endl;
-    cout << setw(15) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
-    cout << setw(15) << left << "Future Year" << ": " << getfutureYear() << endl;
+    cout << setw(16) << left << "Genre" << ": " << getgenre() << endl;
+    cout << setw(16) << left << "Tech Level" << ": " << gettechLevel() << endl;
+    cout << setw(16) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
+    cout << setw(16) << left << "Future Year" << ": " << getfutureYear() << endl;
 }*/
 
 
 void scifi::displayDetails(ostream &out)const{
     Movie::displayDetails(out);
-    out << setw(15) << left << "Genre" << ": " << getgenre() << endl;
-    out << setw(15) << left << "Tech Level" << ": " << gettechLevel() << endl;
-    out << setw(15) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
-    out << setw(15) << left << "Future Year" << ": " << getfutureYear() << endl;
+    out << setw(16) << left << "Genre" << ": " << getgenre() << endl;
+    out << setw(16) << left << "Tech Level" << ": " << gettechLevel() << endl;
+    out << setw(16) << left << "Aliens" << ": " << (gethasAliens()? "Yes": "No") << endl;
+    out << setw(16) << left << "Future Year" << ": " << getfutureYear() << endl;
     int director = getDirectorNum();
     if(director == 1 || director == 2 || director == 3)
-        out << setw(15) << left << "Director" << ": " << d[director-1]->getName();
+        out << setw(16) << left << "Director" << ": " << d[director-1]->getName();
     else
-        out << setw(15) << left << "Director" << ": " << "Unassigned";
+        out << setw(16) << left << "Director" << ": " << "Unassigned";
 }
 
 int scifi::calculateScore()const{

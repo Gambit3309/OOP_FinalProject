@@ -45,7 +45,15 @@ Date::~Date(){}
 
 
 string Date::getDate()const{
-    string date = to_string(getday()) + "/" + to_string(getmonth()) + "/" + to_string(getyear());
+    string date;
+    if(getday() < 10 && getmonth() < 10)
+        date = "0" + to_string(getday()) + "/0" + to_string(getmonth()) + "/" + to_string(getyear());
+    else if(getmonth() < 10)
+        date = to_string(getday()) + "/0" + to_string(getmonth()) + "/" + to_string(getyear());
+    else if(getday() < 10)
+        date = "0" + to_string(getday()) + "/" + to_string(getmonth()) + "/" + to_string(getyear());
+    else
+        date = to_string(getday()) + "/" + to_string(getmonth()) + "/" + to_string(getyear());
     return date;
 }
 

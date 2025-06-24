@@ -14,43 +14,54 @@ void mainmenu(){
         int choice;
     
     system("cls");
-    cout << "1. Request to Add new movie with user-selected genre" << endl //completed
-         << "2. Assign existing Director to a movie " << endl // completed
-         << "3. Display Movies" << endl// completed
-         << "4. Search Movies" << endl  //completed
-         << "5. Sort Movies by year" << endl //completed
-         << "6. Request to Remove a Movie" << endl
-         << "7. Admin Console" << endl
+    cout << "1. Send Request Admin to Add new movie with user-selected genre" << endl //completed
+         << "2. Display Movies" << endl// completed
+         << "3. Search Movies" << endl  //completed
+         << "4. Sort Movies by year" << endl //completed
+         << "5. Request to Remove a Movie" << endl
+         << "6. Admin Console" << endl
          << "0. Exit" << endl;
     
     cin >> choice;
-
+    
     switch(choice){
     case 1:
-        RequestToAddNewMovie();
+        cout << "1. Request to Add new movie with user-selected genre" << endl //completed
+             << "2. Request to Remove a Movie" << endl
+             << "3. Reuqest to Assign existing Director to a movie" << endl;
+        
+        int temp;
+        cin >> temp;
+        switch(temp){
+            case 1:
+                RequestToAddNewMovie();
+                break;
+            case 2:
+                RequestToRemoveMovie();
+                break;
+            case 3:
+                RequestToAssignNewDirector();
+                break;
+        }
         system("pause");
         break;
     case 2:
-        RequestToAssignNewDirector();
-        system("pause");
-        break;
-    case 3:
         subMenuDisplay();//completed
         system("pause");
         break;
-    case 4:
+    case 3:
         subMenuSearch();//incomplete
         system("pause");
         break;
-    case 5:
+    case 4:
         SortMoviesByYear();
         system("pause");
         break;
-    case 6:
+    case 5:
         RequestToRemoveMovie();
         system("pause");
         break;
-    case 7:
+    case 6:
         AdminConsole();
         system("pause");
         break;
