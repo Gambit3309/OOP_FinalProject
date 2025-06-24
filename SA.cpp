@@ -26,7 +26,7 @@ void InputMoviesFromFile(){
         string line;
         string skip;
         //file.seekg(0, ios::beg);
-        getline(file,skip);
+        getline(file,skip);//skips the first line
         for(int j = 0; j < MaxNumberOfMovies; j++){
 
             Variables v;
@@ -727,7 +727,8 @@ void AdminConsole(){
         system("cls");
         cout << "1. Add new Movie" << endl //completed
         << "2. Remove a Movie" << endl
-        << "3. Exit" << endl;
+        << "3. View User Request" << endl
+        << "0. Exit" << endl;
         
         cin >> choice;
         switch (choice){
@@ -735,7 +736,10 @@ void AdminConsole(){
                 AddNewMovie();
                 break;
             case 2:
-            RemoveMovie();
+                RemoveMovie();
+                break;
+            case 3:
+                viewUserRequest();
                 break;
             default:
                 cout << "ERROR: Invalid Option" << endl;
@@ -745,4 +749,13 @@ void AdminConsole(){
     else
         cout << "Incorrect Credentials" << endl;
     return;
+}
+
+void viewUserRequest(){
+    string line;
+    ifstream file("UserRequest.txt");
+
+    while(getline(file,line)){
+        cout << line << endl;
+    }
 }

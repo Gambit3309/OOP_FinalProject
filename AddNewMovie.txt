@@ -8,3 +8,12 @@ Tech Level      : 1
 Aliens          : Yes
 Future Year     : 2345
 Director        : Steven Spielberg
+-------Movie Details-------
+Title           : GAmbot
+Rating          : 9
+Release Date    : 12/12/202
+Genre           : Scifi
+Tech Level      : 1
+Aliens          : Yes
+Future Year     : 2300
+Director        : Steven Spielberg

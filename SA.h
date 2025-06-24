@@ -42,6 +42,6 @@ void writeMoviesToNewFile();
 string StringToLowercase(string);
 
 void AdminConsole();
-
+void viewUserRequest();
 
 #endif 

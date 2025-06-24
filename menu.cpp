@@ -14,7 +14,7 @@ void mainmenu(){
         int choice;
     
     system("cls");
-    cout << "1. Send Request Admin to Add new movie with user-selected genre" << endl //completed
+    cout << "1. Send Request Admin" << endl //completed
          << "2. Display Movies" << endl// completed
          << "3. Search Movies" << endl  //completed
          << "4. Sort Movies by year" << endl //completed
@@ -28,7 +28,7 @@ void mainmenu(){
     case 1:
         cout << "1. Request to Add new movie with user-selected genre" << endl //completed
              << "2. Request to Remove a Movie" << endl
-             << "3. Reuqest to Assign existing Director to a movie" << endl;
+             << "3. Request to Assign existing Director to a movie" << endl;
         
         int temp;
         cin >> temp;
