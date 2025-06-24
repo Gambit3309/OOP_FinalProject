@@ -377,7 +377,7 @@ void DisplayByYear(int year){
     int size = CurrentNumberOfMovies;
     for(int i = 0; i < size; i++){
         int MovieYear;
-        string releaseDate = mpointer[i]->displayReleaseDate();
+        string releaseDate = mpointer[i]->getReleaseDate();
         int last_slash = releaseDate.find_last_of('/');
         releaseDate = releaseDate.substr(last_slash + 1);
         MovieYear = stoi(releaseDate);
@@ -414,7 +414,7 @@ void SortMoviesByYear(){
     int MovieIndex[size];
 
     for(int i = 0; i < size; i++){
-        string releaseDate = mpointer[i]->displayReleaseDate();
+        string releaseDate = mpointer[i]->getReleaseDate();
         int last_slash = releaseDate.find_last_of('/');
         releaseDate = releaseDate.substr(last_slash + 1);
         MovieYear[i] = stoi(releaseDate);
