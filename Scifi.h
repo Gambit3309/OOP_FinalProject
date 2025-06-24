@@ -24,6 +24,8 @@ protected:
     int getfutureYear()const;
     bool gethasAliens()const;
 
+    string getgenreprivate()const;
+
     void displayDetails(ostream&)const override;
 
 public:

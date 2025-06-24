@@ -24,6 +24,8 @@ protected:
     int getnoOfFightScenes()const;
     bool gethasStunts()const;
 
+    string getgenreprivate()const;
+
     void displayDetails(ostream&)const override;
 
 public:

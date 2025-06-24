@@ -46,8 +46,12 @@ Animation::Animation(const Animation &s):Movie(s){
 
 Animation::~Animation(){}
 
-string Animation::getgenre()const{
+string Animation::getgenreprivate()const{
     return genre;
+}
+
+string Animation::getgenre()const{
+    return getgenre();
 }
 
 // void Animation::displayDetails()const{

@@ -48,8 +48,12 @@ Action::Action(const Action &s):Movie(s){
 
 Action::~Action(){}
 
-string Action::getgenre()const{
+string Action::getgenreprivate()const{
     return genre;
+}
+
+string Action::getgenre()const{
+    return getgenre();
 }
 
 /*void Action::displayDetails()const{

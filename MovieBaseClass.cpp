@@ -6,21 +6,26 @@
 
 using namespace std;
 
-    string Movie::getTitle()const{
+    string Movie::getTitleprivate()const{
         return title;
     }
 
-    int Movie::getRating()const{
+    int Movie::getRatingprivate()const{
         return rating;
     }
 
-    int Movie::getDirectorNum()const{
+    int Movie::getDirectorNumprivate()const{
         return director;
+    }
+
+    string Movie::getReleaseDateprivate()const{
+        return releaseDate.getDate();
     }
 
     void Movie::setTitle(string temp){
         title = temp;
     }
+
     void Movie::setRating(int temp){
         rating = temp;
     }
@@ -63,10 +68,8 @@ using namespace std;
         setDirectorNum(d);
         releaseDate.setDate(day,month,year);
     }
-
-    string Movie::displayReleaseDate()const{
-        return releaseDate.getDate();
-    }
+    
+  
 
     string Movie::getDirectorName()const{
         return d[director-1]->getName();
@@ -82,4 +85,20 @@ using namespace std;
     ostream & operator<<(ostream &out,const Movie& m){
         m.displayDetails(out);
         return out;
+    }
+
+    string Movie::getTitle()const{
+        return getTitleprivate();
+    }
+
+    int Movie::getRating()const{
+        return getRatingprivate();
+    }
+
+    int Movie::getDirectorNum()const{
+        return getDirectorNumprivate();
+    }
+
+    string Movie::getReleaseDate()const{
+        return getReleaseDateprivate();
     }

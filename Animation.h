@@ -24,7 +24,8 @@ protected:
     int getanimationStyle()const;
     int getageGroup()const;
     bool getisMusical()const;
-    
+    string getgenreprivate()const;
+
     void displayDetails(ostream &)const override;
     
 public:

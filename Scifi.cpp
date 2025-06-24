@@ -46,8 +46,12 @@ scifi::scifi(const scifi &s):Movie(s){
 
 scifi::~scifi(){}
 
-string scifi::getgenre()const{
+string scifi::getgenreprivate()const{
     return genre;
+}
+
+string scifi::getgenre()const{
+    return getgenreprivate();
 }
 
 /*void scifi::displayDetails()const{
