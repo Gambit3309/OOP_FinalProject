@@ -14,7 +14,7 @@ void mainmenu(){
         int choice;
     
     system("cls");
-    cout << "1. Send Request Admin" << endl //completed
+    cout << "1. Send Request to Admin" << endl //completed
          << "2. Display Movies" << endl// completed
          << "3. Search Movies" << endl  //completed
          << "4. Sort Movies by year" << endl //completed
