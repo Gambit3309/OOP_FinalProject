@@ -31,7 +31,7 @@ void SortByTitle();
 void SortMoviesByYear();
 
 int SearchTitle(string);
-int SearchAlphabet(char);
+int SearchAlphabetIndex(char);
 
 void RequestToAddNewMovie();
 void RequestToAssignNewDirector();

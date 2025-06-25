@@ -210,7 +210,7 @@ void RequestToAddNewMovie(){
             fstream file1("UserRequest.txt", ios::app);
 
             if(file1.is_open()){
-                file1 << "User would like to add a Movie" << endl;
+                file1 << "\nUser would like to add a Movie" << endl;
                 file1 << "Title: " << s->getTitle() << endl;
                 cout << "Your Request has been registered\nWaiting for admin" << endl;
             }
@@ -464,7 +464,7 @@ void RequestToAssignNewDirector(){
     if( index != 3309){
         fstream file("UserRequest.txt", ios::app);
         if(file.is_open()){
-            file << "User would like to Assign " << d[directorChoice - 1]->getName() << " as Director of " << title << endl;
+            file << "\nUser would like to Assign " << d[directorChoice - 1]->getName() << " as Director of " << title << endl;
             cout << "Your Request has been registered\nWaiting for admin" << endl;
         }
         else 
@@ -548,17 +548,17 @@ void DisplayByScore(int score){
 void DisplayByALphabet(char ch){
     bool found = false;
     for(int i = 0; i < CurrentNumberOfMovies; i++){
-        int Index = SearchAlphabet(ch);
+        int Index = SearchAlphabetIndex(ch);
         if(Index != 3309){
             found = true;
-            cout << *mpointer[Index];
+            cout << *mpointer[Index] << endl;
         }
     }
     if(!found)
         cout << "No Movies Found" << endl;
 }
 
-int SearchAlphabet(char ch){
+int SearchAlphabetIndex(char ch){
         string MovieTitle;
         char MovieFchar = ' ';
         ch = tolower(ch);
@@ -574,37 +574,43 @@ int SearchAlphabet(char ch){
 void DisplayByTitleAndRating(char ch, int rating){
     int MovieIndex[CurrentNumberOfMovies];
     int MovieRating[CurrentNumberOfMovies];
-    string MovieTitle;
-    char MovieFchar = ' ';
     int tot_M_toSort = 0;
-
+   
+    char MovieFchar;
+    char lowerCh = tolower(ch);
+    
+    string MovieTitle;
+   
     bool found = false;
 
     for(int i = 0; i < CurrentNumberOfMovies; i++){
         MovieTitle = StringToLowercase(mpointer[i]->getTitle());
-        MovieFchar = MovieTitle[1];
-        if((MovieFchar == ch) && (mpointer[i]->getRating() >= rating)){
+        MovieFchar = MovieTitle[0];
+        if((MovieFchar == lowerCh) && (mpointer[i]->getRating() >= rating)){
             MovieIndex[tot_M_toSort] = i;
+            MovieRating[tot_M_toSort] = mpointer[i]->getRating(); 
             tot_M_toSort++;
             found = true;
         }
     }
-    
+
     for(int i = 0; i < tot_M_toSort - 1; i++){
         for(int j = 0; j < tot_M_toSort - 1 - i; j++){
-            if(MovieRating[j] < MovieRating[j + 1]){
-                swap(MovieIndex[j] , MovieIndex[j + 1]);
+            if(MovieRating[j] > MovieRating[j + 1]){
+                swap(MovieIndex[j], MovieIndex[j + 1]);
+                swap(MovieRating[j], MovieRating[j + 1]);
             }
         }
     }
 
-    system("cls");
-    for(int i = 0; i < tot_M_toSort; i++){
-        cout << *mpointer[MovieIndex[i]];
-    }
-
-    if(!found)
+    if(found) {
+        for(int i = 0; i < tot_M_toSort; i++){
+            cout << *mpointer[MovieIndex[i]] << endl;
+        }
+    } 
+    else {
         cout << "No Movies Found" << endl;
+    }
 }
 
 void RequestToRemoveMovie(){
@@ -619,7 +625,7 @@ void RequestToRemoveMovie(){
     fstream file("UserRequest.txt", ios::app);
 
     if(file.is_open()){
-        file << "User would like to remove a Movie" << endl;
+        file << "\nUser would like to remove a Movie" << endl;
         file << "Movie Number " << Index + 1 << endl;
         file << "Title: " << title << endl;
         cout << "Your Request has been registered\nWaiting for admin" << endl;
